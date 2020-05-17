@@ -6,10 +6,9 @@ browsable api - ?format=api
 json api - ?format=json
 
 
-Структура на сегодняшнйи день:
-  films/      # Short view
-    {pk:int}/    #Detail view
+Структура на сегодняшнйи день:   
+
+  films/      # Short view    {pk:int}/    #Detail view
   
-  brieffilms/   #Short view
-    {pk:int}/   #Short view
+  brieffilms/   #Short view    {pk:int}/   #Short view
     
