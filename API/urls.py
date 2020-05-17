@@ -11,11 +11,11 @@ router = routers.DefaultRouter()
 # Нужны для регистрации структур апи в роутере который в свою очередь отдает ее в urlpatterns
 
 # Отображение короткого описания фильмов в листе  (all fields) и длинного при детальном рассмотре фильма
-router.register(r'films', views.BaseFilmsViewSet)
+router.register(r'films', views.BaseFilmsViewSet, basename = 'films')
 # -/ Александр Караваев
 
 # Отображение короткого описания фильмов в листе (restricted fields)
-router.register(r'brieffilms', views.ShortBaseFilmsViewSet)
+router.register(r'brieffilms', views.ShortBaseFilmsViewSet, basename = 'brieffilms')
 # -/ Александр Караваев
 
 
