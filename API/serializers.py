@@ -13,5 +13,5 @@ class BaseFilmsSerializer(serializers.ModelSerializer):
 class ShortBaseFilmsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.BaseFilms
-        fields = ['id','year','imdb_id','imdb_votes']
+        fields = ['id','year','imdb_id','kid']
 # -/ Александр Караваев
