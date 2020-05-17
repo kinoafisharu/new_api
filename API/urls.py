@@ -5,8 +5,7 @@ from . import views
 router = routers.DefaultRouter()
 
 
-# В регулярной строке (first arg) прописаны названия paths в апи (r'films', r'bananas', etc.)
-
+# В basename прописаны названия url, в регулярной строке ключ
 # Все адреса роутера связаны по цепочке с - Views => Serializers => Models
 # Нужны для регистрации структур апи в роутере который в свою очередь отдает ее в urlpatterns
 
