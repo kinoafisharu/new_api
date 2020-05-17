@@ -1,0 +1,398 @@
+[
+{
+    "model": "API.basefilms",
+    "pk": 22,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": 16,
+        "budget_id": null,
+        "imdb_id": 2040440,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33413,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 21,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": 16,
+        "budget_id": 1254,
+        "imdb_id": 3089276,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33404,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 20,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 91,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 1432114,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 19,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 82,
+        "rated": 16,
+        "budget_id": 1253,
+        "imdb_id": 3160398,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 18,
+    "fields": {
+        "year": 2013,
+        "note": null,
+        "type": null,
+        "runtime": 96,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 2932606,
+        "imdb_rate": 7.2,
+        "imdb_votes": 89,
+        "kid": 33425,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 17,
+    "fields": {
+        "year": 2013,
+        "note": null,
+        "type": null,
+        "runtime": 82,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 2179027,
+        "imdb_rate": 5.9,
+        "imdb_votes": 20,
+        "kid": 33405,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 16,
+    "fields": {
+        "year": 2011,
+        "note": null,
+        "type": null,
+        "runtime": 90,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 1809231,
+        "imdb_rate": 6.6,
+        "imdb_votes": 1643,
+        "kid": 30538,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 15,
+    "fields": {
+        "year": 2007,
+        "note": null,
+        "type": null,
+        "runtime": 100,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 1107850,
+        "imdb_rate": 6.4,
+        "imdb_votes": 612,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 14,
+    "fields": {
+        "year": 2013,
+        "note": null,
+        "type": null,
+        "runtime": 108,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 2645044,
+        "imdb_rate": 5.5,
+        "imdb_votes": 253,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 13,
+    "fields": {
+        "year": 2010,
+        "note": null,
+        "type": null,
+        "runtime": 114,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 1527835,
+        "imdb_rate": 6.0,
+        "imdb_votes": 971,
+        "kid": 28555,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 12,
+    "fields": {
+        "year": 2010,
+        "note": null,
+        "type": null,
+        "runtime": 111,
+        "rated": 18,
+        "budget_id": 1252,
+        "imdb_id": 1129396,
+        "imdb_rate": 6.5,
+        "imdb_votes": 257,
+        "kid": 33423,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 11,
+    "fields": {
+        "year": 2004,
+        "note": null,
+        "type": null,
+        "runtime": 115,
+        "rated": 0,
+        "budget_id": 1251,
+        "imdb_id": 317705,
+        "imdb_rate": 8.0,
+        "imdb_votes": 347578,
+        "kid": 2140,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 10,
+    "fields": {
+        "year": 2013,
+        "note": null,
+        "type": null,
+        "runtime": 104,
+        "rated": 18,
+        "budget_id": null,
+        "imdb_id": 1980929,
+        "imdb_rate": 7.4,
+        "imdb_votes": 495,
+        "kid": 29773,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 9,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 83,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 2398249,
+        "imdb_rate": 7.0,
+        "imdb_votes": 249,
+        "kid": 32259,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 8,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": 16,
+        "budget_id": 1250,
+        "imdb_id": 2109248,
+        "imdb_rate": 7.9,
+        "imdb_votes": 960,
+        "kid": 30168,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 7,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 60,
+        "rated": 16,
+        "budget_id": 1249,
+        "imdb_id": 3406478,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33393,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 6,
+    "fields": {
+        "year": 2013,
+        "note": null,
+        "type": null,
+        "runtime": 80,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 2650498,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 5,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 78,
+        "rated": 18,
+        "budget_id": null,
+        "imdb_id": 2955096,
+        "imdb_rate": 6.4,
+        "imdb_votes": 145,
+        "kid": 32213,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 4,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 91,
+        "rated": 16,
+        "budget_id": null,
+        "imdb_id": 2102496,
+        "imdb_rate": 4.5,
+        "imdb_votes": 3114,
+        "kid": 31095,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 3,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 89,
+        "rated": null,
+        "budget_id": 1248,
+        "imdb_id": 3331986,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 2,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": 16,
+        "budget_id": 1247,
+        "imdb_id": 2328772,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33402,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 1,
+    "fields": {
+        "year": 2010,
+        "note": null,
+        "type": null,
+        "runtime": 98,
+        "rated": 16,
+        "budget_id": null,
+        "imdb_id": 1307858,
+        "imdb_rate": 6.3,
+        "imdb_votes": 848,
+        "kid": 14252,
+        "generated": 0,
+        "generated_dtime": null
+    }
+}
+]
