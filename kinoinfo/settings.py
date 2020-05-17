@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
 ]
 
+# Дефолтный класс пагинации апи и его конфигурация
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 50
