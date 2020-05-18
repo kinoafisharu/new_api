@@ -1,14 +1,8 @@
-# new_api
+Проект: АПИ открытой базы данных по теме "кино" - kinoinfo.ru
 
-На данный момент дев апи находится на https://new-new-api.herokuapp.com
+Дев: https://new-new-api.herokuapp.com
 
-browsable api - ?format=api
-json api - ?format=json
-
-
-Структура на сегодняшнйи день:   
-
-  films/      # Short view    {pk:int}/    #Detail view
-  
-  brieffilms/   #Short view    {pk:int}/   #Short view
+Методы:
+1) films/      листинг фильмов, при добавлении идентификатора после слэша - подробно о фильме
+2) brieffilms/   подробно о фильме
     
