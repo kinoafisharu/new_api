@@ -587,7 +587,7 @@ class BaseFestcompetition(models.Model):
     class Meta:
         db_table = 'base_festcompetition'
 
-
+'''
 class BaseFilms(models.Model):
     year = models.IntegerField()
     note = models.TextField(blank=True, null=True)
@@ -604,7 +604,7 @@ class BaseFilms(models.Model):
 
     class Meta:
         db_table = 'base_films'
-
+'''
 
 class BaseFilmsCountry(models.Model):
     films_id = models.IntegerField()
