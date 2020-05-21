@@ -622,7 +622,7 @@ class BaseFilmsDistributor(models.Model):
     class Meta:
         db_table = 'base_films_distributor'
 
-
+'''
 class BaseFilmsGenre(models.Model):
     films_id = models.IntegerField()
     genre_id = models.IntegerField()
@@ -630,7 +630,7 @@ class BaseFilmsGenre(models.Model):
     class Meta:
         db_table = 'base_films_genre'
         unique_together = (('films_id', 'genre_id'),)
-
+'''
 
 class BaseFilmsImages(models.Model):
     films_id = models.IntegerField()
@@ -639,7 +639,7 @@ class BaseFilmsImages(models.Model):
     class Meta:
         db_table = 'base_films_images'
 
-
+'''
 class BaseFilmsName(models.Model):
     films_id = models.IntegerField()
     namefilms_id = models.IntegerField()
@@ -692,7 +692,7 @@ class BaseFilmssources(models.Model):
 
     class Meta:
         db_table = 'base_filmssources'
-
+'''
 
 class BaseFilmsvotes(models.Model):
     kid = models.IntegerField()
@@ -1069,7 +1069,7 @@ class BaseNamedistributors(models.Model):
     class Meta:
         db_table = 'base_namedistributors'
 
-
+'''
 class BaseNamefilms(models.Model):
     status = models.IntegerField()
     language_id = models.IntegerField(blank=True, null=True)
@@ -1077,7 +1077,7 @@ class BaseNamefilms(models.Model):
 
     class Meta:
         db_table = 'base_namefilms'
-
+'''
 
 class BaseNamehall(models.Model):
     status = models.IntegerField()
@@ -1087,7 +1087,7 @@ class BaseNamehall(models.Model):
     class Meta:
         db_table = 'base_namehall'
 
-
+'''
 class BaseNameperson(models.Model):
     status = models.IntegerField()
     language_id = models.IntegerField(blank=True, null=True)
@@ -1095,7 +1095,7 @@ class BaseNameperson(models.Model):
 
     class Meta:
         db_table = 'base_nameperson'
-
+'''
 
 class BaseNameproduct(models.Model):
     status = models.IntegerField()
@@ -1506,7 +1506,7 @@ class BasePaidactions(models.Model):
     class Meta:
         db_table = 'base_paidactions'
 
-
+'''
 class BasePerson(models.Model):
     iid = models.BigIntegerField(blank=True, null=True)
     kid = models.BigIntegerField(blank=True, null=True)
@@ -1521,7 +1521,7 @@ class BasePerson(models.Model):
 
     class Meta:
         db_table = 'base_person'
-
+'''
 
 class BasePersonMusician(models.Model):
     from_person_id = models.IntegerField()
