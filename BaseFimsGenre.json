@@ -1,0 +1,1748 @@
+[
+{
+    "model": "API.basefilms",
+    "pk": 50,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 99,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 2903560,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33414,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 49,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 158,
+        "rated": null,
+        "budget_id": 1272,
+        "imdb_id": 3708444,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 48,
+    "fields": {
+        "year": 2012,
+        "note": null,
+        "type": null,
+        "runtime": 90,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 1830799,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33394,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 47,
+    "fields": {
+        "year": 2013,
+        "note": null,
+        "type": null,
+        "runtime": 105,
+        "rated": null,
+        "budget_id": 1271,
+        "imdb_id": 3243082,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 46,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 95,
+        "rated": 16,
+        "budget_id": 1270,
+        "imdb_id": 1986146,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33406,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basegenre",
+    "pk": 13,
+    "fields": {
+        "name": "\u043c\u0443\u0437\u044b\u043a\u0430\u043b\u044c\u043d\u044b\u0439",
+        "name_en": "Musical",
+        "kid": 13
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 45,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 90,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 2261983,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33395,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 44,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": null,
+        "budget_id": 1269,
+        "imdb_id": 2987980,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33408,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 43,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 180,
+        "rated": null,
+        "budget_id": 1268,
+        "imdb_id": 2766800,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 42,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": null,
+        "budget_id": 1267,
+        "imdb_id": 3106316,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 41,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 93,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 1976576,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33409,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 40,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": 16,
+        "budget_id": 1266,
+        "imdb_id": 1641640,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 39,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 80,
+        "rated": null,
+        "budget_id": 1265,
+        "imdb_id": 2265651,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 38,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": null,
+        "budget_id": 1264,
+        "imdb_id": 2948606,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 37,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 83,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 3122422,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basegenre",
+    "pk": 17,
+    "fields": {
+        "name": "\u0441\u0435\u043c\u0435\u0439\u043d\u044b\u0439",
+        "name_en": "Family",
+        "kid": 17
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 36,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": null,
+        "budget_id": 1263,
+        "imdb_id": 3391348,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 35,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 75,
+        "rated": 16,
+        "budget_id": 1262,
+        "imdb_id": 3588938,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33403,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 34,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 3350436,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33407,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 33,
+    "fields": {
+        "year": 2013,
+        "note": null,
+        "type": null,
+        "runtime": 100,
+        "rated": 16,
+        "budget_id": 1261,
+        "imdb_id": 2375906,
+        "imdb_rate": 4.5,
+        "imdb_votes": 19,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 32,
+    "fields": {
+        "year": 2013,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": null,
+        "budget_id": 1260,
+        "imdb_id": 2112209,
+        "imdb_rate": 7.6,
+        "imdb_votes": 27,
+        "kid": 33410,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 31,
+    "fields": {
+        "year": 2013,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": 18,
+        "budget_id": null,
+        "imdb_id": 2531258,
+        "imdb_rate": 5.9,
+        "imdb_votes": 173,
+        "kid": 33415,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 30,
+    "fields": {
+        "year": 2012,
+        "note": null,
+        "type": null,
+        "runtime": 78,
+        "rated": 18,
+        "budget_id": 1259,
+        "imdb_id": 1854582,
+        "imdb_rate": 4.2,
+        "imdb_votes": 1225,
+        "kid": 29845,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 29,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": null,
+        "budget_id": 1258,
+        "imdb_id": 2912352,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 28,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 2608564,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 27,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": null,
+        "budget_id": 1257,
+        "imdb_id": 3476780,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 26,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 3808076,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 25,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": null,
+        "budget_id": 1256,
+        "imdb_id": 3384218,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 24,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 3522000,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 23,
+    "fields": {
+        "year": 2012,
+        "note": null,
+        "type": null,
+        "runtime": 82,
+        "rated": 16,
+        "budget_id": 1255,
+        "imdb_id": 2049518,
+        "imdb_rate": 6.7,
+        "imdb_votes": 98,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 22,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": 16,
+        "budget_id": null,
+        "imdb_id": 2040440,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33413,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 21,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": 16,
+        "budget_id": 1254,
+        "imdb_id": 3089276,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33404,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 20,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 91,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 1432114,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 19,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 82,
+        "rated": 16,
+        "budget_id": 1253,
+        "imdb_id": 3160398,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 18,
+    "fields": {
+        "year": 2013,
+        "note": null,
+        "type": null,
+        "runtime": 96,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 2932606,
+        "imdb_rate": 7.2,
+        "imdb_votes": 89,
+        "kid": 33425,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 17,
+    "fields": {
+        "year": 2013,
+        "note": null,
+        "type": null,
+        "runtime": 82,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 2179027,
+        "imdb_rate": 5.9,
+        "imdb_votes": 20,
+        "kid": 33405,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basegenre",
+    "pk": 12,
+    "fields": {
+        "name": "\u043a\u0440\u0438\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u044b\u0439",
+        "name_en": "Crime",
+        "kid": 12
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 16,
+    "fields": {
+        "year": 2011,
+        "note": null,
+        "type": null,
+        "runtime": 90,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 1809231,
+        "imdb_rate": 6.6,
+        "imdb_votes": 1643,
+        "kid": 30538,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 15,
+    "fields": {
+        "year": 2007,
+        "note": null,
+        "type": null,
+        "runtime": 100,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 1107850,
+        "imdb_rate": 6.4,
+        "imdb_votes": 612,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 14,
+    "fields": {
+        "year": 2013,
+        "note": null,
+        "type": null,
+        "runtime": 108,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 2645044,
+        "imdb_rate": 5.5,
+        "imdb_votes": 253,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 13,
+    "fields": {
+        "year": 2010,
+        "note": null,
+        "type": null,
+        "runtime": 114,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 1527835,
+        "imdb_rate": 6.0,
+        "imdb_votes": 971,
+        "kid": 28555,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 12,
+    "fields": {
+        "year": 2010,
+        "note": null,
+        "type": null,
+        "runtime": 111,
+        "rated": 18,
+        "budget_id": 1252,
+        "imdb_id": 1129396,
+        "imdb_rate": 6.5,
+        "imdb_votes": 257,
+        "kid": 33423,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basegenre",
+    "pk": 14,
+    "fields": {
+        "name": "\u0430\u043d\u0438\u043c\u0430\u0446\u0438\u043e\u043d\u043d\u044b\u0439",
+        "name_en": "Animation",
+        "kid": 14
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 11,
+    "fields": {
+        "year": 2004,
+        "note": null,
+        "type": null,
+        "runtime": 115,
+        "rated": 0,
+        "budget_id": 1251,
+        "imdb_id": 317705,
+        "imdb_rate": 8.0,
+        "imdb_votes": 347578,
+        "kid": 2140,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basegenre",
+    "pk": 30,
+    "fields": {
+        "name": "\u043c\u0443\u0437\u044b\u043a\u0430",
+        "name_en": "Music",
+        "kid": 30
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 10,
+    "fields": {
+        "year": 2013,
+        "note": null,
+        "type": null,
+        "runtime": 104,
+        "rated": 18,
+        "budget_id": null,
+        "imdb_id": 1980929,
+        "imdb_rate": 7.4,
+        "imdb_votes": 495,
+        "kid": 29773,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 9,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 83,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 2398249,
+        "imdb_rate": 7.0,
+        "imdb_votes": 249,
+        "kid": 32259,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basegenre",
+    "pk": 6,
+    "fields": {
+        "name": "\u043f\u0440\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f",
+        "name_en": "Adventure",
+        "kid": 6
+    }
+},
+{
+    "model": "API.basegenre",
+    "pk": 7,
+    "fields": {
+        "name": "\u0431\u043e\u0435\u0432\u0438\u043a",
+        "name_en": "Action",
+        "kid": 7
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 8,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": 16,
+        "budget_id": 1250,
+        "imdb_id": 2109248,
+        "imdb_rate": 7.9,
+        "imdb_votes": 960,
+        "kid": 30168,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 7,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 60,
+        "rated": 16,
+        "budget_id": 1249,
+        "imdb_id": 3406478,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33393,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 6,
+    "fields": {
+        "year": 2013,
+        "note": null,
+        "type": null,
+        "runtime": 80,
+        "rated": null,
+        "budget_id": null,
+        "imdb_id": 2650498,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basegenre",
+    "pk": 5,
+    "fields": {
+        "name": "\u0434\u0440\u0430\u043c\u0430",
+        "name_en": "Drama",
+        "kid": 5
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 5,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 78,
+        "rated": 18,
+        "budget_id": null,
+        "imdb_id": 2955096,
+        "imdb_rate": 6.4,
+        "imdb_votes": 145,
+        "kid": 32213,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basegenre",
+    "pk": 3,
+    "fields": {
+        "name": "\u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430",
+        "name_en": "Sci-Fi",
+        "kid": 3
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 4,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 91,
+        "rated": 16,
+        "budget_id": null,
+        "imdb_id": 2102496,
+        "imdb_rate": 4.5,
+        "imdb_votes": 3114,
+        "kid": 31095,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basegenre",
+    "pk": 11,
+    "fields": {
+        "name": "\u0434\u0435\u0442\u0435\u043a\u0442\u0438\u0432",
+        "name_en": "",
+        "kid": 11
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 3,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 89,
+        "rated": null,
+        "budget_id": 1248,
+        "imdb_id": 3331986,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basegenre",
+    "pk": 9,
+    "fields": {
+        "name": "\u0442\u0440\u0438\u043b\u043b\u0435\u0440",
+        "name_en": "Thriller",
+        "kid": 9
+    }
+},
+{
+    "model": "API.basegenre",
+    "pk": 15,
+    "fields": {
+        "name": "\u043c\u0438\u0441\u0442\u0438\u043a\u0430",
+        "name_en": "Mystery",
+        "kid": 15
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 2,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": 16,
+        "budget_id": 1247,
+        "imdb_id": 2328772,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33402,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basegenre",
+    "pk": 10,
+    "fields": {
+        "name": "\u0443\u0436\u0430\u0441\u044b",
+        "name_en": "Horror",
+        "kid": 10
+    }
+},
+{
+    "model": "API.basegenre",
+    "pk": 1,
+    "fields": {
+        "name": "\u043a\u043e\u043c\u0435\u0434\u0438\u044f",
+        "name_en": "Comedy",
+        "kid": 1
+    }
+},
+{
+    "model": "API.basefilms",
+    "pk": 1,
+    "fields": {
+        "year": 2010,
+        "note": null,
+        "type": null,
+        "runtime": 98,
+        "rated": 16,
+        "budget_id": null,
+        "imdb_id": 1307858,
+        "imdb_rate": 6.3,
+        "imdb_votes": 848,
+        "kid": 14252,
+        "generated": 0,
+        "generated_dtime": null
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 90,
+    "fields": {
+        "films_id": 50,
+        "genre_id": 17
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 89,
+    "fields": {
+        "films_id": 50,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 88,
+    "fields": {
+        "films_id": 49,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 87,
+    "fields": {
+        "films_id": 48,
+        "genre_id": 1
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 86,
+    "fields": {
+        "films_id": 47,
+        "genre_id": 15
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 85,
+    "fields": {
+        "films_id": 46,
+        "genre_id": 15
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 84,
+    "fields": {
+        "films_id": 46,
+        "genre_id": 10
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 83,
+    "fields": {
+        "films_id": 46,
+        "genre_id": 1
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 82,
+    "fields": {
+        "films_id": 45,
+        "genre_id": 13
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 81,
+    "fields": {
+        "films_id": 45,
+        "genre_id": 1
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 80,
+    "fields": {
+        "films_id": 45,
+        "genre_id": 7
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 79,
+    "fields": {
+        "films_id": 44,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 78,
+    "fields": {
+        "films_id": 43,
+        "genre_id": 7
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 77,
+    "fields": {
+        "films_id": 42,
+        "genre_id": 9
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 76,
+    "fields": {
+        "films_id": 41,
+        "genre_id": 9
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 75,
+    "fields": {
+        "films_id": 41,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 74,
+    "fields": {
+        "films_id": 40,
+        "genre_id": 3
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 73,
+    "fields": {
+        "films_id": 40,
+        "genre_id": 10
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 72,
+    "fields": {
+        "films_id": 40,
+        "genre_id": 1
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 71,
+    "fields": {
+        "films_id": 39,
+        "genre_id": 9
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 70,
+    "fields": {
+        "films_id": 39,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 69,
+    "fields": {
+        "films_id": 39,
+        "genre_id": 12
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 68,
+    "fields": {
+        "films_id": 38,
+        "genre_id": 7
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 67,
+    "fields": {
+        "films_id": 37,
+        "genre_id": 15
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 66,
+    "fields": {
+        "films_id": 37,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 65,
+    "fields": {
+        "films_id": 36,
+        "genre_id": 17
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 64,
+    "fields": {
+        "films_id": 35,
+        "genre_id": 10
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 63,
+    "fields": {
+        "films_id": 34,
+        "genre_id": 3
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 62,
+    "fields": {
+        "films_id": 34,
+        "genre_id": 6
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 61,
+    "fields": {
+        "films_id": 34,
+        "genre_id": 7
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 60,
+    "fields": {
+        "films_id": 33,
+        "genre_id": 9
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 59,
+    "fields": {
+        "films_id": 33,
+        "genre_id": 10
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 58,
+    "fields": {
+        "films_id": 33,
+        "genre_id": 12
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 57,
+    "fields": {
+        "films_id": 32,
+        "genre_id": 1
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 56,
+    "fields": {
+        "films_id": 31,
+        "genre_id": 7
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 55,
+    "fields": {
+        "films_id": 30,
+        "genre_id": 10
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 54,
+    "fields": {
+        "films_id": 29,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 53,
+    "fields": {
+        "films_id": 28,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 52,
+    "fields": {
+        "films_id": 27,
+        "genre_id": 7
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 51,
+    "fields": {
+        "films_id": 26,
+        "genre_id": 7
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 50,
+    "fields": {
+        "films_id": 25,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 49,
+    "fields": {
+        "films_id": 24,
+        "genre_id": 9
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 48,
+    "fields": {
+        "films_id": 23,
+        "genre_id": 9
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 47,
+    "fields": {
+        "films_id": 23,
+        "genre_id": 10
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 46,
+    "fields": {
+        "films_id": 23,
+        "genre_id": 1
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 45,
+    "fields": {
+        "films_id": 22,
+        "genre_id": 9
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 44,
+    "fields": {
+        "films_id": 22,
+        "genre_id": 10
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 43,
+    "fields": {
+        "films_id": 22,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 42,
+    "fields": {
+        "films_id": 21,
+        "genre_id": 10
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 41,
+    "fields": {
+        "films_id": 21,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 40,
+    "fields": {
+        "films_id": 21,
+        "genre_id": 1
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 39,
+    "fields": {
+        "films_id": 20,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 38,
+    "fields": {
+        "films_id": 19,
+        "genre_id": 10
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 37,
+    "fields": {
+        "films_id": 19,
+        "genre_id": 1
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 36,
+    "fields": {
+        "films_id": 19,
+        "genre_id": 7
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 35,
+    "fields": {
+        "films_id": 18,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 34,
+    "fields": {
+        "films_id": 17,
+        "genre_id": 9
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 33,
+    "fields": {
+        "films_id": 16,
+        "genre_id": 12
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 32,
+    "fields": {
+        "films_id": 16,
+        "genre_id": 1
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 31,
+    "fields": {
+        "films_id": 16,
+        "genre_id": 7
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 30,
+    "fields": {
+        "films_id": 15,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 29,
+    "fields": {
+        "films_id": 14,
+        "genre_id": 1
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 28,
+    "fields": {
+        "films_id": 14,
+        "genre_id": 7
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 27,
+    "fields": {
+        "films_id": 13,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 26,
+    "fields": {
+        "films_id": 12,
+        "genre_id": 3
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 25,
+    "fields": {
+        "films_id": 12,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 24,
+    "fields": {
+        "films_id": 11,
+        "genre_id": 6
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 23,
+    "fields": {
+        "films_id": 11,
+        "genre_id": 7
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 22,
+    "fields": {
+        "films_id": 11,
+        "genre_id": 14
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 21,
+    "fields": {
+        "films_id": 10,
+        "genre_id": 30
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 20,
+    "fields": {
+        "films_id": 10,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 19,
+    "fields": {
+        "films_id": 10,
+        "genre_id": 1
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 18,
+    "fields": {
+        "films_id": 9,
+        "genre_id": 1
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 17,
+    "fields": {
+        "films_id": 8,
+        "genre_id": 3
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 16,
+    "fields": {
+        "films_id": 8,
+        "genre_id": 6
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 15,
+    "fields": {
+        "films_id": 8,
+        "genre_id": 7
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 14,
+    "fields": {
+        "films_id": 7,
+        "genre_id": 10
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 13,
+    "fields": {
+        "films_id": 7,
+        "genre_id": 1
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 12,
+    "fields": {
+        "films_id": 6,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 11,
+    "fields": {
+        "films_id": 5,
+        "genre_id": 5
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 10,
+    "fields": {
+        "films_id": 5,
+        "genre_id": 1
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 9,
+    "fields": {
+        "films_id": 4,
+        "genre_id": 9
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 8,
+    "fields": {
+        "films_id": 4,
+        "genre_id": 3
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 7,
+    "fields": {
+        "films_id": 4,
+        "genre_id": 10
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 6,
+    "fields": {
+        "films_id": 3,
+        "genre_id": 11
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 5,
+    "fields": {
+        "films_id": 2,
+        "genre_id": 9
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 4,
+    "fields": {
+        "films_id": 2,
+        "genre_id": 15
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 3,
+    "fields": {
+        "films_id": 2,
+        "genre_id": 10
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 2,
+    "fields": {
+        "films_id": 1,
+        "genre_id": 10
+    }
+},
+{
+    "model": "API.basefilmsgenre",
+    "pk": 1,
+    "fields": {
+        "films_id": 1,
+        "genre_id": 1
+    }
+}
+]
