@@ -31,7 +31,7 @@ class BaseFilmsProduction(models.Model):
         db_table = 'base_films_production'
         unique_together = (('films_id', 'productionsco_id'),)
 
-# модель 2 из 4 идентифицирующих Фильм (связь реализована через kid - заменить на прямую связь)      
+# модель 2  (жанры) из 4 идентифицирующих Фильм      
 class BaseFilmsGenre(models.Model):
     films_id = models.IntegerField()
     genre_id = models.IntegerField()
@@ -51,7 +51,7 @@ class BaseGenre(models.Model):
 
 
         
-       
+# часть слоя IMDb (позже соединить в один общий слой или заменить на считывание "на лету" (но с кэшем)       
 class BaseImdb(models.Model):
     id_imdb = models.BigIntegerField()
     rating = models.FloatField(blank=True, null=True)
@@ -59,7 +59,7 @@ class BaseImdb(models.Model):
     class Meta:
         db_table = 'base_imdb'
 
-        
+# связь с таблицей дат релизов        
 class BaseFilmsRelease(models.Model):
     films_id = models.IntegerField()
     filmsreleasedate_id = models.IntegerField()
@@ -68,7 +68,17 @@ class BaseFilmsRelease(models.Model):
         db_table = 'base_films_release'
         unique_together = (('films_id', 'filmsreleasedate_id'),)
 
+# даты релизов (+ примечание к релизу, формат релиза (кино, онлайн-платформы и т.п.), страна релиза
+class BaseFilmsreleasedate(models.Model):
+    release = models.DateField()
+    note = models.CharField(max_length=256, blank=True, null=True)
+    format = models.CharField(max_length=1) # ключевое слово Джанго???
+    country_id = models.IntegerField()
 
+    class Meta:
+        db_table = 'base_filmsreleasedate'
+
+# бюджет фильма (почему киноафишная связь?)
 class BaseFilmsbudget(models.Model):
     kid = models.IntegerField()
     budget = models.CharField(max_length=64)
@@ -76,17 +86,7 @@ class BaseFilmsbudget(models.Model):
     class Meta:
         db_table = 'base_filmsbudget'
 
-
-class BaseFilmsreleasedate(models.Model):
-    release = models.DateField()
-    note = models.CharField(max_length=256, blank=True, null=True)
-    format = models.CharField(max_length=1)
-    country_id = models.IntegerField()
-
-    class Meta:
-        db_table = 'base_filmsreleasedate'
-
-
+# связь фильма с источниками?        
 class BaseFilmssources(models.Model):
     id_films_id = models.IntegerField()
     source_id = models.IntegerField()
@@ -95,7 +95,7 @@ class BaseFilmssources(models.Model):
     class Meta:
         db_table = 'base_filmssources'
 
-
+# киноафишные оценки юзеров
 class BaseFilmsvotes(models.Model):
     kid = models.IntegerField()
     user_id = models.IntegerField()
@@ -111,7 +111,7 @@ class BaseFilmsvotes(models.Model):
 class BaseFilms(models.Model):
     year = models.IntegerField()
     note = models.TextField(blank=True, null=True)
-    type = models.CharField(max_length=1, blank=True, null=True)
+    type = models.CharField(max_length=1, blank=True, null=True) #(ключевое слово Джанго!!!)
     runtime = models.IntegerField(blank=True, null=True)
     rated = models.IntegerField(blank=True, null=True)
     budget_id = models.IntegerField(blank=True, null=True)
