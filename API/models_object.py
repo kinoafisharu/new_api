@@ -32,6 +32,15 @@ class BaseFilmsProduction(models.Model):
         unique_together = (('films_id', 'productionsco_id'),)
 
 # модель 2 из 4 идентифицирующих Фильм (связь реализована через kid - заменить на прямую связь)      
+class BaseFilmsGenre(models.Model):
+    films_id = models.IntegerField()
+    genre_id = models.IntegerField()
+
+    class Meta:
+        db_table = 'base_films_genre'
+        unique_together = (('films_id', 'genre_id'),)
+
+#  названия жанров (и связь с киноафишей)       
 class BaseGenre(models.Model):
     name = models.CharField(max_length=64)
     name_en = models.CharField(max_length=64, blank=True, null=True)
@@ -40,6 +49,8 @@ class BaseGenre(models.Model):
     class Meta:
         db_table = 'base_genre'
 
+
+        
        
 class BaseImdb(models.Model):
     id_imdb = models.BigIntegerField()
