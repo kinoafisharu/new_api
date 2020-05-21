@@ -721,7 +721,7 @@ class BaseForumgeneralTopics(models.Model):
         db_table = 'base_forumgeneral_topics'
         unique_together = (('forumgeneral_id', 'news_id'),)
 
-
+'''
 class BaseGenre(models.Model):
     name = models.CharField(max_length=64)
     name_en = models.CharField(max_length=64, blank=True, null=True)
@@ -729,7 +729,7 @@ class BaseGenre(models.Model):
 
     class Meta:
         db_table = 'base_genre'
-
+'''
 
 class BaseHall(models.Model):
     number = models.IntegerField(blank=True, null=True)
@@ -781,14 +781,14 @@ class BaseImages(models.Model):
     class Meta:
         db_table = 'base_images'
 
-
+'''
 class BaseImdb(models.Model):
     id_imdb = models.BigIntegerField()
     rating = models.FloatField(blank=True, null=True)
 
     class Meta:
         db_table = 'base_imdb'
-
+'''
 
 class BaseImportsources(models.Model):
     url = models.CharField(max_length=256)
