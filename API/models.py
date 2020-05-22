@@ -363,7 +363,7 @@ class BaseCinemacircuit(models.Model):
     class Meta:
         db_table = 'base_cinemacircuit'
 
-
+'''
 class BaseCity(models.Model):
     phone_code = models.IntegerField(blank=True, null=True)
     kid = models.BigIntegerField(blank=True, null=True)
@@ -380,7 +380,7 @@ class BaseCityName(models.Model):
     class Meta:
         db_table = 'base_city_name'
         unique_together = (('city_id', 'namecity_id'),)
-
+'''
 
 class BaseComposition(models.Model):
     runtime = models.CharField(max_length=16, blank=True, null=True)
