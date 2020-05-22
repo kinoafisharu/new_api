@@ -1594,14 +1594,14 @@ class BasePost(models.Model):
     class Meta:
         db_table = 'base_post'
 
-
+'''
 class BaseProductionsco(models.Model):
     name = models.CharField(max_length=256)
     imdb_id = models.IntegerField(blank=True, null=True)
 
     class Meta:
         db_table = 'base_productionsco'
-
+'''
 
 class BaseProfile(models.Model):
     user_id = models.IntegerField(unique=True)
