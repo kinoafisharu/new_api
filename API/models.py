@@ -97,7 +97,14 @@ class BaseAlterstreettype(models.Model):
 
 
 class BaseApilogger(models.Model):
-    user_id = models.IntegerField(blank=True, null=True)
+    user_id = models.IntegerField(blank=True, null=True)class BaseCountry(models.Model):
+    name = models.CharField(max_length=64)
+    name_en = models.CharField(max_length=64, blank=True, null=True)
+    kid = models.BigIntegerField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'base_country'
+
     date = models.DateTimeField()
     details = models.CharField(max_length=256)
     ip = models.CharField(max_length=15)
@@ -160,14 +167,35 @@ class BaseAwardsrelationsAwards(models.Model):
         unique_together = (('awardsrelations_id', 'awards_id'),)
 
 
-class BaseBackground(models.Model):
-    image = models.CharField(max_length=100)
+class BaseBackground(models.Model):class BaseCountry(models.Model):
+    name = models.CharField(max_length=64)
+    name_en = models.CharField(max_length=64, blank=True, null=True)
+    kid = models.BigIntegerField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'base_country'
+
+    image = models.CharField(max_length=100)class BaseCountry(models.Model):
+    name = models.CharField(max_length=64)
+    name_en = models.CharField(max_length=64, blank=True, null=True)
+    kid = models.BigIntegerField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'base_country'
+
     url = models.CharField(max_length=256)
     country_id = models.IntegerField()
     city_id = models.IntegerField(blank=True, null=True)
     date_adding = models.DateTimeField()
     site_id = models.IntegerField()
     subdomain = models.CharField(max_length=128, blank=True, null=True)
+class BaseCountry(models.Model):
+    name = models.CharField(max_length=64)
+    name_en = models.CharField(max_length=64, blank=True, null=True)
+    kid = models.BigIntegerField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'base_country'
 
     class Meta:
         db_table = 'base_background'
@@ -262,7 +290,14 @@ class BaseBuilding(models.Model):
     path = models.TextField(blank=True, null=True)
 
     class Meta:
-        db_table = 'base_building'
+        db_table = 'base_building'class BaseCountry(models.Model):
+    name = models.CharField(max_length=64)
+    name_en = models.CharField(max_length=64, blank=True, null=True)
+    kid = models.BigIntegerField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'base_country'
+
 
 
 class BaseBuyticketstatistic(models.Model):
@@ -498,7 +533,7 @@ class BaseCopyfilmtype(models.Model):
     class Meta:
         db_table = 'base_copyfilmtype'
 
-
+'''
 class BaseCountry(models.Model):
     name = models.CharField(max_length=64)
     name_en = models.CharField(max_length=64, blank=True, null=True)
@@ -506,7 +541,7 @@ class BaseCountry(models.Model):
 
     class Meta:
         db_table = 'base_country'
-
+'''
 
 class BaseCurrencyrate(models.Model):
     currency = models.CharField(max_length=1)
