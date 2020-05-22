@@ -31,6 +31,14 @@ class BaseFilmsProduction(models.Model):
         db_table = 'base_films_production'
         unique_together = (('films_id', 'productionsco_id'),)
 
+# названия производителей (только на английском), слой IMDB (слить потом в один слой)
+class BaseProductionsco(models.Model):
+    name = models.CharField(max_length=256)
+    imdb_id = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'base_productionsco'
+
 # модель 2  (жанры) из 4 идентифицирующих Фильм      
 class BaseFilmsGenre(models.Model):
     films_id = models.IntegerField()
