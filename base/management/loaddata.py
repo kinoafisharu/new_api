@@ -1,4 +1,4 @@
-
+'''
 import sys
 
 from django.core.management.commands.loaddata import Command as LoadDataCommand
@@ -14,3 +14,4 @@ class Command(LoadDataCommand):
         if fixture_label == '-':
             return [('-', None, '-')]
         return super(Command, self).find_fixtures(fixture_label)
+'''
