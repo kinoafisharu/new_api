@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from . import models
-from . import models_dic
+from .serializers_dic import *
 
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -24,23 +24,28 @@ class MusicianSerializer(serializers.ModelSerializer):
         model = models.Person
         fields = '__all__'
 
+
 class PersonSerializer(serializers.ModelSerializer):
-    musician = MusicianSerializer(many = True)
     name = NamePersonSerialzier(many = True)
     poster = ImageSerializer(many = True)
+    city = CitySerializer(many = False)
     class Meta:
         model = models.Person
+        exclude = ['musician',]
+
+class StatusSerializer(serializers.ModelSerializer):
+    action = ActionSerializer(many = False)
+    person = PersonSerializer(many = False)
+    class Meta:
+        model = models.RelationFP
         fields = '__all__'
+
 
 class FilmReleaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.FilmsReleaseDate
         fields = '__all__'
 
-class FilmCountrySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models_dic.Country
-        fields = '__all__'
 
 class FilmGenreSerializer(serializers.ModelSerializer):
     class Meta:
@@ -71,10 +76,11 @@ class FilmBudgetSerializer(serializers.ModelSerializer):
 
 # Сериализатор класса BaseFilms со всеми указанными в классе полями
 class FilmsSerializer(serializers.ModelSerializer):
+    relationfp_set = StatusSerializer(many = True)
     name = FilmNameSerializer(many = True)
     creators = PersonSerializer(many = True)
     release = FilmReleaseSerializer(many = True)
-    country = FilmCountrySerializer(many = True)
+    country = CountrySerializer(many = True)
     genre = FilmGenreSerializer(many = True)
     production = ProductionSerializer(many = True)
     distributor = DistributorSerializer(many = True)
