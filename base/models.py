@@ -235,7 +235,6 @@ class Likes(BasePrefixModel):
     evaluation = models.IntegerField(verbose_name='Идентификатор оценки пользователя')
     film = models.IntegerField(verbose_name='KID', db_index=True)
     dtime = models.DateTimeField(auto_now_add=True, verbose_name='Дата время лайка', null=True)
-    '''
     filmobject = models.ForeignKey(Films, on_delete = models.CASCADE, null = True)
     # Tie like objects to film objects by kid of self or manual
     def tie(self, **kwargs):
@@ -262,7 +261,6 @@ class Likes(BasePrefixModel):
                     continue
         except exceptions.MultipleObjectsReturned:
             pass
-   '''
 
 
 
