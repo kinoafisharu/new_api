@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db.models.base import ModelBase
 from django.contrib.auth.models import User, Group
 from django.contrib.sites.models import Site as DjangoSite
+from django.core import exceptions
 
 from . import funcall
 from base.models_dic import *
@@ -83,11 +84,6 @@ class Interface(BasePrefixModel):
     city = models.ForeignKey(City, verbose_name='Город', blank=True, null=True, on_delete = models.PROTECT)
 
 
-class Likes(BasePrefixModel):
-    evaluation = models.IntegerField(verbose_name='Идентификатор оценки пользователя')
-    film = models.IntegerField(verbose_name='KID', db_index=True)
-    dtime = models.DateTimeField(auto_now_add=True, verbose_name='Дата время лайка', null=True)
-
 
 class PersonInterface(BasePrefixModel):
     option1 = models.BooleanField(verbose_name='Настройка1 - slideblock_schedules', default=False)
@@ -100,7 +96,7 @@ class PersonInterface(BasePrefixModel):
     wf_msg_open = models.BooleanField(default=False)
     first_change = models.BooleanField(verbose_name='Первое изменение настроек', default=False)
     changed = models.BooleanField(verbose_name='Изменения в настройках', default=False)
-    likes = models.ManyToManyField(Likes)
+    likes = models.ManyToManyField('Likes')
     temp_subscription = models.IntegerField(verbose_name='KID', null=True)
     temp_subscription_topics = models.IntegerField(verbose_name='KID', null=True)
     money = models.FloatField(verbose_name='Счет', default=0)
@@ -233,6 +229,41 @@ class FilmsVotes(BasePrefixModel):
     rate_1 = models.IntegerField()
     rate_2 = models.IntegerField()
     rate_3 = models.IntegerField()
+
+
+class Likes(BasePrefixModel):
+    evaluation = models.IntegerField(verbose_name='Идентификатор оценки пользователя')
+    film = models.IntegerField(verbose_name='KID', db_index=True)
+    dtime = models.DateTimeField(auto_now_add=True, verbose_name='Дата время лайка', null=True)
+    filmobject = models.ForeignKey(Films, on_delete = models.CASCADE, null = True)
+    # Tie like objects to film objects by kid of self or manual
+    def tie(self, **kwargs):
+        if self.film and not self.filmobject:
+            kid = self.film
+            if kwargs:
+                kid = kwargs['kid']
+            try:
+                obj = Films.objects.get(kid = kid)
+                self.filmobject = obj
+            except exceptions.ObjectDoesNotExist:
+                pass
+            except exceptions.MultipleObjectsReturned:
+                pass
+    @classmethod
+    def tie_all(self):
+        try:
+            for item in self.objects.all():
+                try:
+                    obj = Films.objects.get(kid = self.film)
+                except exceptions.ObjectDoesNotExist:
+                    continue
+                except TypeError:
+                    continue
+        except exceptions.MultipleObjectsReturned:
+            pass
+
+
+
 
 class RelationFP(BasePrefixModel):
     '''
