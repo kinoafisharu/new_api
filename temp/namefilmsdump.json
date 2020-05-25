@@ -1,0 +1,28 @@
+[
+{
+    "model": "base.language",
+    "pk": 2,
+    "fields": {
+        "name": "\u0410\u043d\u0433\u043b\u0438\u0439\u0441\u043a\u0438\u0439",
+        "code": "en"
+    }
+},
+{
+    "model": "base.namefilms",
+    "pk": 869,
+    "fields": {
+        "status": 2,
+        "language": 2,
+        "name": "radiofreealbemuth"
+    }
+},
+{
+    "model": "base.namefilms",
+    "pk": 868,
+    "fields": {
+        "status": 1,
+        "language": 2,
+        "name": "Radio Free Albemuth"
+    }
+}
+]

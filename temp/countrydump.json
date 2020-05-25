@@ -1,0 +1,483 @@
+[
+{
+    "model": "base.budget",
+    "pk": 1252,
+    "fields": {
+        "budget": 3600000,
+        "currency": "$"
+    }
+},
+{
+    "model": "base.budget",
+    "pk": 1251,
+    "fields": {
+        "budget": 92000000,
+        "currency": "$"
+    }
+},
+{
+    "model": "base.budget",
+    "pk": 1250,
+    "fields": {
+        "budget": 165000000,
+        "currency": "$"
+    }
+},
+{
+    "model": "base.budget",
+    "pk": 1249,
+    "fields": {
+        "budget": 27000,
+        "currency": "$"
+    }
+},
+{
+    "model": "base.budget",
+    "pk": 1248,
+    "fields": {
+        "budget": 7500000,
+        "currency": "$"
+    }
+},
+{
+    "model": "base.budget",
+    "pk": 1247,
+    "fields": {
+        "budget": 1000000,
+        "currency": "$"
+    }
+},
+{
+    "model": "base.films",
+    "pk": 12,
+    "fields": {
+        "year": 2010,
+        "note": null,
+        "type": null,
+        "runtime": 111,
+        "rated": 18,
+        "budget": 1252,
+        "imdb_id": 1129396,
+        "imdb_rate": 6.5,
+        "imdb_votes": 257,
+        "kid": 33423,
+        "generated": false,
+        "generated_dtime": null,
+        "name": [
+            868,
+            869
+        ],
+        "release": [
+            12
+        ],
+        "country": [],
+        "genre": [
+            3,
+            5
+        ],
+        "production": [],
+        "distributor": [
+            287
+        ],
+        "images": [
+            11
+        ]
+    }
+},
+{
+    "model": "base.films",
+    "pk": 11,
+    "fields": {
+        "year": 2004,
+        "note": null,
+        "type": null,
+        "runtime": 115,
+        "rated": 0,
+        "budget": 1251,
+        "imdb_id": 317705,
+        "imdb_rate": 8.0,
+        "imdb_votes": 347578,
+        "kid": 2140,
+        "generated": false,
+        "generated_dtime": null,
+        "name": [
+            858,
+            859
+        ],
+        "release": [
+            11
+        ],
+        "country": [],
+        "genre": [
+            6,
+            7,
+            14
+        ],
+        "production": [],
+        "distributor": [],
+        "images": [
+            10
+        ]
+    }
+},
+{
+    "model": "base.films",
+    "pk": 10,
+    "fields": {
+        "year": 2013,
+        "note": null,
+        "type": null,
+        "runtime": 104,
+        "rated": 18,
+        "budget": null,
+        "imdb_id": 1980929,
+        "imdb_rate": 7.4,
+        "imdb_votes": 495,
+        "kid": 29773,
+        "generated": false,
+        "generated_dtime": null,
+        "name": [
+            564,
+            565
+        ],
+        "release": [
+            10
+        ],
+        "country": [],
+        "genre": [
+            1,
+            5,
+            30
+        ],
+        "production": [],
+        "distributor": [],
+        "images": [
+            9
+        ]
+    }
+},
+{
+    "model": "base.films",
+    "pk": 9,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 83,
+        "rated": null,
+        "budget": null,
+        "imdb_id": 2398249,
+        "imdb_rate": 7.0,
+        "imdb_votes": 249,
+        "kid": 32259,
+        "generated": false,
+        "generated_dtime": null,
+        "name": [
+            716,
+            717
+        ],
+        "release": [
+            9
+        ],
+        "country": [],
+        "genre": [
+            1
+        ],
+        "production": [],
+        "distributor": [],
+        "images": [
+            8
+        ]
+    }
+},
+{
+    "model": "base.films",
+    "pk": 8,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": 16,
+        "budget": 1250,
+        "imdb_id": 2109248,
+        "imdb_rate": 7.9,
+        "imdb_votes": 960,
+        "kid": 30168,
+        "generated": false,
+        "generated_dtime": null,
+        "name": [
+            856,
+            857
+        ],
+        "release": [
+            8
+        ],
+        "country": [],
+        "genre": [
+            3,
+            6,
+            7
+        ],
+        "production": [],
+        "distributor": [
+            253
+        ],
+        "images": [
+            7
+        ]
+    }
+},
+{
+    "model": "base.films",
+    "pk": 7,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 60,
+        "rated": 16,
+        "budget": 1249,
+        "imdb_id": 3406478,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33393,
+        "generated": false,
+        "generated_dtime": null,
+        "name": [
+            852,
+            853
+        ],
+        "release": [
+            7
+        ],
+        "country": [],
+        "genre": [
+            1,
+            10
+        ],
+        "production": [],
+        "distributor": [],
+        "images": [
+            6
+        ]
+    }
+},
+{
+    "model": "base.films",
+    "pk": 6,
+    "fields": {
+        "year": 2013,
+        "note": null,
+        "type": null,
+        "runtime": 80,
+        "rated": null,
+        "budget": null,
+        "imdb_id": 2650498,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": false,
+        "generated_dtime": null,
+        "name": [
+            838,
+            839
+        ],
+        "release": [
+            6
+        ],
+        "country": [],
+        "genre": [
+            5
+        ],
+        "production": [],
+        "distributor": [],
+        "images": [
+            5
+        ]
+    }
+},
+{
+    "model": "base.films",
+    "pk": 5,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 78,
+        "rated": 18,
+        "budget": null,
+        "imdb_id": 2955096,
+        "imdb_rate": 6.4,
+        "imdb_votes": 145,
+        "kid": 32213,
+        "generated": false,
+        "generated_dtime": null,
+        "name": [
+            494,
+            495
+        ],
+        "release": [
+            5,
+            283
+        ],
+        "country": [],
+        "genre": [
+            1,
+            5
+        ],
+        "production": [],
+        "distributor": [
+            313
+        ],
+        "images": [
+            4
+        ]
+    }
+},
+{
+    "model": "base.films",
+    "pk": 4,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 91,
+        "rated": 16,
+        "budget": null,
+        "imdb_id": 2102496,
+        "imdb_rate": 4.5,
+        "imdb_votes": 3114,
+        "kid": 31095,
+        "generated": false,
+        "generated_dtime": null,
+        "name": [
+            812,
+            813
+        ],
+        "release": [
+            4
+        ],
+        "country": [
+            1
+        ],
+        "genre": [
+            3,
+            9,
+            10
+        ],
+        "production": [],
+        "distributor": [
+            356
+        ],
+        "images": [
+            824
+        ]
+    }
+},
+{
+    "model": "base.films",
+    "pk": 3,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": 89,
+        "rated": null,
+        "budget": 1248,
+        "imdb_id": 3331986,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": null,
+        "generated": false,
+        "generated_dtime": null,
+        "name": [
+            796,
+            797
+        ],
+        "release": [
+            3
+        ],
+        "country": [],
+        "genre": [
+            11
+        ],
+        "production": [],
+        "distributor": [],
+        "images": []
+    }
+},
+{
+    "model": "base.films",
+    "pk": 2,
+    "fields": {
+        "year": 2014,
+        "note": null,
+        "type": null,
+        "runtime": null,
+        "rated": 16,
+        "budget": 1247,
+        "imdb_id": 2328772,
+        "imdb_rate": null,
+        "imdb_votes": null,
+        "kid": 33402,
+        "generated": false,
+        "generated_dtime": null,
+        "name": [
+            792,
+            793
+        ],
+        "release": [
+            2
+        ],
+        "country": [
+            1
+        ],
+        "genre": [
+            9,
+            10,
+            15
+        ],
+        "production": [],
+        "distributor": [],
+        "images": [
+            965
+        ]
+    }
+},
+{
+    "model": "base.films",
+    "pk": 1,
+    "fields": {
+        "year": 2010,
+        "note": null,
+        "type": null,
+        "runtime": 98,
+        "rated": 16,
+        "budget": null,
+        "imdb_id": 1307858,
+        "imdb_rate": 6.3,
+        "imdb_votes": 848,
+        "kid": 14252,
+        "generated": false,
+        "generated_dtime": null,
+        "name": [
+            782,
+            783
+        ],
+        "release": [
+            1
+        ],
+        "country": [],
+        "genre": [
+            1,
+            10
+        ],
+        "production": [],
+        "distributor": [],
+        "images": [
+            1
+        ]
+    }
+}
+]
