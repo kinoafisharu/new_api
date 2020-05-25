@@ -1,7 +1,7 @@
 from django.urls import path, include, re_path
 from rest_framework import routers
-#from . import views
-'''
+from . import views
+
 router = routers.DefaultRouter()
 
 
@@ -17,10 +17,10 @@ router.register(r'films', views.FilmsViewSet)
 
 # router.register(r'persons', views.BasePersonViewSet)
 
-'''
+
 
 urlpatterns = [
     # Включение корневого роутера в список URLS
-  #  re_path(r'^', include(router.urls))
+    re_path(r'^', include(router.urls))
     # -/ Александр Караваев
 ]
