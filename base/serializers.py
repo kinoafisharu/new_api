@@ -74,14 +74,20 @@ class FilmBudgetSerializer(serializers.ModelSerializer):
         model = models.Budget
         fields = '__all__'
 
-class LikeSerializer(serializers.ModelSerializer):
+class SourcesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Likes
+        mdoel = models.ImportSources
+        fields = '__all__'
+
+class FilmsSourcesSerializer(serializers.ModelSerializer):
+    source = SourcesSerializer(many = False)
+    class Meta:
+        model = models.FilmsSources
         fields = '__all__'
 
 # Сериализатор класса BaseFilms со всеми указанными в классе полями
 class FilmsSerializer(serializers.ModelSerializer):
-    likes_set = LikeSerializer(many = True)
+    filmssources_set = FilmsSourcesSerializer(many = True)
     relationfp_set = StatusSerializer(many = True)
     name = FilmNameSerializer(many = True)
     creators = PersonSerializer(many = True)
@@ -124,5 +130,5 @@ class FilmsSerializer(serializers.ModelSerializer):
 class ShortFilmsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Films
-        fields = ['id','year','imdb_id','imdb_votes']
+        fields = ['id','year','imdb_id','kid']
 # -/ Александр Караваев
