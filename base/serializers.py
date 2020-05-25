@@ -74,8 +74,14 @@ class FilmBudgetSerializer(serializers.ModelSerializer):
         model = models.Budget
         fields = '__all__'
 
+class LikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Likes
+        fields = '__all__'
+
 # Сериализатор класса BaseFilms со всеми указанными в классе полями
 class FilmsSerializer(serializers.ModelSerializer):
+    likes_set = LikeSerializer(many = True)
     relationfp_set = StatusSerializer(many = True)
     name = FilmNameSerializer(many = True)
     creators = PersonSerializer(many = True)
