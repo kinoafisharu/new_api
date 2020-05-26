@@ -3,7 +3,9 @@ from . import models
 from .serializers_dic import *
 from . import serializer_fields
 
+# -/ Александр Караваев =>
 
+''' СЕРИАЛИЗАЦИЯ ИЗОБРАЖЕНИЙ, ЕСТЬ ПРИВЯЗКИ К Person И Films '''
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Images
@@ -14,22 +16,25 @@ class FilmSessionSerializer(serializers.ModelSerializer):
         model = models.Session
         fields = '__all__'
 
+''' СЕРИАЛИЗАТОР ИМЕНИ ФИЛЬМА, ПРИВЯЗКА К Films '''
 class FilmNameSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.NameFilms
         fields = '__all__'
 
+''' СЕРИАЛИЗАТОР ИМЕН ПЕРСОН, ПРИВЯЗКА К Person '''
 class NamePersonSerialzier(serializers.ModelSerializer):
     class Meta:
         model = models.NamePerson
         fields = '__all__'
-
+        
+''' СЕРИАЛИЗАТОР МУЗЫКАНТОВ, В МОДЕЛИ ОТСЫЛКА M2M К SELF '''
 class MusicianSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Person
         fields = '__all__'
 
-
+'СЕРИАЛИЗАТОР ПЕРСОНЫ, ЕСТЬ ПРИВЯЗКА К Films '''
 class PersonSerializer(serializers.ModelSerializer):
     name = NamePersonSerialzier(many = True)
     poster = ImageSerializer(many = True)
@@ -39,64 +44,59 @@ class PersonSerializer(serializers.ModelSerializer):
         model = models.Person
         exclude = ['musician',]
 
-class StatusSerializer(serializers.ModelSerializer):
-    action = ActionSerializer(many = False)
-    person = PersonSerializer(many = False)
-    class Meta:
-        model = models.RelationFP
-        fields = '__all__'
 
-
+''' СЕРИАЛИЗАТОР ДАННЫХ ПО ДАТЕ РЕЛИЗА ФИЛЬМА (ЗАМЕНИТЬ НА ВЫДЕЛЕННОЕ ПОЛЕ) '''
 class FilmReleaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.FilmsReleaseDate
         fields = '__all__'
 
 
+''' СЕРИАЛИЗАТОР ЖАНРА ФИЛЬМА (ЗАМЕНИТЬ НА ВЫДЕЛЕННОЕ ПОЛЕ) '''
 class FilmGenreSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Genre
         fields = '__all__'
 
+''' СЕРИАЛИЗАТОР ПРОИЗВОДИТЕЛЯ ФИЛЬМА, ПРИВЯЗКА К Films '''
 class ProductionSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ProductionsCo
         fields = '__all__'
 
+''' СЕРИАЛИЗАТОР ИМЕНИ ДИСТРИБЬЮТОРА '''
 class NameDistributorSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.NameDistributors
         fields = '__all__'
 
+''' СЕРИАЛИЗАТОР ДИСТРИБЬЮТОРА '''
 class DistributorSerializer(serializers.ModelSerializer):
     name = NameDistributorSerializer(many = True)
     class Meta:
         model = models.Distributors
         fields = '__all__'
 
-
+''' СЕРИАЛИЗАТОР БЮДЖЕТА ФИЛЬМА (ЗАМЕНИТЬ ВЫДЕЛЕННЫМ ПОЛЕМ) '''
 class FilmBudgetSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Budget
         fields = '__all__'
 
+''' СЕРИАЛИЗАТОР ИСТОЧНИКОВ '''
 class SourcesSerializer(serializers.ModelSerializer):
     class Meta:
         mdoel = models.ImportSources
         fields = '__all__'
-
+''' СЕРИАЛИЗАТОР ОТНОШЕНИЯ ИСТОЧНИКОВ К ФИЛЬМАМ '''
 class FilmsSourcesSerializer(serializers.ModelSerializer):
     source = SourcesSerializer(many = False)
     class Meta:
         model = models.FilmsSources
         fields = '__all__'
-
-class FilmLikeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Likes
-        fields = '__all__'
-
-# Сериализатор класса BaseFilms со всеми указанными в классе полями
+        
+        
+# Сериализатор класса Films со всеми указанными в классе полями
 class FilmsSerializer(serializers.ModelSerializer):
     likes = serializer_fields.LikeField()
     sources = FilmsSourcesSerializer(many = True)
@@ -137,7 +137,7 @@ class FilmsSerializer(serializers.ModelSerializer):
 # -/ Александр Караваев
 
 
-# Сериализатор класса BaseFilms с ограниченным набором полей для краткого отображения
+# Сериализатор класса Films с ограниченным набором полей для краткого отображения
 class ShortFilmsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Films
