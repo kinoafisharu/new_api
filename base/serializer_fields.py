@@ -1,6 +1,11 @@
 from rest_framework.serializers import Field
 from . import models
 
+'''
+Поле отображает общее количество лайков принадлежащих фильму, можно и с разных источников
+В качестве значения при POST берет строку в формате JSON с соответствующими параметрами лайка для создания класса модели лайка 
+Возвращает целочисленное значение
+'''
 class LikeField(Field):
     def get_attribute(self, instance):
         return instance.likes
@@ -10,6 +15,11 @@ class LikeField(Field):
         # IMPLEMENT DATA COLLECTION AND RETURNING DIFFERENT CLASSES
         pass
 
+'''
+Поле отображения статуса персоны при сьемках фильма
+Формат принимаемого значения в POST еще не определен
+Возвращает список обьектов
+'''
 class FilmPersonStatusField(Field):
     def get_attribute(self, instance):
         return instance.persons.all()
