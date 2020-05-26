@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from . import models
 from .serializers_dic import *
+from . import serializer_fields
 
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -8,6 +9,10 @@ class ImageSerializer(serializers.ModelSerializer):
         model = models.Images
         fields = '__all__'
 
+class FilmSessionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Session
+        fields = '__all__'
 
 class FilmNameSerializer(serializers.ModelSerializer):
     class Meta:
@@ -29,6 +34,7 @@ class PersonSerializer(serializers.ModelSerializer):
     name = NamePersonSerialzier(many = True)
     poster = ImageSerializer(many = True)
     city = CitySerializer(many = False)
+    country = CountrySerializer(many = False)
     class Meta:
         model = models.Person
         exclude = ['musician',]
@@ -85,10 +91,16 @@ class FilmsSourcesSerializer(serializers.ModelSerializer):
         model = models.FilmsSources
         fields = '__all__'
 
+class FilmLikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Likes
+        fields = '__all__'
+
 # Сериализатор класса BaseFilms со всеми указанными в классе полями
 class FilmsSerializer(serializers.ModelSerializer):
-    filmssources_set = FilmsSourcesSerializer(many = True)
-    relationfp_set = StatusSerializer(many = True)
+    likes = serializer_fields.LikeField()
+    sources = FilmsSourcesSerializer(many = True)
+    persons = serializer_fields.FilmPersonStatusField()
     name = FilmNameSerializer(many = True)
     creators = PersonSerializer(many = True)
     release = FilmReleaseSerializer(many = True)
@@ -107,20 +119,19 @@ class FilmsSerializer(serializers.ModelSerializer):
         #some actions
 
     #OBJECT LEVEL VALIDATION =========================>
-    # def validate(self, data):
-        # if data['runtime'] < 0:
-            # raise serializers.ValidationError('Fillm cannot last less than 0 min, your YEAR input contains input['year'] < 0')
-        # return data
+    def validate(self, data):
+        if data['runtime'] and data['runtime'] < 0:
+            raise serializers.ValidationError('Fillm cannot last less than 0 min, your YEAR input contains input value YEAR < 0')
+        return data
 
     # OBJECT CREATING LOGIC ========================>
-    # def create(self, validated_data):
-    #     obj = models.BaseFilms(**validated_data)
-    #     obj.save()
+    def create(self, validated_data):
+        obj = models.BaseFilms(**validated_data)
+        obj.save()
 
 
     # OBJECT UPDATING LOGIC =================================>
     # def update(self, instance, validated_data):
-    #
     #     instance.field = validated_data.get('field_name', instance.field) # second value as default if no value in dict
 
 # -/ Александр Караваев

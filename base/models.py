@@ -221,7 +221,11 @@ class Films(BasePrefixModel):
     generated_dtime = models.DateTimeField(verbose_name='Дата, время генерации', null=True)
     #image_parameter = models.ForeignKey(ImageParameter, verbose_name='Изображение', blank=True, null=True, related_name="image_%(class)s")
     #sound_parameter = models.ForeignKey(SoundParameter, verbose_name='Звук', blank=True, null=True, related_name="sound_%(class)s")
-
+    # Saving model instance to db if all the requirements are satisfied
+    def save(self, *args, **kwargs):
+        if self.runtime < 0:
+            logger.warning("Film's runtime can't be less than 0 (min)")
+        super().save(*args, **kwargs)
 
 class FilmsVotes(BasePrefixModel):
     kid = models.IntegerField(verbose_name='ID фильма на киноафише')
@@ -235,33 +239,21 @@ class Likes(BasePrefixModel):
     evaluation = models.IntegerField(verbose_name='Идентификатор оценки пользователя')
     film = models.IntegerField(verbose_name='KID', db_index=True)
     dtime = models.DateTimeField(auto_now_add=True, verbose_name='Дата время лайка', null=True)
-    filmobject = models.ForeignKey(Films, on_delete = models.CASCADE, null = True)
-    # Tie like objects to film objects by kid of self or manual
-    def tie(self, **kwargs):
-        if self.film and not self.filmobject:
-            kid = self.film
-            if kwargs:
-                kid = kwargs['kid']
-            try:
-                obj = Films.objects.get(kid = kid)
-                self.filmobject = obj
-            except exceptions.ObjectDoesNotExist:
-                pass
-            except exceptions.MultipleObjectsReturned:
-                pass
+    filmobject = models.ForeignKey(Films, on_delete = models.CASCADE, null = True, related_name = 'likes')
+    # Tie all like objects to films objects by kid
     @classmethod
-    def tie_all(self):
-        try:
-            for item in self.objects.all():
+    def tie_all_filmobjects(self):
+        for item in filter(lambda x: isinstance(x, int), self.objects.all()):
+                kid = item.film
                 try:
-                    obj = Films.objects.get(kid = self.film)
+                    obj = Films.objects.get(kid = kid)
+                except exceptions.MultipleObjectsReturned:
+                    obj = None
                 except exceptions.ObjectDoesNotExist:
-                    continue
-                except TypeError:
-                    continue
-        except exceptions.MultipleObjectsReturned:
-            pass
-
+                    obj = None
+                if obj:
+                    item.filmobject = obj
+                    item.save()
 
 
 
@@ -273,7 +265,7 @@ class RelationFP(BasePrefixModel):
     person = models.ForeignKey(Person, on_delete = models.PROTECT)
     status_act = models.ForeignKey(StatusAct, on_delete = models.PROTECT)
     action = models.ForeignKey(Action, on_delete = models.PROTECT)
-    films = models.ForeignKey(Films, on_delete = models.PROTECT)
+    films = models.ForeignKey(Films, on_delete = models.PROTECT, related_name = 'persons')
     class Meta:
         verbose_name = u'Персона фильма'
         verbose_name_plural = u'Персоны фильмов'
@@ -294,7 +286,7 @@ class ImportSources(BasePrefixModel):
 
 class FilmsSources(BasePrefixModel):
     # связи с источниками
-    id_films = models.ForeignKey(Films, verbose_name='КиноИнфо', on_delete = models.PROTECT)
+    id_films = models.ForeignKey(Films, verbose_name='КиноИнфо', on_delete = models.PROTECT, related_name = 'sources')
     source = models.ForeignKey(ImportSources, verbose_name='Источник', on_delete = models.PROTECT)
     id_films_sources = models.BigIntegerField(verbose_name='Фильм у источника')
 
@@ -490,6 +482,7 @@ class SourceFilms(BasePrefixModel):
     rel_dtime = models.DateTimeField(verbose_name='Когда связал', null=True)
     rel_double = models.BooleanField(verbose_name='Дубль', default=False)
     rel_ignore = models.BooleanField(verbose_name='Игнорировать', default=False, db_index=True)
+    
 
 class SourceSchedules(BasePrefixModel):
     source_id = models.CharField(max_length=256, verbose_name='ID источника', db_index=True)
@@ -531,8 +524,6 @@ class TorrentsUsers(BasePrefixModel):
     profile = models.ForeignKey(Profile, verbose_name='Профиль', null=True, on_delete=models.SET_NULL)
     dtime = models.DateTimeField(auto_now_add=True, verbose_name='Дата время получения')
     got = models.BooleanField(verbose_name='Был ли файл скачан', default=False)
-
-
 
 class FestCompetition(BasePrefixModel):
     name_en = models.CharField(max_length=256, verbose_name='Англ. название')
