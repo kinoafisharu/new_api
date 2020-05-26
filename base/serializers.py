@@ -34,7 +34,7 @@ class MusicianSerializer(serializers.ModelSerializer):
         model = models.Person
         fields = '__all__'
 
-'СЕРИАЛИЗАТОР ПЕРСОНЫ, ЕСТЬ ПРИВЯЗКА К Films '''
+'''СЕРИАЛИЗАТОР ПЕРСОНЫ, ЕСТЬ ПРИВЯЗКА К Films '''
 class PersonSerializer(serializers.ModelSerializer):
     name = NamePersonSerialzier(many = True)
     poster = ImageSerializer(many = True)
