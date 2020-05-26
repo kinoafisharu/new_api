@@ -243,7 +243,8 @@ class Likes(BasePrefixModel):
     # Tie all like objects to films objects by kid
     @classmethod
     def tie_all_filmobjects(self):
-        for item in filter(lambda x: isinstance(x.film, int), self.objects.all()):
+        for item in self.objects.all():
+            if item.film and isinstance(item.film, int):
                 kid = item.film
                 try:
                     obj = Films.objects.get(kid = kid)
