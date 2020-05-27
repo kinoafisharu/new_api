@@ -5,12 +5,14 @@ from django.db.models.base import ModelBase
 from django.contrib.auth.models import User, Group
 from django.contrib.sites.models import Site as DjangoSite
 from django.core import exceptions
+import logging
 
 from . import funcall
 from base.models_dic import *
 from base.api_models import *
 from base.models_choices import *
 
+logger = logging.getLogger(__name__)
 
 class MyModelBase( ModelBase ):
     def __new__( cls, name, bases, attrs, **kwargs ):
@@ -219,14 +221,20 @@ class Films(BasePrefixModel):
     images = models.ManyToManyField(Images, verbose_name='Постеры, слайды')
     generated = models.BooleanField(verbose_name='Сгенерирован юзером через кнопку', default=False)
     generated_dtime = models.DateTimeField(verbose_name='Дата, время генерации', null=True)
+    site = models.CharField(max_length = 300, null = True)
+    limits = models.CharField (max_length = 100, null = True)
+    description = models.TextField(max_length = 3000, null = True)
+    comment = models.TextField(max_length = 3000, null = True)
     #image_parameter = models.ForeignKey(ImageParameter, verbose_name='Изображение', blank=True, null=True, related_name="image_%(class)s")
     #sound_parameter = models.ForeignKey(SoundParameter, verbose_name='Звук', blank=True, null=True, related_name="sound_%(class)s")
     # Saving model instance to db if all the requirements are satisfied
+'''
     def save(self, *args, **kwargs):
-        if self.runtime < 0:
-            logger.warning("Film's runtime can't be less than 0 (min)")
-        super().save(*args, **kwargs)
-
+        if self.runtime:
+            if int(self.runtime) < 0:
+                logger.warning("Film's runtime can't be less than 0 (min)")
+            super().save(*args, **kwargs)
+'''
 class FilmsVotes(BasePrefixModel):
     kid = models.IntegerField(verbose_name='ID фильма на киноафише')
     user = models.ForeignKey(Profile, verbose_name='Юзер', on_delete = models.PROTECT)
@@ -243,8 +251,7 @@ class Likes(BasePrefixModel):
     # Tie all like objects to films objects by kid
     @classmethod
     def tie_all_filmobjects(self):
-        for item in self.objects.all():
-            if item.film and isinstance(item.film, int):
+        for item in filter(lambda x: isinstance(x.film, int), self.objects.all()):
                 kid = item.film
                 try:
                     obj = Films.objects.get(kid = kid)
@@ -483,7 +490,7 @@ class SourceFilms(BasePrefixModel):
     rel_dtime = models.DateTimeField(verbose_name='Когда связал', null=True)
     rel_double = models.BooleanField(verbose_name='Дубль', default=False)
     rel_ignore = models.BooleanField(verbose_name='Игнорировать', default=False, db_index=True)
-    
+
 
 class SourceSchedules(BasePrefixModel):
     source_id = models.CharField(max_length=256, verbose_name='ID источника', db_index=True)
