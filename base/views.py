@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
+from rest_framework import filters
 from . import serializers
 from . import models
 # Create your views here.
@@ -14,6 +15,8 @@ from . import models
 class FilmsViewSet(viewsets.ModelViewSet):
     queryset = models.Films.objects.all()
     serializer_class = serializers.ShortFilmsSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['kid','imdb_id']
 
 # Переписанный метод ритрив для выдачи сериализатора со всеми полями из укороченного list вывода
     def retrieve(self, request, pk=None):
