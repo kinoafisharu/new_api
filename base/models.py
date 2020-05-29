@@ -213,7 +213,7 @@ class Films(BasePrefixModel):
     rated = models.IntegerField(verbose_name='Аудитория', null=True)
     budget = models.ForeignKey(Budget,verbose_name='Бюджет', null=True, on_delete = models.PROTECT)
     production = models.ManyToManyField(ProductionsCo, verbose_name='Компания призводитель')
-    imdb_id = models.IntegerField(verbose_name='IMDb идентификатор', null=True, db_index=True)
+    imdb_id = models.CharField(verbose_name='IMDb идентификатор', null=True, db_index=True, max_length = 200)
     imdb_rate = models.FloatField(verbose_name='IMDb рейтинг', null=True)
     imdb_votes = models.IntegerField(verbose_name='IMDb кол-во голосов', null=True)
     kid = models.IntegerField(verbose_name='ID киноафиши', null=True, db_index=True)
