@@ -3,6 +3,10 @@ from django.db import models
 from django.contrib.sites.models import Site as DjangoSite
 from base.models_choices import *
 
+"""
+Модели - справочники
+"""
+
 class Language(models.Model):
     name = models.CharField(max_length=64, verbose_name='Язык')
     code = models.CharField(max_length=8, verbose_name='Код')

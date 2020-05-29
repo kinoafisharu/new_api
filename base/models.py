@@ -263,6 +263,8 @@ class Likes(BasePrefixModel):
                     item.filmobject = obj
                     item.save()
 
+
+
 class RelationFP(BasePrefixModel):
     '''
     Модель описывает связь Персоны и фильма с указанием типа и статуса участия
