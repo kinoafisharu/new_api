@@ -13,7 +13,10 @@ from . import serializer_fields
 и дальнейшего их рендера в апи в формате джейсон
 '''
 
-
+'''
+Структура класса сериализатора - перед обозначением метакласса указываются вложенные и реляционные отношения,
+затем метакласс с названием модели и составом полей, затем методы сериализатора
+'''
 
 
 
@@ -39,43 +42,3 @@ class FilmsSerializer(DynamicFieldsModelSerializer):
         model = models.Films
         fields = '__all__'
 # -/ Александр Караваев
-
-
-
-
-
-# =================================================================================================
-
-class AsteroidFilmSerializer(serializers.Serializer):
-    id = serializers.IntegerField()
-    name = serializers.CharField()
-    original_title = serializers.CharField()
-    country = serializers.IntegerField()
-    year = serializers.CharField()
-    company = serializers.IntegerField()
-    genre1 = serializers.IntegerField()
-    genre2 = serializers.IntegerField()
-    genre3 = serializers.IntegerField()
-    site = serializers.CharField()
-    director1 = serializers.IntegerField()
-    director2 = serializers.IntegerField()
-    director3 = serializers.IntegerField()
-    imdb = serializers.CharField()
-    imdb_votes = serializers.IntegerField()
-    actor1 = serializers.IntegerField()
-    actor2 = serializers.IntegerField()
-    actor3 = serializers.IntegerField()
-    actor4 = serializers.IntegerField()
-    actor5 = serializers.IntegerField()
-    actor6 = serializers.IntegerField()
-    runtime = serializers.CharField()
-    limits = serializers.CharField()
-    prokat1 = serializers.IntegerField()
-    prokat2 = serializers.IntegerField()
-    date = serializers.DateTimeField()
-    description = serializers.CharField()
-    comment = serializers.CharField()
-    country2 = serializers.IntegerField()
-    trailers = serializers.CharField()
-    idalldvd = serializers.IntegerField()
-    datelastupd = serializers.DateTimeField()
