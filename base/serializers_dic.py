@@ -3,6 +3,12 @@ from . import models
 from . import models_dic
 from .serializers_helper import DynamicFieldsModelSerializer
 
+'''
+В данном файле находятся все сериализаторы моделей - справочников,
+предназначенных для рендеринга вложенных, редко изменяемых но часто
+используемых моделей с названиями городов, жанров, и т.д.
+'''
+
 class CountrySerializer(DynamicFieldsModelSerializer):
     class Meta:
         model = models_dic.Country
