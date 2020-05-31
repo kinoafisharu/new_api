@@ -32,6 +32,7 @@ class LikeSerializer(DynamicFieldsModelSerializer):
     def validate_evaluation(self, value):
         if value and not 1 <= value <= 5:
             raise serializers.ValidationError('Your evaluation must be bigger than 1 and less than 5')
+        return value
 
 
 ''' СЕРИАЛИЗАЦИЯ ИЗОБРАЖЕНИЙ, ЕСТЬ ПРИВЯЗКИ К Person И Films '''
