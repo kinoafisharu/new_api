@@ -34,10 +34,12 @@ class FilmsViewSet(viewsets.ModelViewSet):
 # Метод добавляет один лайк к фильму с ид взятым из <int:pk>  по запросу POST https:/|host|/films/<int:pk>/like
     @action(detail = True, methods = ['post'], url_path = 'like', url_name = 'like')
     def like(self, request, pk = None):
-        serializer = serializers_helper.LikeSerializer(data = {'filmobject': pk, 'evaluation': request.data['evaluation']}, fields = ('evaluation', 'filmobject'))
+        # Внимание!! Крайне важен порядок в словаре передаваемых данных в сериализатор
+        # Построение отношения между обьектами происходит автоматически, при десериализации достаточно передать значение pk (ID)
+        serializer = serializers_helper.LikeSerializer(data = {'evaluation': request.data['evaluation'], 'filmobject': pk} , fields = ('evaluation', 'filmobject'))
         if serializer.is_valid():
-            serializer.save()
-            return Response({'liked':'true'}, status = status.HTTP_200_OK)
+            like = serializer.save()
+            return Response({'liked':True}, status = status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 # -/ Александр Караваев
