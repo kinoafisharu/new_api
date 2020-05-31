@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('base', '0006_remove_likes_filmobject'),
+        ('base', '0001_initial'),
     ]
 
     operations = [
