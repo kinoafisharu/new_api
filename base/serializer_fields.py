@@ -13,12 +13,12 @@ from django.utils.translation import gettext_lazy as _
 """
 class LikeField(Field):
     def get_attribute(self, instance):
-        return instance.likes.all()
+        return instance.likes
     def to_representation(self, value):
-        return len(value)
-    def to_internal_value(self, data):
-        # IMPLEMENT DATA COLLECTION AND RETURNING DIFFERENT CLASSES
-        pass
+        likes = value.filter(evaluation__in = [1,2,3])
+        dislikes = value.filter(evaluation__in = [4,5])
+        return {'likes': likes.count(),'dislikes': dislikes.count()}
+
 
 
 
