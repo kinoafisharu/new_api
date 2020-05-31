@@ -21,13 +21,14 @@ class LikeSerializer(DynamicFieldsModelSerializer):
     class Meta:
         model = models.Likes
         fields = '__all__'
+    '''
     def create(self, validated_data):
         film = validated_data.pop('filmobject', None)
         like = models.Likes.objects.create(**validated_data)
         if film:
             film.likes.add(like)
         return like
-
+    '''
     def validate_evaluation(self, value):
         if value and not 1 <= value <= 5:
             raise serializers.ValidationError('Your evaluation must be bigger than 1 and less than 5')
