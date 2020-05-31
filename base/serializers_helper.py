@@ -2,8 +2,8 @@
 from rest_framework import serializers
 from . import models
 from . import serializers_dic
-from .serializers_dic import *
 from . import serializer_fields
+from .mixins import *
 
 """
 !!! WARNING!!!
@@ -12,34 +12,25 @@ from . import serializer_fields
 т.е., вложенные сериализаторы, служащие для отбражения собственной информации в других сериализаторах
 
 Все поля сериализаторов имеют динамическое отображение,
- что бы им воспользоваться нужно в аргументах при создани
+ что бы им воспользоваться нужно в аргументах при создании
  поля указать кортеж fields с нужным набором полей
 """
 
 
-'''
-Класс для создания подклассов с динамическим набором полей, описан в документации djangorestframework
-'''
-class DynamicFieldsModelSerializer(serializers.ModelSerializer):
-    """
-    A ModelSerializer that takes an additional `fields` argument that
-    controls which fields should be displayed.
-    """
+class LikeSerializer(DynamicFieldsModelSerializer):
+    class Meta:
+        model = models.Likes
+        fields = '__all__'
+    def create(self, validated_data):
+        film = validated_data.pop('filmobject', None)
+        like = models.Likes.objects.create(**validated_data)
+        if film:
+            film.likes.add(like)
+        return like
 
-    def __init__(self, *args, **kwargs):
-        # Don't pass the 'fields' arg up to the superclass
-        fields = kwargs.pop('fields', None)
-
-        # Instantiate the superclass normally
-        super(DynamicFieldsModelSerializer, self).__init__(*args, **kwargs)
-
-        if fields is not None:
-            # Drop any fields that are not specified in the `fields` argument.
-            allowed = set(fields)
-            existing = set(self.fields)
-            for field_name in existing - allowed:
-                self.fields.pop(field_name)
-#====================================================================================
+    def validate_evaluation(self, value):
+        if value and not 1 <= value <= 5:
+            raise serializers.ValidationError('Your evaluation must be bigger than 1 and less than 5')
 
 
 ''' СЕРИАЛИЗАЦИЯ ИЗОБРАЖЕНИЙ, ЕСТЬ ПРИВЯЗКИ К Person И Films '''
@@ -97,7 +88,7 @@ class FilmBudgetSerializer(DynamicFieldsModelSerializer):
 ''' СЕРИАЛИЗАТОР ИСТОЧНИКОВ '''
 class SourcesSerializer(DynamicFieldsModelSerializer):
     class Meta:
-        mdoel = models.ImportSources
+        model = models.ImportSources
         fields = '__all__'
 
 ''' СЕРИАЛИЗАТОР ОТНОШЕНИЯ ИСТОЧНИКОВ К ФИЛЬМАМ '''

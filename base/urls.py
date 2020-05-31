@@ -14,13 +14,13 @@ router = routers.DefaultRouter()
 router.register(r'films', views.FilmsViewSet)
 # -/ Александр Караваев
 
-
 # router.register(r'persons', views.BasePersonViewSet)
 
 
 
 urlpatterns = [
     # Включение корневого роутера в список URLS
-    re_path(r'^', include(router.urls))
+    re_path(r'^', include(router.urls)),
+    path('films/<int:pk>/like/', views.FilmsViewSet.as_view({"post": "like"}))
     # -/ Александр Караваев
 ]
