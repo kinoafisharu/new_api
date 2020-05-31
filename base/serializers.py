@@ -25,7 +25,7 @@ from . import serializer_fields
 '''
 class FilmsSerializer(DynamicFieldsModelSerializer):
 
-    likes = serializer_fields.LikeField()
+    votes = serializer_fields.LikeField()
     sources = FilmsSourcesSerializer(many = True)
     persons = serializer_fields.PersonField(objectattributes = ['allnames', 'role'])
     name = FilmNameSerializer(many = True, fields = ('name',))
