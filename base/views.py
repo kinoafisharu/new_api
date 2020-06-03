@@ -17,6 +17,18 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+class NewsViewSet(viewsets.ModelViewSet):
+    queryset = models.News.objects.filter(subdomain = 'memoirs')
+    serializer_class = serializers.NewsSerializer
+    pagination_class = PageNumberPagination
+
+    def list(self, request):
+        queryset = models.News.objects.filter(subdomain = 'memoirs')
+        page = self.paginate_queryset(queryset)
+        serializer = serializers.NewsSerializer(page, many = True, fields = ('title','text', 'dtime','visible', 'img', 'videos', 'views',))
+        return self.get_paginated_response(serializer.data)
+
+
 # Для отобраения краткой информации о фильме в листе и подробной в детальном (films/)=> short (films/{int:pk})=> long
 class FilmsViewSet(viewsets.ModelViewSet):
     queryset = models.Films.objects.all()

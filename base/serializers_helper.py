@@ -16,6 +16,11 @@ from .mixins import *
  поля указать кортеж fields с нужным набором полей
 """
 
+class NewsTagsSerializer(DynamicFieldsModelSerializer):
+    class Meta:
+        model = models.NewsTags
+        fields = '__all__'
+
 
 class LikeSerializer(DynamicFieldsModelSerializer):
     class Meta:

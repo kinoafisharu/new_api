@@ -15,7 +15,11 @@ from . import serializer_fields
 '''
 
 
-
+class NewsSerializer(DynamicFieldsModelSerializer):
+    tags = NewsTagsSerializer(many = True, fields = ('name',))
+    class Meta:
+        model = models.News
+        fields = '__all__'
 
 
 # Сериализатор класса Films со всеми указанными в классе полями
@@ -25,7 +29,7 @@ from . import serializer_fields
 '''
 class FilmsSerializer(DynamicFieldsModelSerializer):
 
-    votes = serializer_fields.LikeField()
+    likes = serializer_fields.LikeField()
     sources = FilmsSourcesSerializer(many = True)
     persons = serializer_fields.PersonField(objectattributes = ['allnames', 'role'])
     name = FilmNameSerializer(many = True, fields = ('name',))
