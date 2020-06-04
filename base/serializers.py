@@ -29,7 +29,7 @@ class NewsSerializer(DynamicFieldsModelSerializer):
 '''
 class FilmsSerializer(DynamicFieldsModelSerializer):
 
-    votes = serializer_fields.LikeField()
+    likes = serializer_fields.LikeField()
     sources = FilmsSourcesSerializer(many = True)
     persons = serializer_fields.PersonField(objectattributes = ['allnames', 'role'])
     name = FilmNameSerializer(many = True, fields = ('name',))

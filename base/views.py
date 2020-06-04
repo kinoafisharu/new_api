@@ -23,10 +23,18 @@ class NewsViewSet(viewsets.ModelViewSet):
     pagination_class = PageNumberPagination
 
     def list(self, request):
-        queryset = models.News.objects.filter(subdomain = 'memoirs')
+        queryset = self.get_queryset()
         page = self.paginate_queryset(queryset)
         serializer = serializers.NewsSerializer(page, many = True, fields = ('title','text', 'dtime','visible', 'img', 'videos', 'views',))
         return self.get_paginated_response(serializer.data)
+
+    @action(detail = False)
+    def orderby(self, request):
+        trunc = lambda n, max_n, min_n: max(min(max_n, n), min_n)
+        amount = trunc(int(request.query_params['amount']), 50, 1)
+        queryset = self.get_queryset().order_by(request.query_params['by'])[:amount]
+        serializer = self.get_serializer(queryset, many = True)
+        return Response(serializer.data)
 
 
 # Для отобраения краткой информации о фильме в листе и подробной в детальном (films/)=> short (films/{int:pk})=> long
