@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 
+'''
+Модели из базы asteroid
+'''
+
 # Модель описывает внешние объекты (файлы изображений, звука, видео)
 class Extres(models.Model):
     extresid = models.IntegerField(primary_key=True, db_column='ExtResID')

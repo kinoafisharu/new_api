@@ -13,7 +13,7 @@ from django.utils.translation import gettext_lazy as _
 """
 class LikeField(Field):
     def get_attribute(self, instance):
-        return instance.votes
+        return instance.likes
     def to_representation(self, value):
         likes = value.filter(evaluation__in = [1,2,3])
         dislikes = value.filter(evaluation__in = [4,5])

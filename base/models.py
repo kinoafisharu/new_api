@@ -7,34 +7,20 @@ from django.contrib.sites.models import Site as DjangoSite
 from django.core import exceptions
 import logging
 
-from . import funcall
 from base.models_dic import *
 from base.api_models import *
 from base.models_choices import *
 
 logger = logging.getLogger(__name__)
 
-class MyModelBase( ModelBase ):
-    def __new__( cls, name, bases, attrs, **kwargs ):
-        if name != "BasePrefixModel":
-            class MetaB:
-                db_table = "base_" + name.lower()
-
-            attrs["Meta"] = MetaB
-
-        r = super().__new__( cls, name, bases, attrs, **kwargs )
-        return r
-
-class BasePrefixModel( models.Model, metaclass = MyModelBase ):
-    class Meta:
-        abstract = True
 
 
-class Images(BasePrefixModel):
+
+class Images(models.Model):
     file = models.CharField(max_length=256)
     status = models.CharField(max_length=1, choices=IMAGES_STATUS, verbose_name='Статус изображения')
 
-class NamePerson(BasePrefixModel):
+class NamePerson(models.Model):
     '''
     Модель содержит имена персон
     1 - главное,
@@ -52,7 +38,7 @@ class NamePerson(BasePrefixModel):
         return '%s' % (self.name)
 
 
-class Person(BasePrefixModel):
+class Person(models.Model):
     '''
     Модель содержит данные персоны
     '''
@@ -77,7 +63,7 @@ class Person(BasePrefixModel):
         return '%s' % (self.name)
 
 
-class Interface(BasePrefixModel):
+class Interface(models.Model):
     ip_address = models.GenericIPAddressField(verbose_name = 'IP адрес', blank=True, null=True)
     platform = models.CharField(max_length=64, verbose_name='Операционная система', blank=True, null=True)
     browser = models.CharField(max_length=64, verbose_name='Интернет браузер', blank=True, null=True)
@@ -87,7 +73,7 @@ class Interface(BasePrefixModel):
 
 
 
-class PersonInterface(BasePrefixModel):
+class PersonInterface(models.Model):
     option1 = models.BooleanField(verbose_name='Настройка1 - slideblock_schedules', default=False)
     option2 = models.BooleanField(verbose_name='Настройка2', default=False)
     option3 = models.BooleanField(verbose_name='Настройка3', default=False)
@@ -105,7 +91,7 @@ class PersonInterface(BasePrefixModel):
 
 
 
-class Accounts(BasePrefixModel):
+class Accounts(models.Model):
     login = models.CharField(max_length=256, verbose_name='Логин (id или email)', blank=True, null=True)
     validation_code = models.CharField(max_length=256, verbose_name='Код авторизации', blank=True, null=True)
     email = models.CharField(max_length=256, verbose_name='email аккаунта, если есть', blank=True, null=True, db_index=True)
@@ -116,7 +102,7 @@ class Accounts(BasePrefixModel):
     male = models.IntegerField(verbose_name='Пол', blank=True, null=True) # 1 - М, 2 - Ж
     avatar = models.CharField(max_length=128, verbose_name='Название аватарки', blank=True, null=True)
 
-class Profile(BasePrefixModel):
+class Profile(models.Model):
     """
     Расширение модели User, дополнительные атрибуты
     """
@@ -139,7 +125,7 @@ class Profile(BasePrefixModel):
     bg_url = models.CharField(max_length=256, verbose_name='URL Фон', blank=True, null=True)
 
 
-class APILogger(BasePrefixModel):
+class APILogger(models.Model):
     """
     Лог обращения к API
     """
@@ -151,7 +137,7 @@ class APILogger(BasePrefixModel):
     event = models.IntegerField(verbose_name='Код события')
 
 
-class NameDistributors(BasePrefixModel):
+class NameDistributors(models.Model):
     '''
     Названия кинопрокатчиков
     '''
@@ -162,7 +148,7 @@ class NameDistributors(BasePrefixModel):
         return '%s' % (self.name)
 
 
-class Distributors(BasePrefixModel):
+class Distributors(models.Model):
     '''
     Кинопрокатчики России, Украины и Белоруси
     '''
@@ -179,7 +165,7 @@ class Distributors(BasePrefixModel):
         return '%s' % (self.name)
 
 
-class NameFilms(BasePrefixModel):
+class NameFilms(models.Model):
     '''
     Названия фильмов
     '''
@@ -189,18 +175,18 @@ class NameFilms(BasePrefixModel):
     def __unicode__(self):
         return '%s' % (self.name)
 
-class FilmsReleaseDate(BasePrefixModel):
+class FilmsReleaseDate(models.Model):
     release = models.DateField(verbose_name='Дата релиза')
     note = models.CharField(max_length=256, null=True, blank=True)
     format = models.CharField(max_length=1, choices=FILM_RELEASE_FORMAT, verbose_name='Формат релиза')
     country = models.ForeignKey(Country, on_delete = models.PROTECT)
 
-class ProductionsCo(BasePrefixModel):
+class ProductionsCo(models.Model):
     name = models.CharField(max_length=256, verbose_name='Компания призводитель')
     imdb_id = models.IntegerField(verbose_name='IMDb идентификатор', null=True)
 
 
-class Films(BasePrefixModel):
+class Films(models.Model):
     name = models.ManyToManyField(NameFilms, verbose_name='Название продукта')
     creators = models.ManyToManyField(Person, through='RelationFP', verbose_name='Ключевые создатели', related_name="key_creators_%(class)s", null=True)
     release = models.ManyToManyField(FilmsReleaseDate)
@@ -235,7 +221,7 @@ class Films(BasePrefixModel):
                 logger.warning("Film's runtime can't be less than 0 (min)")
             super().save(*args, **kwargs)
 '''
-class FilmsVotes(BasePrefixModel):
+class FilmsVotes(models.Model):
     kid = models.IntegerField(verbose_name='ID фильма на киноафише')
     user = models.ForeignKey(Profile, verbose_name='Юзер', on_delete = models.PROTECT)
     rate_1 = models.IntegerField()
@@ -243,11 +229,11 @@ class FilmsVotes(BasePrefixModel):
     rate_3 = models.IntegerField()
 
 
-class Likes(BasePrefixModel):
+class Likes(models.Model):
     evaluation = models.IntegerField(verbose_name='Идентификатор оценки пользователя')
-    film = models.IntegerField(verbose_name='KID', db_index=True)
+    film = models.IntegerField(verbose_name='KID', db_index=True, null = True)
     dtime = models.DateTimeField(auto_now_add=True, verbose_name='Дата время лайка', null=True)
-    filmobject = models.ForeignKey(Films, on_delete = models.CASCADE, null = True, related_name = 'votes')
+    filmobject = models.ForeignKey(Films, on_delete = models.CASCADE, null = True, related_name = 'likes')
     # Tie all like objects to films objects by kid
     @classmethod
     def tie_all_filmobjects(self):
@@ -265,7 +251,7 @@ class Likes(BasePrefixModel):
 
 
 
-class RelationFP(BasePrefixModel):
+class RelationFP(models.Model):
     '''
     Модель описывает связь Персоны и фильма с указанием типа и статуса участия
     персоны в фильме
@@ -281,7 +267,7 @@ class RelationFP(BasePrefixModel):
         return '%s' % self.person.name
 
 
-class ImportSources(BasePrefixModel):
+class ImportSources(models.Model):
     """
     Источники информации
     """
@@ -292,18 +278,18 @@ class ImportSources(BasePrefixModel):
     #priority = models.IntegerField(verbose_name='Приоритет')
 
 
-class FilmsSources(BasePrefixModel):
+class FilmsSources(models.Model):
     # связи с источниками
     id_films = models.ForeignKey(Films, verbose_name='КиноИнфо', on_delete = models.PROTECT, related_name = 'sources')
     source = models.ForeignKey(ImportSources, verbose_name='Источник', on_delete = models.PROTECT)
     id_films_sources = models.BigIntegerField(verbose_name='Фильм у источника')
 
-class FilmsBudget(BasePrefixModel):
+class FilmsBudget(models.Model):
     kid = models.IntegerField(verbose_name='KID')
     budget = models.CharField(max_length=64, verbose_name='Бюджет')
 
 
-class KIFilmRelations(BasePrefixModel):
+class KIFilmRelations(models.Model):
     '''
     Связь источника с названием фильма
     '''
@@ -311,7 +297,7 @@ class KIFilmRelations(BasePrefixModel):
     name = models.ManyToManyField(NameFilms, verbose_name='Название фильма', blank=True, null=True)
 
 
-class Logger(BasePrefixModel):
+class Logger(models.Model):
     text = models.CharField(max_length=256, verbose_name='text')
     url = models.URLField(max_length=256, verbose_name='url', blank=True, null=True)
     obj_name = models.CharField(max_length=256, verbose_name='объект возбудивший ошибку', blank=True, null=True)
@@ -321,7 +307,7 @@ class Logger(BasePrefixModel):
     code = models.IntegerField(verbose_name='Код события')
 
 
-class AlterStreetType(BasePrefixModel):
+class AlterStreetType(models.Model):
    value =  models.ForeignKey(StreetType, verbose_name='Оригинальный тип улицы', on_delete = models.PROTECT)
    name =  models.CharField(max_length=256, verbose_name='Альтернативоный тип улицы', blank=True, null=True)
    class Meta:
@@ -331,7 +317,7 @@ class AlterStreetType(BasePrefixModel):
        return '%s' % self.name
 
 
-class Phone(BasePrefixModel):
+class Phone(models.Model):
     """
     Модель описывает телефоны
     """
@@ -341,7 +327,7 @@ class Phone(BasePrefixModel):
         return '%s' % (self.phone)
 
 
-class Site(BasePrefixModel):
+class Site(models.Model):
     """
     Модель описывает сайты
     """
@@ -351,7 +337,7 @@ class Site(BasePrefixModel):
         return '%s' % (self.url)
 
 
-class Cinema(BasePrefixModel):
+class Cinema(models.Model):
     """
     Модель описывает кинотеатры
     """
@@ -377,7 +363,7 @@ class Cinema(BasePrefixModel):
         return '%s, %s, %s' % (self.name, self.street_name, self.number_hous)
 
 
-class Hall(BasePrefixModel):
+class Hall(models.Model):
     """
     Модель описывает Залы
     """
@@ -396,20 +382,20 @@ class Hall(BasePrefixModel):
         return '%s, %s' % (self.name, self.cinema.name)
 
 
-class Demonstration(BasePrefixModel):
+class Demonstration(models.Model):
     name = models.CharField(max_length=256, verbose_name='Название')
     time = models.DateTimeField(verbose_name='Дата, время сеанса')
     place = models.ForeignKey(Hall, verbose_name='Место сеанса', on_delete = models.PROTECT)
 
 
-class ScheduleRelations(BasePrefixModel):
+class ScheduleRelations(models.Model):
     name = models.CharField(max_length=128, verbose_name='Название фильма')
     kid = models.IntegerField(verbose_name='Идентификатор киноафиши')
     hall = models.ForeignKey(Hall, on_delete = models.PROTECT)
     dtime = models.DateTimeField(verbose_name='Дата, время сеанса')
 
 
-class Articles(BasePrefixModel):
+class Articles(models.Model):
     title = models.CharField(max_length=128, verbose_name='Название статьи')
     pub_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации', editable=False)
     text = models.TextField(verbose_name='Текст')
@@ -417,7 +403,7 @@ class Articles(BasePrefixModel):
 
 
 '''
-class Session(BasePrefixModel):
+class Session(models.Model):
     demonstration = models.ForeignKey(Demonstration)
     number = models.PositiveIntegerField('Порядок в демонстрации')
     film = models.ManyToManyField(Films, verbose_name='Фильм(ы)')
@@ -427,7 +413,7 @@ class Session(BasePrefixModel):
         return '%s' % (self.demonstration)
 '''
 # связь не с фильмом, а с названием фильма (ТЕСТ)
-class Session(BasePrefixModel):
+class Session(models.Model):
     """
     Модель описывает Сеансы
     """
@@ -440,14 +426,14 @@ class Session(BasePrefixModel):
         return '%s' % (self.demonstration)
 
 
-class HallsSources(BasePrefixModel):
+class HallsSources(models.Model):
     # связи залов с источниками
     id_hall = models.ForeignKey(Hall, verbose_name='Зал', on_delete = models.PROTECT)
     source = models.ForeignKey(ImportSources, verbose_name='Источник', on_delete = models.PROTECT)
     url_hall_sources = models.URLField(max_length=256, verbose_name='url-hall')
 
 
-class SourceCities(BasePrefixModel):
+class SourceCities(models.Model):
     source_id = models.CharField(max_length=256, verbose_name='ID источника')
     source_obj = models.ForeignKey(ImportSources, verbose_name='Источник', on_delete = models.PROTECT)
     city = models.ForeignKey(City, verbose_name='Город', on_delete = models.PROTECT)
@@ -455,7 +441,7 @@ class SourceCities(BasePrefixModel):
     name_alter = models.CharField(max_length=256, verbose_name='Альт. название города у источника', blank=True, null=True)
 
 
-class SourceCinemas(BasePrefixModel):
+class SourceCinemas(models.Model):
     source_id = models.CharField(max_length=256, verbose_name='ID источника')
     source_obj = models.ForeignKey(ImportSources, verbose_name='Источник', on_delete = models.PROTECT)
     city = models.ForeignKey(SourceCities, verbose_name='Город источника', on_delete = models.PROTECT)
@@ -467,7 +453,7 @@ class SourceCinemas(BasePrefixModel):
     longitude = models.FloatField(verbose_name='Долгота', blank=True, null=True)
 
 
-class SourceHalls(BasePrefixModel):
+class SourceHalls(models.Model):
     source_id = models.CharField(max_length=256, verbose_name='ID источника')
     source_obj = models.ForeignKey(ImportSources, verbose_name='Источник', on_delete = models.PROTECT)
     cinema = models.ForeignKey(SourceCinemas, verbose_name='Зал источника', on_delete = models.PROTECT)
@@ -476,7 +462,7 @@ class SourceHalls(BasePrefixModel):
     kid = models.IntegerField(verbose_name='KID зала')
 
 
-class SourceFilms(BasePrefixModel):
+class SourceFilms(models.Model):
     source_id = models.CharField(max_length=256, verbose_name='ID источника', db_index=True)
     source_obj = models.ForeignKey(ImportSources, verbose_name='Источник', on_delete = models.PROTECT)
     name = models.CharField(max_length=256, verbose_name='Название фильма у источника')
@@ -492,7 +478,7 @@ class SourceFilms(BasePrefixModel):
     rel_ignore = models.BooleanField(verbose_name='Игнорировать', default=False, db_index=True)
 
 
-class SourceSchedules(BasePrefixModel):
+class SourceSchedules(models.Model):
     source_id = models.CharField(max_length=256, verbose_name='ID источника', db_index=True)
     source_obj = models.ForeignKey(ImportSources, verbose_name='Источник', on_delete = models.PROTECT)
     film = models.ForeignKey(SourceFilms, verbose_name='Фильм источника', on_delete = models.PROTECT)
@@ -504,19 +490,19 @@ class SourceSchedules(BasePrefixModel):
     price = models.CharField(max_length=64, verbose_name='Цена билета', blank=True, null=True)
     extra = models.CharField(max_length=256, verbose_name='Любой дополнительный параметр', null=True)
 
-class SourceReleases(BasePrefixModel):
+class SourceReleases(models.Model):
     source_obj = models.ForeignKey(ImportSources, verbose_name='Источник', on_delete = models.PROTECT)
     film = models.ForeignKey(SourceFilms, verbose_name='Фильм источника', on_delete = models.PROTECT)
     release = models.DateField(verbose_name='Дата релиза', db_index=True)
     distributor = models.CharField(max_length=256, verbose_name='Название дистрибьютора', null=True)
 
-class SourceUsers(BasePrefixModel):
+class SourceUsers(models.Model):
     source_id = models.CharField(max_length=256, verbose_name='ID источника', db_index=True)
     source_obj = models.ForeignKey(ImportSources, verbose_name='Источник', on_delete = models.PROTECT)
     profile = models.ForeignKey(Profile, verbose_name='Профиль', on_delete = models.PROTECT)
 
 
-class Torrents(BasePrefixModel):
+class Torrents(models.Model):
     film = models.IntegerField(verbose_name='KID фильма', db_index=True)
     source_obj = models.ForeignKey(ImportSources, verbose_name='Источник', null=True, on_delete = models.PROTECT)
     go_link_id = models.CharField(max_length=32, verbose_name='ID ссылки', null=True)
@@ -527,34 +513,34 @@ class Torrents(BasePrefixModel):
     file_size = models.CharField(max_length=32, verbose_name='Размер файла', null=True)
     path = models.CharField(max_length=256, verbose_name='Торрент файл', null=True)
 
-class TorrentsUsers(BasePrefixModel):
+class TorrentsUsers(models.Model):
     torrent = models.ForeignKey(Torrents, verbose_name='Торрент', on_delete = models.PROTECT)
     profile = models.ForeignKey(Profile, verbose_name='Профиль', null=True, on_delete=models.SET_NULL)
     dtime = models.DateTimeField(auto_now_add=True, verbose_name='Дата время получения')
     got = models.BooleanField(verbose_name='Был ли файл скачан', default=False)
 
-class FestCompetition(BasePrefixModel):
+class FestCompetition(models.Model):
     name_en = models.CharField(max_length=256, verbose_name='Англ. название')
     name_ru = models.CharField(max_length=256, verbose_name='Русс. название')
     type = models.CharField(max_length=1, choices=FEST_TYPE_CHOICES, verbose_name='Тип')
 
-class AwardsNames(BasePrefixModel):
+class AwardsNames(models.Model):
     name_en = models.CharField(max_length=256, verbose_name='Англ. название', blank=True, null=True)
     name_ru = models.CharField(max_length=256, verbose_name='Русс. название', blank=True, null=True)
 
-class Awards(BasePrefixModel):
+class Awards(models.Model):
     awards = models.ForeignKey(AwardsNames, verbose_name='Название награды/номинации', on_delete = models.PROTECT)
     year = models.IntegerField(verbose_name='Год', null=True)
     type = models.CharField(max_length=1, choices=AWARDS_CHOICES, verbose_name='Тип')
     fest = models.ForeignKey(FestCompetition, verbose_name='Фестиваль', on_delete = models.PROTECT)
 
-class AwardsRelations(BasePrefixModel):
+class AwardsRelations(models.Model):
     kid = models.IntegerField(verbose_name='KID фильма')
     awards = models.ManyToManyField(Awards, verbose_name='Награда', null=True)
 
 
 
-class Top250(BasePrefixModel):
+class Top250(models.Model):
     key = models.CharField(max_length=256, verbose_name='Уникальный ключ')
     date_upd = models.DateField(verbose_name='Дата обновления')
     film = models.ForeignKey(SourceFilms, verbose_name='Фильм', on_delete = models.PROTECT)
@@ -565,7 +551,7 @@ class Top250(BasePrefixModel):
     votes = models.IntegerField(verbose_name='Кол-во голосов')
 
 
-class Okinoua(BasePrefixModel):
+class Okinoua(models.Model):
     imdb = models.IntegerField(verbose_name='ID IMDB фильма', blank=True, null=True)
     kid = models.IntegerField(verbose_name='KID фильма')
     url = models.URLField(max_length=256, verbose_name='url')
@@ -575,14 +561,14 @@ class Okinoua(BasePrefixModel):
     distributor = models.CharField(max_length=256, verbose_name='Название дистрибьютора')
 
 
-class RaspishiRelations(BasePrefixModel):
+class RaspishiRelations(models.Model):
     rid = models.IntegerField(verbose_name='ID источника')
     kid = models.IntegerField(verbose_name='KID фильма', blank=True, null=True, db_index=True)
     name_ru = models.CharField(max_length=128, verbose_name='Русское название фильма')
     name_en = models.CharField(max_length=128, verbose_name='Англ. название фильма', blank=True, null=True)
 
 
-class StatisticsDetails(BasePrefixModel):
+class StatisticsDetails(models.Model):
     source = models.IntegerField(verbose_name='ID источника')
     cinemas = models.IntegerField(verbose_name='Всего кинотеатров у источника')
     cinemas_sale = models.IntegerField(verbose_name='Всего кинотеатров у источника с продажей')
@@ -591,7 +577,7 @@ class StatisticsDetails(BasePrefixModel):
     sessions_sale = models.IntegerField(verbose_name='Всего сеансов у источника с продажей')
 
 
-class Statistics(BasePrefixModel):
+class Statistics(models.Model):
     name = models.CharField(max_length=128, verbose_name='Название')
     sessions = models.IntegerField(verbose_name='Всего сеаснов')
     sessions_sale = models.IntegerField(verbose_name='Сеансов с продажей')
@@ -602,7 +588,7 @@ class Statistics(BasePrefixModel):
     details = models.ManyToManyField(StatisticsDetails, verbose_name='Статистика по источникам', blank=True, null=True)
 
 
-class Nowru(BasePrefixModel):
+class Nowru(models.Model):
     nowru_id = models.IntegerField(verbose_name='ID now.ru')
     idec = models.IntegerField(verbose_name='idec')
     kinopoisk_id = models.IntegerField(verbose_name='ID кинопоиск', blank=True, null=True)
@@ -619,14 +605,14 @@ class Nowru(BasePrefixModel):
     url_player = models.URLField(max_length=256, verbose_name='url показа онлайн', blank=True, null=True)
     rel_ignore = models.BooleanField(verbose_name='Игнориовать', default=False)
 
-class UkrainePosters(BasePrefixModel):
+class UkrainePosters(models.Model):
     source_id = models.CharField(max_length=128, verbose_name='ID источника')
     source_obj = models.ForeignKey(ImportSources, verbose_name='Источник', on_delete = models.PROTECT)
     poster = models.CharField(max_length=100, verbose_name='Путь к постеру', blank=True)
     kid = models.IntegerField(verbose_name='KID фильма')
 
 
-class Releases(BasePrefixModel):
+class Releases(models.Model):
     '''
     Релизы
     '''
@@ -647,7 +633,7 @@ class Releases(BasePrefixModel):
         verbose_name_plural = u'Релизы'
 
 
-class ReleasesRelations(BasePrefixModel):
+class ReleasesRelations(models.Model):
     '''
     Связь релизов с киноафишей
     '''
@@ -659,7 +645,7 @@ class ReleasesRelations(BasePrefixModel):
     rel_double = models.BooleanField(verbose_name='Дубль', default=False)
     rel_ignore = models.BooleanField(verbose_name='Игнориовать', default=False)
 
-class NotFoundFilmsRelations(BasePrefixModel):
+class NotFoundFilmsRelations(models.Model):
     '''
     Связь ненайденных фильмов с киноафишей
     '''
@@ -668,7 +654,7 @@ class NotFoundFilmsRelations(BasePrefixModel):
     source_obj = models.ForeignKey(ImportSources, verbose_name='Источник', null=True, on_delete = models.PROTECT)
 
 
-class NotFoundCinemasRelations(BasePrefixModel):
+class NotFoundCinemasRelations(models.Model):
     '''
     Связь ненайденных кинотеатров с киноафишей
     '''
@@ -677,7 +663,7 @@ class NotFoundCinemasRelations(BasePrefixModel):
     city = models.ForeignKey(City, verbose_name='Город', null=True, on_delete = models.PROTECT)
 
 
-class NotFoundPersonsRelations(BasePrefixModel):
+class NotFoundPersonsRelations(models.Model):
     '''
     Связь ненайденных персон с киноафишей
     '''
@@ -685,7 +671,7 @@ class NotFoundPersonsRelations(BasePrefixModel):
     kid = models.IntegerField(verbose_name='KID персоны')
 
 
-class SubscriptionRelease(BasePrefixModel):
+class SubscriptionRelease(models.Model):
     '''
     Связь пользователя с релизом
     '''
@@ -695,7 +681,7 @@ class SubscriptionRelease(BasePrefixModel):
     notified = models.BooleanField(verbose_name='Уведомлен ли', default=False)
     kid = models.IntegerField(verbose_name='KID фильма', null=True, db_index=True)
 
-class SubscriptionTopics(BasePrefixModel):
+class SubscriptionTopics(models.Model):
     '''
     Подписка на фильм в сети
     '''
@@ -705,13 +691,13 @@ class SubscriptionTopics(BasePrefixModel):
     notified = models.BooleanField(verbose_name='Уведомлен ли', default=False)
     quality = models.CharField(max_length=1, choices=TORRENT_QUALITY, verbose_name='Качество', null=True)
 
-class SessionsAfishaRelations(BasePrefixModel):
+class SessionsAfishaRelations(models.Model):
     kid = models.IntegerField(verbose_name='KID сеанса', db_index=True)
     source = models.ForeignKey(ImportSources, verbose_name='Источник', on_delete = models.PROTECT)
     schedule = models.ForeignKey(SourceSchedules, verbose_name='Сеанс источника', on_delete = models.PROTECT)
 
 
-class BoxOffice(BasePrefixModel):
+class BoxOffice(models.Model):
     bx_id = models.CharField(max_length=256, verbose_name='ID данных о сборах для фильма')
     source_id = models.CharField(max_length=256, verbose_name='ID фильма на источнике')
     source_obj = models.ForeignKey(ImportSources, verbose_name='Источник', on_delete = models.PROTECT)
@@ -729,7 +715,7 @@ class BoxOffice(BasePrefixModel):
     country = models.ForeignKey(Country, verbose_name='Страна', on_delete = models.PROTECT)
 
 
-class CurrencyRate(BasePrefixModel):
+class CurrencyRate(models.Model):
     '''
     Курс валюты. 1 USD к другой валюте
     '''
@@ -739,13 +725,13 @@ class CurrencyRate(BasePrefixModel):
     by_currency = models.CharField(max_length=1, choices=CURRENCY_CHOICES, verbose_name='За 1 еденицу валюты')
     date = models.DateField(verbose_name='Дата курса')
 
-class SubscriptionFeeds(BasePrefixModel):
+class SubscriptionFeeds(models.Model):
     dtime = models.DateTimeField(auto_now_add=True, verbose_name='Дата время подписки')
     profile = models.ForeignKey(Profile, verbose_name='Профиль пользователя', on_delete = models.PROTECT)
     type = models.CharField(max_length=1, choices=RSS_FEEDS_CHOICES, verbose_name='На что подписан')
 
 
-class BuyTicketStatistic(BasePrefixModel):
+class BuyTicketStatistic(models.Model):
     dtime = models.DateTimeField(auto_now_add=True, verbose_name='Дата время')
     profile = models.ForeignKey(Profile, verbose_name='Профиль пользователя', on_delete = models.PROTECT)
     session = models.ForeignKey(SourceSchedules, verbose_name='Сеанс', on_delete = models.PROTECT)
@@ -753,7 +739,7 @@ class BuyTicketStatistic(BasePrefixModel):
 
 
 
-class ProjectStages(BasePrefixModel):
+class ProjectStages(models.Model):
     name = models.CharField(max_length=128, verbose_name='Название этапа')
     start_date = models.DateField(verbose_name='Дата старта')
     end_date = models.DateField(verbose_name='Дата релиза')
@@ -763,7 +749,7 @@ class ProjectStages(BasePrefixModel):
        return '%s' % self.name
 
 
-class Projects(BasePrefixModel):
+class Projects(models.Model):
     name = models.CharField(max_length=128, verbose_name='Название проекта')
     url = models.CharField(max_length=128, verbose_name='URL', null=True)
     start_date = models.DateField(verbose_name='Дата старта', null=True)
@@ -781,7 +767,7 @@ class Projects(BasePrefixModel):
     def __unicode__(self):
        return '%s' % self.name
 
-class ActionsPriceList(BasePrefixModel):
+class ActionsPriceList(models.Model):
     title = models.CharField(max_length=128, verbose_name='Действие')
     price = models.FloatField(verbose_name='Цена')
     price_edit = models.FloatField(verbose_name='Цена редактирования', null=True)
@@ -792,7 +778,7 @@ class ActionsPriceList(BasePrefixModel):
     user_group = models.ForeignKey(Group, null=True, verbose_name='Группа пользователей', on_delete = models.PROTECT)
     project = models.ForeignKey(Projects, verbose_name='Проект', default='1', on_delete = models.PROTECT)
 
-class PaidActions(BasePrefixModel):
+class PaidActions(models.Model):
     profile = models.ForeignKey(Profile, verbose_name='Профиль пользователя', on_delete = models.PROTECT)
     action = models.ForeignKey(ActionsPriceList, verbose_name='Оплачиваемое действие', on_delete = models.PROTECT)
     object = models.CharField(max_length=256, verbose_name='Объект над которым произошло действие', null=True)
@@ -810,7 +796,7 @@ class PaidActions(BasePrefixModel):
     is_accepted = models.BooleanField(verbose_name='Принято в работу (админом)', default=False)
 
 
-class ActionsLog(BasePrefixModel):
+class ActionsLog(models.Model):
     dtime = models.DateTimeField(auto_now_add=True, editable=False, db_index=True)
     profile = models.ForeignKey(Profile, verbose_name='Профиль пользователя', on_delete = models.PROTECT)
     object = models.CharField(max_length=2, choices=ACTION_OBJ_CHOICES, verbose_name='Объект')
@@ -820,11 +806,11 @@ class ActionsLog(BasePrefixModel):
     site = models.ForeignKey(DjangoSite, editable=False, verbose_name='Сайт', default=1, on_delete = models.PROTECT)
 
 
-class NewsTags(BasePrefixModel):
+class NewsTags(models.Model):
     name = models.CharField(max_length=128, verbose_name='Название метки, тега')
 
 
-class News(BasePrefixModel):
+class News(models.Model):
     title = models.CharField(max_length=128, verbose_name='Заголовок')
     text = models.TextField(verbose_name='Текст')
     dtime = models.DateTimeField(auto_now_add=True, editable=False, db_index=True)
@@ -844,7 +830,6 @@ class News(BasePrefixModel):
     language = models.ForeignKey(Language, null=True, on_delete = models.PROTECT)
     translation_for = models.ForeignKey('self', null=True, related_name='translate_for_rel', on_delete = models.PROTECT)
     views = models.IntegerField(verbose_name='Просмотров', default=0)
-
     parent = models.ForeignKey('self', null=True, related_name='parent_rel', on_delete = models.PROTECT)
     branch = models.ForeignKey('self', null=True, related_name='branch_rel', on_delete = models.PROTECT)
 
@@ -855,7 +840,7 @@ class News(BasePrefixModel):
         return '%s' % (self.title)
 
 
-class NewsAlterTranslation(BasePrefixModel):
+class NewsAlterTranslation(models.Model):
     news = models.ForeignKey(News, on_delete = models.PROTECT)
     title = models.CharField(max_length=128, verbose_name='Заголовок')
     text = models.TextField(verbose_name='Текст')
@@ -863,7 +848,7 @@ class NewsAlterTranslation(BasePrefixModel):
     language = models.ForeignKey(Language, on_delete = models.PROTECT)
 
 
-class NewsFilms(BasePrefixModel):
+class NewsFilms(models.Model):
     kid = models.IntegerField(verbose_name='KID фильма', db_index=True)
     message = models.ForeignKey(News, verbose_name='Сообщение', on_delete = models.PROTECT)
     source_id = models.CharField(max_length=128, verbose_name='ID источника', null=True)
@@ -873,41 +858,41 @@ class NewsFilms(BasePrefixModel):
     rate_2 = models.IntegerField(null=True) # оценка от 3 до 9 mind
     rate_3 = models.IntegerField(null=True) # оценка от 3 до 9 heart
 
-class NewsReaders(BasePrefixModel):
+class NewsReaders(models.Model):
     user = models.ForeignKey(Profile, verbose_name='Связь с юзером', on_delete = models.PROTECT)
     status = models.CharField(max_length=1, choices=MESSENGER_CHOICES, verbose_name='Тип действия с сообщением')
     message = models.ForeignKey(News, verbose_name='Сообщение', on_delete = models.PROTECT)
 
-class DialogMessages(BasePrefixModel):
+class DialogMessages(models.Model):
     readers = models.ManyToManyField(NewsReaders, verbose_name='Пользователь адресат')
     #messages = models.ManyToManyField(News)
 
 
 
-class OrganizationPhones(BasePrefixModel):
+class OrganizationPhones(models.Model):
     phone = models.CharField(max_length=64, verbose_name='Номер телефона')
     note = models.CharField(max_length=128, verbose_name='Примечание', null=True)
 
 
-class OrganizationImages(BasePrefixModel):
+class OrganizationImages(models.Model):
     img = models.CharField(max_length=256, verbose_name='Изображение')
     status = models.IntegerField(verbose_name='Статус 1 - главное, 2 - альт.')
 
 
-class OrganizationTags(BasePrefixModel):
+class OrganizationTags(models.Model):
     name = models.CharField(max_length=128, verbose_name='Название метки, тега')
     alter_name = models.CharField(max_length=128, verbose_name='Альтернативное название метки, тега', null=True)
     group_flag = models.CharField(max_length=1, choices=TAG_GROUP_CHOICES, verbose_name='Групповая принадлежность', null=True)
     #group_flag = models.CharField(max_length=128, verbose_name='Групповая принадлежность:org_name_tag название;org_about_tag О_нас;org_offers_tag Предложение;org_needs_tag Спрос', null=True)
 
-class OrganizationRelations(BasePrefixModel):
+class OrganizationRelations(models.Model):
     name = models.CharField(max_length=128, verbose_name='Название')
     link = models.CharField(max_length=256, verbose_name='Ссылка')
 
-class OrganizationMenu(BasePrefixModel):
+class OrganizationMenu(models.Model):
     tag = models.ForeignKey(OrganizationTags, verbose_name='Метка', on_delete = models.PROTECT)
 
-class Organization(BasePrefixModel):
+class Organization(models.Model):
     name = models.CharField(max_length=256, verbose_name='Название')
     uni_slug = models.CharField(max_length=256, verbose_name='Название латиницей, очищенное', db_index=True)
     slug = models.CharField(max_length=256, verbose_name='очищенное')
@@ -949,7 +934,7 @@ class Organization(BasePrefixModel):
         return '%s' % (self.name)
 
 
-class OrganizationLang(BasePrefixModel):
+class OrganizationLang(models.Model):
     organization = models.ForeignKey(Organization, on_delete = models.PROTECT)
     name = models.CharField(max_length=256, verbose_name='Название', blank=True)
     note = models.TextField(verbose_name='Заметка', null=True, blank=True)
@@ -958,18 +943,18 @@ class OrganizationLang(BasePrefixModel):
     language = models.ForeignKey(Language, on_delete = models.PROTECT)
 
 
-class Organization_Tags(BasePrefixModel):
+class Organization_Tags(models.Model):
     organizationtags = models.ForeignKey(OrganizationTags, on_delete = models.PROTECT)
     organization = models.ForeignKey(Organization, on_delete = models.PROTECT)
 
 
-class OrganizationNews(BasePrefixModel):
+class OrganizationNews(models.Model):
     news = models.ForeignKey(News, on_delete = models.PROTECT)
     organization = models.ForeignKey(Organization, on_delete = models.PROTECT)
     tag = models.ForeignKey(Organization_Tags, null=True, on_delete = models.PROTECT)
     #group_flag = models.CharField(max_length=1, choices=TAG_GROUP_CHOICES, verbose_name='Групповая принадлежность')
 
-class AfishaCinemaRate(BasePrefixModel):
+class AfishaCinemaRate(models.Model):
     rate1 = models.IntegerField()
     rate2 = models.IntegerField()
     rate3 = models.IntegerField()
@@ -978,12 +963,12 @@ class AfishaCinemaRate(BasePrefixModel):
     organization = models.ForeignKey(Organization, on_delete = models.PROTECT)
 
 
-class ProjectsGallery(BasePrefixModel):
+class ProjectsGallery(models.Model):
     photo = models.ForeignKey(Images, on_delete = models.PROTECT)
     title = models.CharField(max_length=128, verbose_name='Название', blank=True, null=True)
     description = models.TextField(verbose_name='Примечание', blank=True, null=True)
 
-class ProjectsGalleryLang(BasePrefixModel):
+class ProjectsGalleryLang(models.Model):
     gallery = models.ForeignKey(ProjectsGallery, on_delete = models.PROTECT)
     name = models.CharField(max_length=256, verbose_name='Название')
     title = models.CharField(max_length=128, verbose_name='Название', blank=True, null=True)
@@ -991,7 +976,7 @@ class ProjectsGalleryLang(BasePrefixModel):
     language = models.ForeignKey(Language, on_delete = models.PROTECT)
 
 
-class OrgSubMenu(BasePrefixModel):
+class OrgSubMenu(models.Model):
     name = models.CharField(max_length=256, verbose_name='Название')
     news = models.ManyToManyField(News)
     gallery = models.ManyToManyField(ProjectsGallery)
@@ -1000,26 +985,26 @@ class OrgSubMenu(BasePrefixModel):
     booker_profile = models.ForeignKey(Profile, verbose_name='Связь с букером', null=True, on_delete = models.PROTECT)
 
 
-class OrgSubMenuLang(BasePrefixModel):
+class OrgSubMenuLang(models.Model):
     orgsubmenu = models.ForeignKey(OrgSubMenu, on_delete = models.PROTECT)
     name = models.CharField(max_length=256, verbose_name='Название')
     language = models.ForeignKey(Language, on_delete = models.PROTECT)
 
 
-class OrgMenu(BasePrefixModel):
+class OrgMenu(models.Model):
     organization = models.ForeignKey(Organization, verbose_name='Организация', null=True, on_delete = models.PROTECT)
     name = models.CharField(max_length=256, verbose_name='Название')
     submenu = models.ManyToManyField(OrgSubMenu, verbose_name='Подменю')
     profile = models.ForeignKey(Profile, verbose_name='Профиль', null=True, on_delete = models.PROTECT)
     private = models.BooleanField(verbose_name='Только для владельца', default=False)
 
-class OrgMenuLang(BasePrefixModel):
+class OrgMenuLang(models.Model):
     orgmenu = models.ForeignKey(OrgMenu, on_delete = models.PROTECT)
     name = models.CharField(max_length=256, verbose_name='Название')
     language = models.ForeignKey(Language, on_delete = models.PROTECT)
 
 
-class EmailNotice(BasePrefixModel):
+class EmailNotice(models.Model):
     '''
     Защита от дураков.
     Ограничение уведомлений для юзера за определенный промежуток времени.
@@ -1031,7 +1016,7 @@ class EmailNotice(BasePrefixModel):
     type = models.IntegerField(verbose_name='Тип сообщения') # 1 - приглашение орг, 2 - авторизация
 
 
-class MovieMegogo(BasePrefixModel):
+class MovieMegogo(models.Model):
     '''
     Модель для парсинга с мегого
     '''
@@ -1057,7 +1042,7 @@ class MovieMegogo(BasePrefixModel):
     poster_thumbnail = models.CharField(max_length=256, null=True)  # адрес постера 720px × 400px
     rel_ignore = models.BooleanField(verbose_name='Игнориовать', default=False)
 
-class IntegralRating(BasePrefixModel):
+class IntegralRating(models.Model):
     '''
     Модель для хранения интегральной оценки фильма:
     '''
@@ -1068,7 +1053,7 @@ class IntegralRating(BasePrefixModel):
     reviews = models.FloatField(null=True)
     rotten = models.FloatField(null=True)
 
-class Background(BasePrefixModel):
+class Background(models.Model):
     '''
     Фоновые баннеры
     '''
@@ -1081,7 +1066,7 @@ class Background(BasePrefixModel):
     subdomain = models.CharField(max_length=128, editable=False, verbose_name='Субдомен', null=True)
 
 
-class Post(BasePrefixModel):
+class Post(models.Model):
     title = models.CharField(max_length=128, verbose_name='Заголовок', blank=True, null=True)
     text = models.TextField(verbose_name='Текст', blank=True, null=True)
     dtime = models.DateTimeField(auto_now_add=True, editable=False)
@@ -1089,7 +1074,7 @@ class Post(BasePrefixModel):
     def __unicode__(self):
         return '%s' % (self.title)
 '''
-class Invoices(BasePrefixModel):
+class Invoices(models.Model):
     code = models.CharField(max_length=128)
     number = models.CharField(max_length=64)
     event = models.ForeignKey(DjangoSite, null=True)
@@ -1098,7 +1083,7 @@ class Invoices(BasePrefixModel):
     paid = models.BooleanField(default=False)
 '''
 
-class LetsGetClients(BasePrefixModel):
+class LetsGetClients(models.Model):
     profile = models.ForeignKey(Profile, null=True, on_delete = models.PROTECT)
     site = models.ForeignKey(DjangoSite, null=True, on_delete = models.PROTECT)
     subdomain = models.CharField(max_length=128, null=True)
@@ -1106,13 +1091,13 @@ class LetsGetClients(BasePrefixModel):
     tag = models.CharField(max_length=128, blank=True, null=True)
     #tags = models.ManyToManyField(OrganizationTags, verbose_name='Метки')
 
-class LetsGetBank(BasePrefixModel):
+class LetsGetBank(models.Model):
     name = models.CharField(max_length=128)
     account = models.CharField(max_length=64)
     site = models.ForeignKey(DjangoSite, null=True, on_delete = models.PROTECT)
     subdomain = models.CharField(max_length=128, null=True)
 
-class LetsGetCalendar(BasePrefixModel):
+class LetsGetCalendar(models.Model):
     event_name = models.CharField(max_length=256, verbose_name='Event Name', blank=True, null=True)
     event_place = models.CharField(max_length=256, verbose_name='Event Place', null=True)
     dtime = models.DateTimeField(verbose_name='Event DateTime', db_index=True)
@@ -1139,7 +1124,7 @@ class LetsGetCalendar(BasePrefixModel):
     report = models.ForeignKey(News, null=True, related_name="report_%(class)s", on_delete = models.PROTECT)
     report_send = models.BooleanField(default=False)
 
-class LetsGetCalendarNotified(BasePrefixModel):
+class LetsGetCalendarNotified(models.Model):
     event = models.ForeignKey(LetsGetCalendar, on_delete = models.PROTECT)
     profile = models.ForeignKey(Profile, null=True, on_delete = models.PROTECT)
     organization = models.ForeignKey(Organization, null=True, on_delete = models.PROTECT)
@@ -1157,34 +1142,34 @@ class LetsGetCalendarNotified(BasePrefixModel):
     invoice_status = models.CharField(max_length=128, blank=True, null=True)
     invoice_dtime = models.DateTimeField(null=True)
 
-class LetsGetCalendarClientNotified(BasePrefixModel):
+class LetsGetCalendarClientNotified(models.Model):
     client = models.ForeignKey(LetsGetClients, on_delete = models.PROTECT)
     invite_notified = models.BooleanField(default=False)
     invite_status = models.CharField(max_length=128, blank=True, null=True)
     invite_dtime = models.DateTimeField(null=True, auto_now_add=True)
 
 '''
-class LetsGetCalendarLikes(BasePrefixModel):
+class LetsGetCalendarLikes(models.Model):
     profile = models.ForeignKey(Profile)
     event = models.ForeignKey(LetsGetCalendar)
     vote = models.BooleanField() # 0 - unlike, 1 - like
 '''
 
-class WithdrawMoney(BasePrefixModel):
+class WithdrawMoney(models.Model):
     summa = models.FloatField(verbose_name='Сумма')
     who = models.ForeignKey(Profile, null=True, related_name="who_%(class)s", verbose_name='Кто списывает', on_delete = models.PROTECT)
     profile = models.ForeignKey(Profile, null=True, related_name="profile_%(class)s", verbose_name='У кого списывает', on_delete = models.PROTECT)
     dtime = models.DateTimeField(verbose_name='Когда списавает', auto_now_add=True, editable=False)
 
 
-class UserDeposit(BasePrefixModel):
+class UserDeposit(models.Model):
     summa = models.FloatField(verbose_name='Сумма')
     profile = models.ForeignKey(Profile, null=True, verbose_name='Для кого', on_delete = models.PROTECT)
     dtime = models.DateTimeField(verbose_name='Когда начислено', auto_now_add=True, editable=False)
 
 
 
-class WomenForumIgnored(BasePrefixModel):
+class WomenForumIgnored(models.Model):
     type = models.IntegerField(verbose_name='Тип игнора')  # 1 - сообщение, 2 - все в теме, 3 - все на форуме
     msg = models.IntegerField(verbose_name='ID сообщения на форуме', null=True, db_index=True)
     branch = models.IntegerField(verbose_name='ID топика на форуме', null=True)
@@ -1192,7 +1177,7 @@ class WomenForumIgnored(BasePrefixModel):
     user = models.IntegerField(verbose_name='ID юзера на форуме')
 
 
-class WomenForumIgnoreLevel(BasePrefixModel):
+class WomenForumIgnoreLevel(models.Model):
     '''
     Если юзер имеет type = 1, то может игнорировать сообщения по одному
     type = 2, то может игнорировать сообщения автора в теме
@@ -1203,25 +1188,25 @@ class WomenForumIgnoreLevel(BasePrefixModel):
     type = models.IntegerField(verbose_name='Тип игнора', db_index=True) # 1 - сообщение, 2 - все в теме, 3 - все на форуме
 
 
-class BannedUsersAndIPs(BasePrefixModel):
+class BannedUsersAndIPs(models.Model):
     profile = models.ForeignKey(Profile, null=True, related_name="profile_%(class)s", on_delete = models.PROTECT)
     ip = models.CharField(max_length=15, null=True, db_index=True)
     dtime = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время блокировки')
     who = models.ForeignKey(Profile, related_name="who_%(class)s", verbose_name='Кто заблокировал', on_delete = models.PROTECT)
 
 
-class WomenForumLikes(BasePrefixModel):
+class WomenForumLikes(models.Model):
     profile = models.ForeignKey(Profile, on_delete = models.PROTECT)
     msg = models.IntegerField(verbose_name='ID сообщения на форуме', db_index=True)
     like_type = models.BooleanField() # 0 - dislike, 1 - like
 
-class ForumGeneral(BasePrefixModel):
+class ForumGeneral(models.Model):
     name = models.CharField(max_length=64, verbose_name='Название форума')
     topics = models.ManyToManyField(News, verbose_name='Топики')
     site = models.ForeignKey(DjangoSite, on_delete = models.PROTECT)
 
 
-class Mediafiles(BasePrefixModel):
+class Mediafiles(models.Model):
     sign = models.CharField(max_length=256, verbose_name='ID файла')
     path = models.CharField(max_length=256, verbose_name='Путь к файлу')
     profile = models.ForeignKey(Profile, verbose_name='Кто загрузил', on_delete = models.PROTECT)
@@ -1238,7 +1223,7 @@ class Mediafiles(BasePrefixModel):
     tags = models.ManyToManyField(NewsTags, verbose_name='Теги')
 
 
-class CompositionName(BasePrefixModel):
+class CompositionName(models.Model):
     #1 - рус
     #2 - оригинал
     #3 - международное
@@ -1250,7 +1235,7 @@ class CompositionName(BasePrefixModel):
     def __unicode__(self):
         return '%s' % (self.name)
 
-class Composition(BasePrefixModel):
+class Composition(models.Model):
     name = models.ManyToManyField(CompositionName, verbose_name='Названия')
     runtime = models.CharField(max_length=16, verbose_name='Хронометраж', null=True)
     year = models.IntegerField(verbose_name='Год релиза', null=True)
@@ -1265,21 +1250,21 @@ class Composition(BasePrefixModel):
     media = models.ManyToManyField(Mediafiles, verbose_name='Медиафайлы')
 
 
-class CompositionTrackTmp(BasePrefixModel):
+class CompositionTrackTmp(models.Model):
     url = models.CharField(max_length=256)
     error = models.BooleanField()
 
 
-class CompositionPersonType(BasePrefixModel):
+class CompositionPersonType(models.Model):
     name = models.CharField(max_length=64, verbose_name='Тип') #текст, музыка, аранжировка, исполнение
 
-class CompositionPersonRel(BasePrefixModel):
+class CompositionPersonRel(models.Model):
     person = models.ForeignKey(Person, on_delete = models.PROTECT)
     type = models.ManyToManyField(CompositionPersonType)
     composition = models.ForeignKey(Composition, on_delete = models.PROTECT)
 
 
-class SiteBanners(BasePrefixModel):
+class SiteBanners(models.Model):
     sites = models.ManyToManyField(DjangoSite, verbose_name='Сайты - площадки')
     profile = models.ForeignKey(Profile, verbose_name='Профиль - площадка', null=True, on_delete = models.PROTECT)
     file = models.CharField(max_length=256, verbose_name='Файл')
@@ -1301,63 +1286,63 @@ class SiteBanners(BasePrefixModel):
     spent = models.FloatField(verbose_name='Потрачено средств на блок', default=0)
     deleted = models.BooleanField(verbose_name='Удален', default=False, db_index=True)
 
-class SiteBannersClicks(BasePrefixModel):
+class SiteBannersClicks(models.Model):
     banner = models.ForeignKey(SiteBanners, verbose_name='Баннер', null=True, on_delete = models.PROTECT)
     profile = models.ForeignKey(Profile, verbose_name='Профиль юзера', null=True, on_delete=models.SET_NULL)
     dtime = models.DateTimeField(auto_now_add=True, verbose_name='Дата, время клика')
 
-class SiteBannersViews(BasePrefixModel):
+class SiteBannersViews(models.Model):
     banner = models.ForeignKey(SiteBanners, verbose_name='Баннер', null=True, on_delete = models.PROTECT)
     profile = models.ForeignKey(Profile, verbose_name='Профиль юзера', null=True, on_delete=models.SET_NULL)
     dtime = models.DateField(auto_now_add=True, verbose_name='Дата, время просмотра')
 
 
 
-class SubscriberUser(BasePrefixModel):
+class SubscriberUser(models.Model):
     type = models.CharField(max_length=2, choices=SUBSCRIBE_TYPE, verbose_name='Тип объекта')
     obj = models.IntegerField(verbose_name='ID объекта')
     profile = models.ForeignKey(Profile, verbose_name='Профиль подписчика', on_delete = models.PROTECT)
     dtime = models.DateTimeField(auto_now_add=True, verbose_name='Дата, время подписки')
     unsubscribe = models.CharField(max_length=64, verbose_name='Код для отписки')
 
-class SubscriberObjects(BasePrefixModel):
+class SubscriberObjects(models.Model):
     type = models.CharField(max_length=2, choices=SUBSCRIBE_TYPE, verbose_name='Тип объекта')
     obj = models.IntegerField(verbose_name='ID объекта')
     end_obj = models.IntegerField(verbose_name='ID конечного объекта')
     in_work = models.BooleanField(verbose_name='В работе', default=True)
 
-class SubscriberLog(BasePrefixModel):
+class SubscriberLog(models.Model):
     user = models.ForeignKey(SubscriberUser, verbose_name='Подписчик', on_delete = models.PROTECT)
     obj = models.ForeignKey(SubscriberObjects, verbose_name='Объект', on_delete = models.PROTECT)
     notified = models.BooleanField(verbose_name='Оповещен ли', default=True)
     dtime = models.DateTimeField(auto_now_add=True, verbose_name='Дата, время оповещения')
     error = models.CharField(max_length=128, verbose_name='Описание ошибки', null=True, blank=True)
 
-class QuestionAnswer(BasePrefixModel):
+class QuestionAnswer(models.Model):
     item = models.ManyToManyField(News)
 
-class QAnswers(BasePrefixModel):
+class QAnswers(models.Model):
     item = models.ManyToManyField(News)
 
 
 
-class UkrainianReleases(BasePrefixModel):
+class UkrainianReleases(models.Model):
     kid = models.IntegerField(verbose_name='KID фильма')
     release = models.DateField(verbose_name='Дата релиза')
 
 
 
 
-class BookingSettings(BasePrefixModel):
+class BookingSettings(models.Model):
     profile = models.ForeignKey(Profile, verbose_name='Букер', on_delete = models.PROTECT)
     cinemas = models.ManyToManyField(Cinema, through='BookerCinemas', verbose_name='Кинотеатры')
 
-class BookerCinemas(BasePrefixModel):
+class BookerCinemas(models.Model):
     cinema = models.ForeignKey(Cinema, on_delete = models.PROTECT)
     settings = models.ForeignKey(BookingSettings, on_delete = models.PROTECT)
     permission = models.CharField(max_length=1, choices=BOOKER_PERMISSION, verbose_name='Права')
 
-class BookingSchedules(BasePrefixModel):
+class BookingSchedules(models.Model):
     unique = models.CharField(max_length=64, verbose_name='ID')
     hall = models.ForeignKey(Hall, verbose_name='Зал', on_delete = models.PROTECT)
     dtime = models.DateTimeField(verbose_name='Дата, время сеанса', db_index=True)

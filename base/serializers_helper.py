@@ -21,7 +21,10 @@ class NewsTagsSerializer(DynamicFieldsModelSerializer):
         model = models.NewsTags
         fields = '__all__'
 
-
+"""
+ Сериализация лайков, ниже валидация того что значение лайка число в промежутке от 1 до 5
+ и валидация существования фильма
+"""
 class LikeSerializer(DynamicFieldsModelSerializer):
     class Meta:
         model = models.Likes

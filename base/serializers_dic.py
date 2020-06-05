@@ -3,6 +3,9 @@ from .mixins import *
 from . import models
 from . import models_dic
 
+"""
+В этом файле описываются все модели - словари
+"""
 class CountrySerializer(DynamicFieldsModelSerializer):
     class Meta:
         model = models_dic.Country

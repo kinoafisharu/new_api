@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+# Александр Караваев  ===>
 '''
 Класс для создания подклассов с динамическим набором полей, описан в документации djangorestframework
 '''
