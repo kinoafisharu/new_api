@@ -1,1 +1,1 @@
-web: gunicorn kinoinfo.wsgi
+web: gunicorn _main.wsgi
