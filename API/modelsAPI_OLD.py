@@ -97,7 +97,8 @@ class BaseAlterstreettype(models.Model):
 
 
 class BaseApilogger(models.Model):
-    user_id = models.IntegerField(blank=True, null=True)class BaseCountry(models.Model):
+    user_id = models.IntegerField(blank=True, null=True)class 
+    BaseCountry(models.Model):
     name = models.CharField(max_length=64)
     name_en = models.CharField(max_length=64, blank=True, null=True)
     kid = models.BigIntegerField(blank=True, null=True)
