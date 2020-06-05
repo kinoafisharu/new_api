@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'kinoinfo.apps.KinoinfoConfig',
     'rest_framework',
     'django_filters',
+    'corsheaders'
 
 ]
 
@@ -67,12 +68,12 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-ROOT_URLCONF = 'kinoinfo.urls'
+ROOT_URLCONF = '_main.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['_templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,7 +86,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'kinoinfo.wsgi.application'
+WSGI_APPLICATION = '_main.wsgi.application'
 
 
 # Database
