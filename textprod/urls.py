@@ -10,13 +10,11 @@ router = routers.DefaultRouter()
 # Все адреса роутера связаны по цепочке с - Views => Serializers => Models
 # Нужны для регистрации структур апи в роутере который в свою очередь отдает ее в urlpatterns
 
-# Отображение короткого описания фильмов в листе  (all fields) и длинного при детальном рассмотре фильма
+# Отображение короткого описания историй в листе
 router.register(r'stories', views.StoriesViewSet, basename = 'stories')
 # -/ Александр Караваев
 
 # router.register(r'persons', views.BasePersonViewSet)
-
-
 
 urlpatterns = [
     # Включение корневого роутера в список URLS
