@@ -13,6 +13,11 @@ import logging
 # Классы отображения сериализорваных данных совмещают в себе list, retrieve, update, delete
 # Можно задавать дополнительные действия по запросам с помощью декоратора @action()
 
+class FivePagination(PageNumberPagination):
+    page_size = 5
+    page_size_query_param = 'page_size'
+    max_page_size = 50
+    
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +27,7 @@ logger = logging.getLogger(__name__)
 class StoriesViewSet(viewsets.ModelViewSet):
     queryset = models.News.objects.filter(subdomain = 'memoirs').order_by('-id')
     serializer_class = serializers.StoriesSerializer
-    pagination_class = PageNumberPagination
+    pagination_class = FivePagination
 
     # Метод листинга с пагинацией, ограничение по полям
     def list(self, request):
