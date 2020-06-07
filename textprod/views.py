@@ -13,6 +13,7 @@ import logging
 # Классы отображения сериализорваных данных совмещают в себе list, retrieve, update, delete
 # Можно задавать дополнительные действия по запросам с помощью декоратора @action()
 
+#Класс пагинации по 5 обьектов на страницу, перенести в base/pagination.py
 class FivePagination(PageNumberPagination):
     page_size = 5
     page_size_query_param = 'page_size'
