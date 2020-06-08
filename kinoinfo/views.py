@@ -25,7 +25,7 @@ class FilmsViewSet(viewsets.ModelViewSet):
 
 # Метод выдает пагинированный список фильмов, вывод укороченный
     def list(self, request):
-        queryset = models.Films.objects.all()
+        queryset = self.get_queryset()
         page = self.paginate_queryset(queryset)
         serializer = serializers.FilmsSerializer(page, many = True, fields = ('id','kid','imdb_id', 'year'))
         return self.get_paginated_response(serializer.data)
@@ -41,4 +41,12 @@ class FilmsViewSet(viewsets.ModelViewSet):
             return Response({'liked':True}, status = status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+    @action(detail = False)
+    def getval(self, request):
+        data = request.query_params.get('values', None)
+        if data:
+            queryset = self.get_queryset().values(data)
+            page = self.paginate_queryset(queryset)
+            return self.get_paginated_response(page)
+
 # -/ Александр Караваев
