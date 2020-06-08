@@ -30,7 +30,6 @@ class StoriesViewSet(viewsets.ModelViewSet):
         queryset = self.get_queryset()
         page = self.paginate_queryset(queryset)
         serializer = serializers.StoriesSerializer(page, many = True, fields = ('id','title','text', 'dtime','author', 'views',))
-        
         return self.get_paginated_response(serializer.data)
     # Метод сортировки историй по любому полю GET запросом и ограничение по выводу от 1 до 50
     # Параметр ?amount ограничивает выводимое количествo историй
@@ -41,7 +40,7 @@ class StoriesViewSet(viewsets.ModelViewSet):
         queryset = self.get_queryset().order_by(request.query_params['by'])
         page = self.paginate_queryset(queryset)
         serializer = self.get_serializer(page, queryset, many = True)
-        return Response(serializer.data)
+        return self.get_paginated_response(serializer.data)
 
     # Метод принимает значение в виде названий полей модели, отдает результат в апи с обозначеными полями
     @action(detail = False)
@@ -49,5 +48,5 @@ class StoriesViewSet(viewsets.ModelViewSet):
         queryset = self.get_queryset().values(request.query_params['values'])
         page = self.paginate_queryset(queryset)
         serializer = self.get_serializer(page, queryset, many = True, fields = request.query_params['values'])
-        return Response(serializer.data)
+        return self.get_paginated_response(serializer.data)
 # -/ Александр Караваев
