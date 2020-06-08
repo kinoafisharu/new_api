@@ -45,8 +45,10 @@ class StoriesViewSet(viewsets.ModelViewSet):
     # Метод принимает значение в виде названий полей модели, отдает результат в апи с обозначеными полями
     @action(detail = False)
     def getval(self, request):
-        queryset = self.get_queryset().values(request.query_params['values'])
+        r = request.query_params.get('values', None)
+        data = r.split(',')
+        queryset = self.get_queryset()
         page = self.paginate_queryset(queryset)
-        serializer = self.get_serializer(page, queryset, many = True, fields = request.query_params['values'])
+        serializer = serializers.NewsSerializer(page, many = True, fields = (data))
         return self.get_paginated_response(serializer.data)
 # -/ Александр Караваев
