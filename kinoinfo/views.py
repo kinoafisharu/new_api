@@ -4,6 +4,7 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
+from base.pagination import FivePagination
 from rest_framework.decorators import action
 from base import serializers_helper
 from . import serializers
@@ -19,7 +20,7 @@ import logging
 class FilmsViewSet(viewsets.ModelViewSet):
     queryset = models.Films.objects.all()
     serializer_class = serializers.FilmsSerializer
-    pagination_class = PageNumberPagination
+    pagination_class = FivePagination
 
 
 # Метод выдает пагинированный список фильмов, вывод укороченный
