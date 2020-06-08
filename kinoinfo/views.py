@@ -49,6 +49,6 @@ class StoriesViewSet(viewsets.ModelViewSet):
         data = r.split(',')
         queryset = self.get_queryset()
         page = self.paginate_queryset(queryset)
-        serializer = serializers.NewsSerializer(page, many = True, fields = (data))
+        serializer = serializers.FilmsSerializer(page, many = True, fields = (data))
         return self.get_paginated_response(serializer.data)
 # -/ Александр Караваев
