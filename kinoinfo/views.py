@@ -8,6 +8,7 @@ from base.pagination import FivePagination
 from rest_framework.decorators import action
 from rest_framework import filters
 from base import serializers_helper
+from base import views as baseviews
 from . import serializers
 from base import models
 import logging
@@ -18,20 +19,13 @@ import logging
 
 
 # Для отобраения краткой информации о фильме в листе и подробной в детальном (films/)=> short (films/{int:pk})=> long
-class FilmsViewSet(viewsets.ModelViewSet):
+class FilmsViewSet(baseviews.MethodModelViewSet):
     queryset = models.Films.objects.all().order_by('id')
     serializer_class = serializers.FilmsSerializer
     pagination_class = FivePagination
     filter_backends = [filters.OrderingFilter,]
     ordering_fields = ('id', 'dtime')
-
-
-# Метод выдает пагинированный список фильмов, вывод укороченный
-    def list(self, request):
-        queryset = self.get_queryset()
-        page = self.paginate_queryset(queryset)
-        serializer = serializers.FilmsSerializer(page, many = True, fields = ('id','kid','imdb_id', 'year',))
-        return self.get_paginated_response(serializer.data)
+    list_fields = ('id','kid','imdb_id','year',)
 
 # Метод добавляет один лайк к фильму с ид взятым из <int:pk>  по запросу POST https:/|host|/films/<int:pk>/like
     @action(detail = True, methods = ['post'], url_path = 'like', url_name = 'like')
@@ -44,15 +38,4 @@ class FilmsViewSet(viewsets.ModelViewSet):
             return Response({'liked':True}, status = status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
-
-    @action(detail = False)
-    def getval(self, request):
-        r = request.query_params.get('values', None)
-        sort = request.query_params.get('ordering', None)
-        data = r.split(',')
-        queryset = models.Films.objects.all().order_by(str(sort))
-        page = self.paginate_queryset(queryset)
-        serializer = serializers.FilmsSerializer(page, many = True, fields = (data))
-        return self.get_paginated_response(serializer.data)
-
 # -/ Александр Караваев
