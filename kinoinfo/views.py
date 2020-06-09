@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from base.pagination import FivePagination
 from rest_framework.decorators import action
+from rest_framework import filters
 from base import serializers_helper
 from . import serializers
 from base import models
@@ -21,6 +22,7 @@ class FilmsViewSet(viewsets.ModelViewSet):
     queryset = models.Films.objects.all().order_by('id')
     serializer_class = serializers.FilmsSerializer
     pagination_class = FivePagination
+    filter_backends = [filters.OrderingFilter,]
 
 
 # Метод выдает пагинированный список фильмов, вывод укороченный
