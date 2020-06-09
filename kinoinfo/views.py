@@ -23,6 +23,7 @@ class FilmsViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.FilmsSerializer
     pagination_class = FivePagination
     filter_backends = [filters.OrderingFilter,]
+    ordering_fields = ('id', 'dtime')
 
 
 # Метод выдает пагинированный список фильмов, вывод укороченный
@@ -47,8 +48,9 @@ class FilmsViewSet(viewsets.ModelViewSet):
     @action(detail = False)
     def getval(self, request):
         r = request.query_params.get('values', None)
+        sort = request.query_params.get('ordering', None)
         data = r.split(',')
-        queryset = self.get_queryset()
+        queryset = models.Films.objects.all().order_by(str(sort))
         page = self.paginate_queryset(queryset)
         serializer = serializers.FilmsSerializer(page, many = True, fields = (data))
         return self.get_paginated_response(serializer.data)
