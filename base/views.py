@@ -4,52 +4,28 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
+from base.pagination import FivePagination
 from rest_framework.decorators import action
-from . import serializers_helper
+from rest_framework import filters
+from base import serializers_helper
+from base import views as baseviews
 from . import serializers
-from . import models
+from base import models
 import logging
-# Create your views here.
+
 
 # Классы отображения сериализорваных данных совмещают в себе list, retrieve, update, delete
 # Можно задавать дополнительные действия по запросам с помощью декоратора @action()
 
 
-logger = logging.getLogger(__name__)
-
-class NewsViewSet(viewsets.ModelViewSet):
-    queryset = models.News.objects.filter(subdomain = 'memoirs')
-    serializer_class = serializers.NewsSerializer
-    pagination_class = PageNumberPagination
-
-    def list(self, request):
-        queryset = self.get_queryset()
-        page = self.paginate_queryset(queryset)
-        serializer = serializers.NewsSerializer(page, many = True, fields = ('title','text', 'dtime','visible', 'img', 'videos', 'views',))
-        return self.get_paginated_response(serializer.data)
-
-    @action(detail = False)
-    def orderby(self, request):
-        trunc = lambda n, max_n, min_n: max(min(max_n, n), min_n)
-        amount = trunc(int(request.query_params['amount']), 50, 1)
-        queryset = self.get_queryset().order_by(request.query_params['by'])[:amount]
-        serializer = self.get_serializer(queryset, many = True)
-        return Response(serializer.data)
-
-
 # Для отобраения краткой информации о фильме в листе и подробной в детальном (films/)=> short (films/{int:pk})=> long
-class FilmsViewSet(viewsets.ModelViewSet):
-    queryset = models.Films.objects.all()
+class FilmsViewSet(baseviews.MethodModelViewSet):
+    queryset = models.Films.objects.all().order_by('id')
     serializer_class = serializers.FilmsSerializer
-    pagination_class = PageNumberPagination
-
-
-# Метод выдает пагинированный список фильмов, вывод укороченный
-    def list(self, request):
-        queryset = models.Films.objects.all()
-        page = self.paginate_queryset(queryset)
-        serializer = serializers.FilmsSerializer(page, many = True, fields = ('id','kid','imdb_id', 'year'))
-        return self.get_paginated_response(serializer.data)
+    pagination_class = FivePagination
+    filter_backends = [filters.OrderingFilter,]
+    ordering_fields = ('id', 'dtime')
+    list_fields = ('id','kid','imdb_id','year',)
 
 # Метод добавляет один лайк к фильму с ид взятым из <int:pk>  по запросу POST https:/|host|/films/<int:pk>/like
     @action(detail = True, methods = ['post'], url_path = 'like', url_name = 'like')
