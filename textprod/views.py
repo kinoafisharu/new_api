@@ -54,7 +54,7 @@ class StoriesViewSet(viewsets.ModelViewSet):
         r = request.query_params.get('values', None)
         order = request.query_params.get('ordering', None)
         data = r.split(',')
-        queryset = models.News.objects.all().order_by(str(order))
+        queryset = models.News.objects.all().filter(subdomain = 'memoirs').order_by(str(order))
         page = self.paginate_queryset(queryset)
         serializer = serializers.StoriesSerializer(page, many = True, fields = (data))
         return self.get_paginated_response(serializer.data)
