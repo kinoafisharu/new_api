@@ -4,6 +4,7 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination, CursorPagination
+from rest_framework import filters
 from base.pagination import FivePagination
 from rest_framework.decorators import action
 from base import serializers_helper
@@ -23,6 +24,7 @@ class StoriesViewSet(viewsets.ModelViewSet):
     queryset = models.News.objects.filter(subdomain = 'memoirs').order_by('-id')
     serializer_class = serializers.StoriesSerializer
     pagination_class = FivePagination
+    filter_backends = [filters.OrderingFilter]
 
 
     # Метод листинга с пагинацией, ограничение по полям
