@@ -4,38 +4,45 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
-from base.pagination import FivePagination
 from rest_framework.decorators import action
-from rest_framework import filters
-from base import serializers_helper
-from base import views as baseviews
-from . import serializers
-from base import models
-import logging
+from django.core.exceptions import FieldError
+
+"""
+ В этом файле содержатся родительские классы viewsets с расширенным спектром возможностей
+"""
 
 
-# Классы отображения сериализорваных данных совмещают в себе list, retrieve, update, delete
-# Можно задавать дополнительные действия по запросам с помощью декоратора @action()
 
+class MethodModelViewSet(viewsets.ModelViewSet):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
-# Для отобраения краткой информации о фильме в листе и подробной в детальном (films/)=> short (films/{int:pk})=> long
-class FilmsViewSet(baseviews.MethodModelViewSet):
-    queryset = models.Films.objects.all().order_by('id')
-    serializer_class = serializers.FilmsSerializer
-    pagination_class = FivePagination
-    filter_backends = [filters.OrderingFilter,]
-    ordering_fields = ('id', 'dtime')
-    list_fields = ('id','kid','imdb_id','year',)
+    # Пагинированный список, поля указываются в классе
+    def list(self, request):
+        queryset = self.get_queryset()
+        page = self.paginate_queryset(queryset)
+        serializer = self.get_serializer(page, many = True, fields = self.list_fields)
+        return self.get_paginated_response(serializer.data)
 
-# Метод добавляет один лайк к фильму с ид взятым из <int:pk>  по запросу POST https:/|host|/films/<int:pk>/like
-    @action(detail = True, methods = ['post'], url_path = 'like', url_name = 'like')
-    def like(self, request, pk = None):
-        # Внимание!! Крайне важен порядок в словаре передаваемых данных в сериализатор
-        # Построение отношения между обьектами происходит автоматически, при десериализации достаточно передать значение pk (ID)
-        serializer = serializers_helper.LikeSerializer(data = {'evaluation': request.data['evaluation'], 'filmobject': pk} , fields = ('evaluation', 'filmobject'))
-        if serializer.is_valid():
-            like = serializer.save()
-            return Response({'liked':True}, status = status.HTTP_200_OK)
+# ример запроса somepath/getval/?values=id&ordering=id
+# Метод GET ниже сортирует обьекты в АПИ по любому полю из возможных (кроме вложенных)
+# Принимает параметры values (значения полей которые нужно вывести, строка с разделением запятой, без пробелов)
+# и ordering (как сортировать, принимает стандартные значения функции order_by django) """
+    @action(detail = False, name = 'Get Sorted Values')
+    def getval(self, request):
+        sort = request.query_params.get('ordering', None)
+        val = request.query_params.get('values', None)
+        if not val:
+            return Response({'errors': 'Values must not be null'})
         else:
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
-# -/ Александр Караваев
+            data = val.split(',')
+            try:
+                if sort:
+                    queryset = self.queryset.order_by(str(sort))
+                else:
+                    queryset = self.queryset
+                page = self.paginate_queryset(queryset)
+            except FieldError as e:
+                return Response({'errors': str(e)})
+            serializer = self.serializer_class(page, many = True, fields = (data))
+        return self.get_paginated_response(serializer.data)
