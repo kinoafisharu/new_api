@@ -17,6 +17,7 @@ class MethodModelViewSet(viewsets.ModelViewSet):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+
     # Пагинированный список, поля указываются в классе
     def list(self, request):
         queryset = self.get_queryset()
@@ -24,10 +25,11 @@ class MethodModelViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(page, many = True, fields = self.list_fields)
         return self.get_paginated_response(serializer.data)
 
-# ример запроса somepath/getval/?values=id&ordering=id
-# Метод GET ниже сортирует обьекты в АПИ по любому полю из возможных (кроме вложенных)
-# Принимает параметры values (значения полей которые нужно вывести, строка с разделением запятой, без пробелов)
-# и ordering (как сортировать, принимает стандартные значения функции order_by django) """
+
+    # ример запроса somepath/getval/?values=id&ordering=id
+    # Метод GET ниже сортирует обьекты в АПИ по любому полю из возможных (кроме вложенных)
+    # Принимает параметры values (значения полей которые нужно вывести, строка с разделением запятой, без пробелов)
+    # и ordering (как сортировать, принимает стандартные значения функции order_by django) """
     @action(detail = False, name = 'Get Sorted Values')
     def getval(self, request):
         sort = request.query_params.get('ordering', None)
@@ -41,8 +43,8 @@ class MethodModelViewSet(viewsets.ModelViewSet):
                     queryset = eval('self.queryset.filter({0}__isnull = False).order_by("{1}")'.format(str(sort).strip('-'), str(sort)))
                 else:
                     queryset = self.queryset
-                page = self.paginate_queryset(queryset)
             except FieldError as e:
                 return Response({'errors': str(e)})
+            page = self.paginate_queryset(queryset)
             serializer = self.serializer_class(page, many = True, fields = (data))
         return self.get_paginated_response(serializer.data)
