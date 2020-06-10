@@ -20,7 +20,7 @@ class MethodModelViewSet(viewsets.ModelViewSet):
 
     # Пагинированный список, поля указываются в классе
     def list(self, request):
-        queryset = self.get_queryset()
+        queryset = self.queryset
         page = self.paginate_queryset(queryset)
         serializer = self.get_serializer(page, many = True, fields = self.list_fields)
         return self.get_paginated_response(serializer.data)
