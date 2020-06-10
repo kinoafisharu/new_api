@@ -38,7 +38,7 @@ class MethodModelViewSet(viewsets.ModelViewSet):
             data = val.split(',')
             try:
                 if sort:
-                    queryset = eval('self.queryset.filter({0}__isnull = False).order_by(str({1}))'.format(sort.strip('-'), str(sort)))
+                    queryset = eval('self.queryset.filter({0}__isnull = False).order_by({1})'.format(str(sort).strip('-'), str(sort)))
                 else:
                     queryset = self.queryset
                 page = self.paginate_queryset(queryset)
