@@ -3,6 +3,7 @@ from rest_framework import serializers
 from base import models
 from base.serializers_dic import *
 from base.mixins import *
+from base import serializers as base_serializers
 from base.serializers_helper import *
 from base import serializer_fields
 
@@ -17,6 +18,7 @@ from base import serializer_fields
 
 class StoriesSerializer(DynamicFieldsModelSerializer):
     tags = NewsTagsSerializer(many = True, fields = ('name',))
+    autor = base_serializers.ProfileSerializer(many = False, fields = ('id','person'))
     class Meta:
         model = models.News
         fields = '__all__'

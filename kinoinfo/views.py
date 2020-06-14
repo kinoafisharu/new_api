@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework import status
@@ -8,6 +9,7 @@ from base.pagination import FivePagination
 from rest_framework.decorators import action
 from rest_framework import filters
 from base import serializers_helper
+from base import models
 from base import views as baseviews
 from . import serializers
 from base import models
@@ -25,17 +27,20 @@ class FilmsViewSet(baseviews.MethodModelViewSet):
     pagination_class = FivePagination
     filter_backends = [filters.OrderingFilter,]
     ordering_fields = ('id', 'dtime')
+    top_identifier = '-imdb_rate'
     list_fields = ('id','kid','imdb_id','year',)
 
 # Метод добавляет один лайк к фильму с ид взятым из <int:pk>  по запросу POST https:/|host|/films/<int:pk>/like
     @action(detail = True, methods = ['post'], url_path = 'like', url_name = 'like')
     def like(self, request, pk = None):
         # Внимание!! Крайне важен порядок в словаре передаваемых данных в сериализатор
-        # Построение отношения между обьектами происходит автоматически, при десериализации достаточно передать значение pk (ID)
+        # Построение отношения между обьектами происходит автоматически, при сериализации достаточно передать значение pk (ID)
         serializer = serializers_helper.LikeSerializer(data = {'evaluation': request.data['evaluation'], 'filmobject': pk} , fields = ('evaluation', 'filmobject'))
         if serializer.is_valid():
             like = serializer.save()
             return Response({'liked':True}, status = status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+
 # -/ Александр Караваев
