@@ -3,10 +3,24 @@ from rest_framework import serializers
 from . import models
 from .serializers_dic import *
 from .mixins import *
+from collections import OrderedDict
 from .serializers_helper import *
 from . import serializer_fields
 
 
+class PersonSerializer(DynamicFieldsModelSerializer):
+    name = NamePersonSerializer(many = True, fields = ('name',))
+    country = CountrySerializer(many = False, fields = ('name',))
+    class Meta:
+        model = models.Person
+        fields = '__all__'
+
+
+class ProfileSerializer(DynamicFieldsModelSerializer):
+    person = PersonSerializer(many = False, fields = ('name',))
+    class Meta:
+        model = models.Profile
+        fields = '__all__'
 
 # =================================================================================================
 

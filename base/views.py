@@ -26,7 +26,7 @@ class MethodModelViewSet(viewsets.ModelViewSet):
         return self.get_paginated_response(serializer.data)
 
 
-    # ример запроса somepath/getval/?values=id&ordering=id
+    # Пример запроса somepath/getval/?values=id&ordering=id
     # Метод GET ниже сортирует обьекты в АПИ по любому полю из возможных (кроме вложенных)
     # Принимает параметры values (значения полей которые нужно вывести, строка с разделением запятой, без пробелов)
     # и ordering (как сортировать, принимает стандартные значения функции order_by django) """
@@ -47,4 +47,13 @@ class MethodModelViewSet(viewsets.ModelViewSet):
                 return Response({'errors': str(e)})
             page = self.paginate_queryset(queryset)
             serializer = self.serializer_class(page, many = True, fields = (data))
+        return self.get_paginated_response(serializer.data)
+    @action(detail = False)
+    def top250(self, request):
+        i = self.top_identifier
+        istr = i.strip('-')
+        queryset = eval('self.queryset.filter({0}__isnull = False).order_by("{1}")'.format(istr,i))
+        page = self.paginate_queryset(queryset)
+        serializer = self.get_serializer(page, many = True)
+        print(serializer.data)
         return self.get_paginated_response(serializer.data)

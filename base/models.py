@@ -5,14 +5,13 @@ from django.db.models.base import ModelBase
 from django.contrib.auth.models import User, Group
 from django.contrib.sites.models import Site as DjangoSite
 from django.core import exceptions
+import itertools as it
+from functools import reduce
 import logging
 
 from base.models_dic import *
-from base.api_models import *
 from base.models_choices import *
-
 logger = logging.getLogger(__name__)
-
 
 
 
@@ -211,16 +210,12 @@ class Films(models.Model):
     limits = models.CharField (max_length = 100, null = True)
     description = models.TextField(max_length = 3000, null = True)
     comment = models.TextField(max_length = 3000, null = True)
+
     #image_parameter = models.ForeignKey(ImageParameter, verbose_name='Изображение', blank=True, null=True, related_name="image_%(class)s")
     #sound_parameter = models.ForeignKey(SoundParameter, verbose_name='Звук', blank=True, null=True, related_name="sound_%(class)s")
-    # Saving model instance to db if all the requirements are satisfied
-'''
-    def save(self, *args, **kwargs):
-        if self.runtime:
-            if int(self.runtime) < 0:
-                logger.warning("Film's runtime can't be less than 0 (min)")
-            super().save(*args, **kwargs)
-'''
+    # Saving model instance to db if all the requirements are satisfie
+
+
 class FilmsVotes(models.Model):
     kid = models.IntegerField(verbose_name='ID фильма на киноафише')
     user = models.ForeignKey(Profile, verbose_name='Юзер', on_delete = models.PROTECT)
@@ -233,7 +228,7 @@ class Likes(models.Model):
     evaluation = models.IntegerField(verbose_name='Идентификатор оценки пользователя')
     film = models.IntegerField(verbose_name='KID', db_index=True, null = True)
     dtime = models.DateTimeField(auto_now_add=True, verbose_name='Дата время лайка', null=True)
-    filmobject = models.ForeignKey(Films, on_delete = models.CASCADE, null = True, related_name = 'likes')
+    filmobject = models.ForeignKey(Films, on_delete = models.CASCADE, null = True, related_name = 'votes')
     # Tie all like objects to films objects by kid
     @classmethod
     def tie_all_filmobjects(self):
@@ -476,6 +471,20 @@ class SourceFilms(models.Model):
     rel_dtime = models.DateTimeField(verbose_name='Когда связал', null=True)
     rel_double = models.BooleanField(verbose_name='Дубль', default=False)
     rel_ignore = models.BooleanField(verbose_name='Игнорировать', default=False, db_index=True)
+    filmobject = models.ForeignKey(Films, on_delete = models.PROTECT, verbose_name = 'Фильм', null = True)
+    @classmethod
+    def tie_all_filmobjects(self):
+        for item in filter(lambda x: isinstance(x.kid, int), self.objects.all()):
+                kid = item.kid
+                try:
+                    obj = Films.objects.get(kid = kid)
+                except exceptions.MultipleObjectsReturned:
+                    obj = None
+                except exceptions.ObjectDoesNotExist:
+                    obj = None
+                if obj:
+                    item.filmobject = obj
+                    item.save()
 
 
 class SourceSchedules(models.Model):
@@ -549,6 +558,9 @@ class Top250(models.Model):
     change_val = models.IntegerField(verbose_name='На сколько позиций', null=True)
     rating = models.FloatField(verbose_name='Рейтинг')
     votes = models.IntegerField(verbose_name='Кол-во голосов')
+    class Meta:
+        ordering = ['date_upd']
+
 
 
 class Okinoua(models.Model):
@@ -836,6 +848,7 @@ class News(models.Model):
     class Meta:
         verbose_name = u'Новость'
         verbose_name_plural = u'Новости'
+        ordering: ['-id']
     def __unicode__(self):
         return '%s' % (self.title)
 

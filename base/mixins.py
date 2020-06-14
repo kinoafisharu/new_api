@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 # Александр Караваев  ===>
 '''
-Класс для создания подклассов с динамическим набором полей, описан в документации djangorestframework
+Класс для создания подклассов serializer с динамическим набором полей, описан в документации djangorestframework
 '''
 class DynamicFieldsModelSerializer(serializers.ModelSerializer):
     """

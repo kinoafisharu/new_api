@@ -16,6 +16,9 @@ from .mixins import *
  поля указать кортеж fields с нужным набором полей
 """
 
+
+
+
 class NewsTagsSerializer(DynamicFieldsModelSerializer):
     class Meta:
         model = models.NewsTags
@@ -24,8 +27,13 @@ class NewsTagsSerializer(DynamicFieldsModelSerializer):
 """
  Сериализация лайков, ниже валидация того что значение лайка число в промежутке от 1 до 5
  и валидация существования фильма
+ Отображaet количествo лайков во вложенной реперезентации вместо всех лайков в виде списка их обьектов
 """
 class LikeSerializer(DynamicFieldsModelSerializer):
+    def to_representation(self, instance):
+        likes = instance.filter(evaluation__in = [1,2,3])
+        dislikes = instance.filter(evaluation__in = [4,5])
+        return {'likes': likes.count(),'dislikes': dislikes.count()}
     class Meta:
         model = models.Likes
         fields = '__all__'
@@ -100,11 +108,30 @@ class SourcesSerializer(DynamicFieldsModelSerializer):
         model = models.ImportSources
         fields = '__all__'
 
-''' СЕРИАЛИЗАТОР ОТНОШЕНИЯ ИСТОЧНИКОВ К ФИЛЬМАМ '''
-class FilmsSourcesSerializer(DynamicFieldsModelSerializer):
-    source = SourcesSerializer(many = False)
+class Top250Serializer(DynamicFieldsModelSerializer):
+
     class Meta:
-        model = models.FilmsSources
+        model = models.Top250
+        fields  = '__all__'
+
+
+
+class SourceFilmsSerializer(DynamicFieldsModelSerializer):
+    def to_representation(self, instance):
+        try:
+            rev = instance.top250_set.reverse()[0]
+        except:
+            rev = None
+        if rev:
+            ser = Top250Serializer(rev)
+            data = ser.data
+            ser.is_valid()
+            print(data)
+            return({'':data})
+        else:
+            return {}
+    class Meta:
+        model = models.SourceFilms
         fields = '__all__'
 
 '''СЕРИАЛИЗАТОР ОТНОШЕНИЯ РЕЛИЗОВ К ФИЛЬМАМ'''
