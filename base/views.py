@@ -12,12 +12,12 @@ from django.core.exceptions import FieldError
 """
 
 
-
+# Родительский класс хранящий методы характерные для интеллектуальных продуктов
 class MethodModelViewSet(viewsets.ModelViewSet):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-
+    #Принудительная фильтрация для всех методов
     def filter_queryset(self, queryset):
         filter_backends = self.filter_backends
         for backend in list(filter_backends):
@@ -47,18 +47,21 @@ class MethodModelViewSet(viewsets.ModelViewSet):
             try:
                 if sort:
                     queryset = eval('self.get_queryset().filter({0}__isnull = False).order_by("{1}")'.format(str(sort).strip('-'), str(sort)))
+                    queryset = self.filter_queryset(queryset)
                 else:
-                    queryset = self.queryset
+                    queryset = self.filter_queryset(self.queryset)
             except FieldError as e:
                 return Response({'errors': str(e)})
             page = self.paginate_queryset(queryset)
             serializer = self.serializer_class(page, many = True, fields = (data))
         return self.get_paginated_response(serializer.data)
+    #Возвращает топ фильмов по идентификационному полю рейтинга указываемого в конкретном представлении
     @action(detail = False)
     def top250(self, request):
         i = self.top_identifier
         istr = i.strip('-')
         queryset = eval('self.queryset.filter({0}__isnull = False).order_by("{1}")'.format(istr,i))
+        queryset = self.filter_queryset(queryset)
         page = self.paginate_queryset(queryset)
         serializer = self.get_serializer(page, many = True)
         return self.get_paginated_response(serializer.data)
