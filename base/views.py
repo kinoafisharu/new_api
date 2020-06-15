@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.decorators import action
 from django.core.exceptions import FieldError
+from django.db.models import F
 
 """
  В этом файле содержатся родительские классы viewsets с расширенным спектром возможностей
@@ -24,6 +25,8 @@ class MethodModelViewSet(viewsets.ModelViewSet):
             queryset = backend().filter_queryset(self.request, queryset, view=self)
         return queryset
 
+
+
     # Пагинированный список, поля указываются в классе
     def list(self, request):
         queryset = self.filter_queryset(self.queryset)
@@ -38,18 +41,13 @@ class MethodModelViewSet(viewsets.ModelViewSet):
     # и ordering (как сортировать, принимает стандартные значения функции order_by django) """
     @action(detail = False, name = 'Get Sorted Values')
     def getval(self, request):
-        sort = request.query_params.get('ordering', None)
-        val = request.query_params.get('values', None)
-        if not val:
+        values = request.query_params.get('values', None)
+        if not values:
             return Response({'errors': 'Values must not be null'})
         else:
-            data = val.split(',')
+            data = values.split(',')
             try:
-                if sort:
-                    queryset = eval('self.get_queryset().filter({0}__isnull = False).order_by("{1}")'.format(str(sort).strip('-'), str(sort)))
-                    queryset = self.filter_queryset(queryset)
-                else:
-                    queryset = self.filter_queryset(self.queryset)
+                queryset = self.filter_queryset(self.queryset)
             except FieldError as e:
                 return Response({'errors': str(e)})
             page = self.paginate_queryset(queryset)
