@@ -18,9 +18,15 @@ class MethodModelViewSet(viewsets.ModelViewSet):
         super().__init__(*args, **kwargs)
 
 
+    def filter_queryset(self, queryset):
+        filter_backends = self.filter_backends
+        for backend in list(filter_backends):
+            queryset = backend().filter_queryset(self.request, queryset, view=self)
+        return queryset
+
     # Пагинированный список, поля указываются в классе
     def list(self, request):
-        queryset = self.queryset
+        queryset = self.filter_queryset(self.queryset)
         page = self.paginate_queryset(queryset)
         serializer = self.get_serializer(page, many = True, fields = self.list_fields)
         return self.get_paginated_response(serializer.data)
@@ -55,5 +61,4 @@ class MethodModelViewSet(viewsets.ModelViewSet):
         queryset = eval('self.queryset.filter({0}__isnull = False).order_by("{1}")'.format(istr,i))
         page = self.paginate_queryset(queryset)
         serializer = self.get_serializer(page, many = True)
-        print(serializer.data)
         return self.get_paginated_response(serializer.data)
