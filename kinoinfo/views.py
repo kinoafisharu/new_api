@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from base.pagination import FivePagination
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
 from rest_framework import filters
 from base import serializers_helper
@@ -25,8 +26,9 @@ class FilmsViewSet(baseviews.MethodModelViewSet):
     queryset = models.Films.objects.all().order_by('id')
     serializer_class = serializers.FilmsSerializer
     pagination_class = FivePagination
-    filter_backends = [filters.OrderingFilter,]
-    ordering_fields = ('id', 'dtime')
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['id', 'imdb_id']
+    search_fields = ['id']
     top_identifier = '-imdb_rate'
     list_fields = ('id','kid','imdb_id','year',)
 
