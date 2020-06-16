@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from base.pagination import FivePagination
 from django_filters.rest_framework import DjangoFilterBackend
-from base.filters import NotNullOrderingFilter
+from base.filters import NotNullOrderingFilter, DateTimeFilter
 from rest_framework.decorators import action
 from rest_framework import filters
 from base import serializers_helper
@@ -27,7 +27,7 @@ class FilmsViewSet(baseviews.MethodModelViewSet):
     queryset = models.Films.objects.all().order_by('id')
     serializer_class = serializers.FilmsSerializer
     pagination_class = FivePagination
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, NotNullOrderingFilter]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, NotNullOrderingFilter, DateTimeFilter]
     filterset_fields = ['id', 'imdb_id']
     search_fields = ['id']
     top_identifier = '-imdb_rate'
