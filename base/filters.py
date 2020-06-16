@@ -1,5 +1,5 @@
 from rest_framework import filters
-from django.db.models import F
+from django.db.models import F, OuterRef, Subquery
 
 
 # Фильтрует обьекты ителлектуальной собственности,
@@ -15,29 +15,41 @@ class NecessaryFieldsAssurance(filters.BaseFilterBackend):
 # Сортирует значения по нескольким или одному параметрам в порядке убывания или возрастания
 # Принимает стандартные значения сортировки order_by
 class NotNullOrderingFilter(filters.OrderingFilter):
+    def remove_invalid_fields(self, queryset, fields, view, request):
+        valid_fields = [item[0] for item in self.get_valid_fields(queryset, view, {'request': request})]
+
+        def term_valid(term):
+            if term.startswith("-"):
+                term = term[1:]
+            if '__' in term:
+                return True
+            return term in valid_fields
+
+        return [term for term in fields if term_valid(term)]
     def get_ordering(self, request, queryset, view):
         params = request.query_params.get(self.ordering_param)
         if params:
             fields = [param.strip() for param in params.split(',')]
-
             ordering = self.remove_invalid_fields(queryset, fields, view, request)
             if ordering:
                 return ordering
         return self.get_default_ordering(view)
 
-    # Создает F запрос для каждого поля
-    def order_by_exp(self, ordering, queryset):
-        queries = []
+    #создает F запрос ля каждого поля
+    def get_f_expression(self, ordering):
         for field in ordering:
             if field.startswith('-'):
-                queries.append(F(field.strip('-')).desc(nulls_last = True))
+                yield F(field.strip('-')).desc(nulls_last = True)
             else:
-                queries.append(F(field).asc(nulls_last = True))
-        queryset = queryset.order_by(*queries)
-        return queryset
+                yield F(field).asc(nulls_last = True)
+
+
+    def order_queryset(self, queryset, queries):
+        return queryset.order_by(*queries)
 
     def filter_queryset(self, request, queryset, view):
         ordering = self.get_ordering(request, queryset, view)
         if ordering:
-            queryset = self.order_by_exp(ordering, queryset)
+            queries = self.get_f_expression(ordering)
+            queryset = self.order_queryset(queryset, queries)
         return queryset
