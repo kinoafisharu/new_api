@@ -15,15 +15,31 @@ class NecessaryFieldsAssurance(filters.BaseFilterBackend):
         fields = self.get_fields(view, request)
         return queryset.filter(owner=request.user)
 
+# Фильтрует обьекты по времени, пока применим только к фильмам
+# Примеры запросов:
+# backfromnov,14   forwardfromnow,14
+# backfromnow - количество дней назад с сегодняшнего,
+# forwardfromnow - количество дней вперед с сегодняшнего дня
+# количество дней идет сразу через запятую после идентификатора
 class DateTimeFilter(filters.BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
         date = request.query_params.get('datetime', None)
         if date and date != 'all':
             date = date.split(',')
-            if date[0] == 'laterbackfromnow':
-                date = datetime.datetime.now() - datetime.timedelta(int(date[1]))
-                queryset = queryset.filter(release__release__gt = date)
-                queryset = queryset.filter(release__release__lt = datetime.datetime.now())
+            now = datetime.datetime.now()
+            if date[0] == 'backfromnow':
+                delta = now - datetime.timedelta(int(date[1]))
+                queryset = queryset.filter(release__release__range = (delta, now))
+                return queryset
+            if date[0] == 'forwardfromnow':
+                delta = now + datetime.timedelta(int(date[1]))
+                queryset = queryset.filter(release__release__range = (now, delta))
+                return queryset
+            if date[0] == 'range':
+                print(*map(lambda x: int(x), date[1].split(':')))
+                date_from = datetime.datetime.date(*map(lambda x: int(x), date[1].split(':')))
+                date_to = datetime.datetime.date(*map(lambda x: int(x), date[2].split(':')))
+                queryset = queryset.filter(release__release__range = ())
                 return queryset
         return queryset
 
