@@ -22,7 +22,9 @@ class DateTimeFilter(filters.BaseFilterBackend):
             date = date.split(',')
             if date[0] == 'laterbackfromnow':
                 date = datetime.datetime.now() - datetime.timedelta(int(date[1]))
-                return queryset.filter(release__release__gt = date)
+                queryset = queryset.filter(release__release__gt = date)
+                queryset = queryset.filter(release__release__lt = datetime.datetime.now())
+                return queryset
         return queryset
 
 
