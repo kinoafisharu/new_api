@@ -18,7 +18,7 @@ class NecessaryFieldsAssurance(filters.BaseFilterBackend):
 class DateTimeFilter(filters.BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
         date = request.query_params.get('datetime', None)
-        if date:
+        if date and date != all:
             date = date.split(',')
             if date[0] == 'laterbackfromnow':
                 date = datetime.datetime.now() - datetime.timedelta(int(date[1]))
