@@ -177,8 +177,8 @@ class NameFilms(models.Model):
 class FilmsReleaseDate(models.Model):
     release = models.DateField(verbose_name='Дата релиза')
     note = models.CharField(max_length=256, null=True, blank=True)
-    format = models.CharField(max_length=1, choices=FILM_RELEASE_FORMAT, verbose_name='Формат релиза')
-    country = models.ForeignKey(Country, on_delete = models.PROTECT)
+    format = models.CharField(max_length=1, choices=FILM_RELEASE_FORMAT, verbose_name='Формат релиза', null = True)
+    country = models.ForeignKey(Country, on_delete = models.PROTECT, null = True)
 
 class ProductionsCo(models.Model):
     name = models.CharField(max_length=256, verbose_name='Компания призводитель')
@@ -186,12 +186,12 @@ class ProductionsCo(models.Model):
 
 
 class Films(models.Model):
-    name = models.ManyToManyField(NameFilms, verbose_name='Название продукта')
+    name = models.ManyToManyField(NameFilms, verbose_name='Название продукта', null = True)
     creators = models.ManyToManyField(Person, through='RelationFP', verbose_name='Ключевые создатели', related_name="key_creators_%(class)s", null=True)
     release = models.ManyToManyField(FilmsReleaseDate)
     country = models.ManyToManyField(Country)
     genre = models.ManyToManyField(Genre, verbose_name='Жанр')
-    year = models.IntegerField(verbose_name='Год')
+    year = models.IntegerField(verbose_name='Год', null = True)
     note = models.TextField(verbose_name='Аннотация', blank=True, null=True)
     type = models.CharField(max_length=1, choices=FILM_TYPE_CHOICES, verbose_name='Тип фильма', null=True)
     runtime = models.IntegerField(verbose_name='Хронометраж', null=True)
