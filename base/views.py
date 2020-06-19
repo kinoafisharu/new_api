@@ -18,16 +18,15 @@ class MethodModelViewSet(viewsets.ModelViewSet):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-    #Принудительная фильтрация для всех методов
+    # Функция переопределяющая функцию фильтрации django (нужна для работы фильтров)
     def filter_queryset(self, queryset):
         filter_backends = self.filter_backends
         for backend in list(filter_backends):
             queryset = backend().filter_queryset(self.request, queryset, view=self)
         return queryset
 
-
-
-    # Пагинированный список, поля указываются в классе
+    # Пагинированный список, поля указываются в дочернем классе
+    # Для листинга в апи с определенными полями
     def list(self, request):
         queryset = self.filter_queryset(self.queryset)
         page = self.paginate_queryset(queryset)
@@ -35,11 +34,10 @@ class MethodModelViewSet(viewsets.ModelViewSet):
         return self.get_paginated_response(serializer.data)
 
 
-    # Пример запроса somepath/getval/?values=id&ordering=id
-    # Метод GET ниже сортирует обьекты в АПИ по любому полю из возможных (кроме вложенных)
-    # Принимает параметры values (значения полей которые нужно вывести, строка с разделением запятой, без пробелов)
-    # и ordering (как сортировать, принимает стандартные значения функции order_by django) """
-    @action(detail = False, name = 'Get Sorted Values')
+    # Пример запроса somepath/getval/?values=id
+    # Для ограничения набора полей в листинге
+    # Принимает параметры values (имена полей которые будут отбражены в листинге)
+    @action(detail = False, name = 'Get Limited by Fields')
     def getval(self, request):
         values = request.query_params.get('values', None)
         if not values:
