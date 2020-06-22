@@ -1,0 +1,1040 @@
+2020-06-22 22:47:42 [scrapy.utils.log] INFO: Scrapy 2.1.0 started (bot: scrapy_crawl)
+2020-06-22 22:47:42 [scrapy.utils.log] INFO: Versions: lxml 4.5.1.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, Mar 13 2020, 10:23:39) - [GCC 9.2.1 20190827 (Red Hat 9.2.1-1)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Linux-5.6.13-200.fc31.x86_64-x86_64-with-fedora-31-Thirty_One
+2020-06-22 22:47:42 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.epollreactor.EPollReactor
+2020-06-22 22:47:42 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'scrapy_crawl',
+ 'LOG_FILE': 'logs/default/imdb_crawl/5f873d2eb4da11ea8dbbc417fe6cdce7.log',
+ 'NEWSPIDER_MODULE': 'scrapy_crawl.spiders',
+ 'ROBOTSTXT_OBEY': True,
+ 'SPIDER_MODULES': ['scrapy_crawl.spiders']}
+2020-06-22 22:47:42 [scrapy.extensions.telnet] INFO: Telnet Password: c2766fc4111f362f
+2020-06-22 22:47:42 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats']
+2020-06-22 22:47:42 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-06-22 22:47:42 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-06-22 22:47:42 [scrapy.middleware] INFO: Enabled item pipelines:
+['scrapy_crawl.pipelines.ScrapyCrawlPipeline']
+2020-06-22 22:47:42 [scrapy.core.engine] INFO: Spider opened
+2020-06-22 22:47:42 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2020-06-22 22:47:42 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2020-06-22 22:47:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/robots.txt> (referer: None)
+2020-06-22 22:47:47 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4460792/> (referer: None)
+2020-06-22 22:47:47 [scrapy.spidermiddlewares.offsite] DEBUG: Filtered offsite request to 'zergnet.com': <GET https://zergnet.com/privacy-widget>
+2020-06-22 22:47:47 [scrapy.dupefilters] DEBUG: Filtered duplicate request: <GET https://www.imdb.com/title/tt4460792/fullcredits#cast> - no more duplicates will be shown (see DUPEFILTER_DEBUG to show all duplicates)
+2020-06-22 22:47:47 [scrapy.spidermiddlewares.offsite] DEBUG: Filtered offsite request to 'www.boxofficemojo.com': <GET https://www.boxofficemojo.com>
+2020-06-22 22:47:47 [scrapy.spidermiddlewares.offsite] DEBUG: Filtered offsite request to 'advertising.amazon.com': <GET https://advertising.amazon.com/products/display-ads>
+2020-06-22 22:47:47 [scrapy.spidermiddlewares.offsite] DEBUG: Filtered offsite request to 'www.amazon.jobs': <GET https://www.amazon.jobs/en/teams/imdb?ref_=ft_jb>
+2020-06-22 22:47:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/?ref_=nv_home> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:47:49 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/india/tv/?ref_=nv_tv_in> from <GET https://www.imdb.com/india/tv?ref_=nv_tv_in>
+2020-06-22 22:47:49 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:47:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://m.imdb.com/robots.txt> (referer: None)
+2020-06-22 22:47:56 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://m.imdb.com/chart/bestpicture/?ref_=nv_ch_osc> from <GET https://m.imdb.com/feature/bestpicture/?ref_=nv_ch_osc>
+2020-06-22 22:48:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/oscars/?ref_=nv_ev_acd> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:05 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/feature/genre/?ref_=nv_tv_gr> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:06 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/golden-globes/?ref_=nv_ev_gg> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:11 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/news/tv/?ref_=nv_nw_tv> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:12 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:14 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/emmys/?ref_=nv_ev_rte> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:14 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:15 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://m.imdb.com/chart/bestpicture/?ref_=nv_ch_osc> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:15 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:17 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/india/toprated/?ref_=nv_mv_in> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:17 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:21 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/privacy?ref_=ft_pvc> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:21 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:22 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/india/tv/?ref_=nv_tv_in> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:22 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:25 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/conditions?ref_=ft_cou> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:25 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:25 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/title/?count=100&groups=oscar_best_picture_winners&sort=year%2Cdesc&ref_=nv_ch_osc> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:25 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:27 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://pro.imdb.com/robots.txt> (referer: None)
+2020-06-22 22:48:27 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://youtube.com/imdb/> from <GET https://www.imdb.com/whitelist-offsite?url=https%3A%2F%2Fyoutube.com%2Fimdb%2F&page-action=fol_yt&ref=ft_fol_yt>
+2020-06-22 22:48:29 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/pressroom/?ref_=ft_pr> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:29 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:30 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://www.amazon.com/b/?&node=5160028011&ref_=ft_iba> from <GET https://www.imdb.com/whitelist-offsite?url=https%3A%2F%2Fwww.amazon.com%2Fb%2F%3F%26node%3D5160028011%26ref_%3Dft_iba&page-action=ft-iba&ref=ft_iba>
+2020-06-22 22:48:30 [scrapy.core.engine] DEBUG: Crawled (400) <GET https://pro.imdb.com?ref_=ft_pro&rf=cons_tf_pro> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:30 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://twitter.com/imdb> from <GET https://www.imdb.com/whitelist-offsite?url=https%3A%2F%2Ftwitter.com%2Fimdb&page-action=fol_tw&ref=ft_fol_tw>
+2020-06-22 22:48:31 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4460792/?mode=desktop&ref_=m_ft_dsk> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:31 [scrapy.core.scraper] ERROR: Error processing {'title': '<h1 class="">The Shadow of Violence\xa0<span id="titleYear">(<a href="/year/2019/">2019</a>)</span>            </h1>', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:33 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://help.imdb.com/robots.txt> (referer: None)
+2020-06-22 22:48:35 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/whats-on-tv/?ref_=nv_tv_ontv> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:35 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:35 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://m.imdb.com/whats-on-tv/?ref_=nv_tv_ontv> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:36 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:37 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://twitch.tv/IMDb> from <GET https://www.imdb.com/whitelist-offsite?url=https%3A%2F%2Ftwitch.tv%2FIMDb&page-action=fol_twch&ref=ft_fol_twch>
+2020-06-22 22:48:37 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/chart/tvmeter/?ref_=nv_tvv_mptv> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:38 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/chart/toptv/?ref_=nv_tvv_250> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:38 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:38 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://youtube.com/robots.txt> (referer: None)
+2020-06-22 22:48:38 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:38 [scrapy.core.engine] DEBUG: Crawled (404) <GET https://developer.imdb.com/robots.txt> (referer: None)
+2020-06-22 22:48:38 [protego] DEBUG: Rule at line 5 without any user agent to enforce it on.
+2020-06-22 22:48:38 [protego] DEBUG: Rule at line 9 without any user agent to enforce it on.
+2020-06-22 22:48:38 [protego] DEBUG: Rule at line 13 without any user agent to enforce it on.
+2020-06-22 22:48:38 [protego] DEBUG: Rule at line 14 without any user agent to enforce it on.
+2020-06-22 22:48:38 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://instagram.com/imdb> from <GET https://www.imdb.com/whitelist-offsite?url=https%3A%2F%2Finstagram.com%2Fimdb&page-action=fol_inst&ref=ft_fol_inst>
+2020-06-22 22:48:38 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://facebook.com/imdb> from <GET https://www.imdb.com/whitelist-offsite?url=https%3A%2F%2Ffacebook.com%2Fimdb&page-action=fol_fb&ref=ft_fol_fb>
+2020-06-22 22:48:38 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://tqp-4.tlnk.io/serve?action=click&campaign_id_android=427112&campaign_id_ios=427111&destination_id_android=464200&destination_id_ios=464199&my_campaign=mdot%20sitewide%20footer%20&my_site=m.imdb.com&publisher_id=350552&site_id_android=133429&site_id_ios=133428> from <GET https://www.imdb.com/whitelist-offsite?url=https%3A%2F%2Ftqp-4.tlnk.io%2Fserve%3Faction%3Dclick%26campaign_id_android%3D427112%26campaign_id_ios%3D427111%26destination_id_android%3D464200%26destination_id_ios%3D464199%26my_campaign%3Dmdot%2520sitewide%2520footer%2520%26my_site%3Dm.imdb.com%26publisher_id%3D350552%26site_id_android%3D133429%26site_id_ios%3D133428&page-action=ft-gettheapp&ref=ft_apps>
+2020-06-22 22:48:38 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.youtube.com/imdb/> from <GET https://youtube.com/imdb/>
+2020-06-22 22:48:38 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://contribute.imdb.com/czone> from <GET https://www.imdb.com/czone/>
+2020-06-22 22:48:39 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://help.imdb.com/article/imdb/general-information/imdb-site-index/GNCX7BHNSPBTFALQ?ref_=ft_si#so> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:39 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:40 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.amazon.com/robots.txt> (referer: None)
+2020-06-22 22:48:40 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://twitter.com/robots.txt> (referer: None)
+2020-06-22 22:48:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/news/movie/?ref_=nv_nw_mv> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:41 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://developer.imdb.com/?ref=ft_ds> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:41 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:41 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.amazon.com/b?ie=UTF8&node=5160028011> from <GET https://www.amazon.com/b/?&node=5160028011&ref_=ft_iba>
+2020-06-22 22:48:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://help.imdb.com/article/contribution/contribution-information/adding-data/G6BXD2JFDCCETUF4> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.youtube.com/robots.txt> (referer: None)
+2020-06-22 22:48:41 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:41 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.twitch.tv/robots.txt> from <GET https://twitch.tv/robots.txt>
+2020-06-22 22:48:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://instagram.com/robots.txt> (referer: None)
+2020-06-22 22:48:41 [scrapy.downloadermiddlewares.robotstxt] DEBUG: Forbidden by robots.txt: <GET https://instagram.com/imdb>
+2020-06-22 22:48:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://help.imdb.com/imdb?ref_=ft_hlp> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://twitter.com/imdb> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:41 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://www.imdb.com/search/title?companies=co0476818> from <GET https://www.imdb.com/company/co0476818>
+2020-06-22 22:48:42 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://www.imdb.com/search/title?companies=co0386553> from <GET https://www.imdb.com/company/co0386553>
+2020-06-22 22:48:42 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://www.imdb.com/search/title?companies=co0214624> from <GET https://www.imdb.com/company/co0214624>
+2020-06-22 22:48:42 [scrapy.core.engine] DEBUG: Crawled (404) <GET https://tqp-4.tlnk.io/robots.txt> (referer: None)
+2020-06-22 22:48:42 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:42 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:42 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/search/title/?title_type=feature&primary_language=en&sort=moviemeter,asc> from <GET https://www.imdb.com/search/title?title_type=feature&primary_language=en&sort=moviemeter,asc>
+2020-06-22 22:48:42 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/search/title/?companies=co0476818> from <GET https://www.imdb.com/search/title?companies=co0476818>
+2020-06-22 22:48:42 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/search/title/?companies=co0386553> from <GET https://www.imdb.com/search/title?companies=co0386553>
+2020-06-22 22:48:42 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/search/title/?companies=co0214624> from <GET https://www.imdb.com/search/title?companies=co0214624>
+2020-06-22 22:48:42 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/search/title/?country_of_origin=ie> from <GET https://www.imdb.com/search/title?country_of_origin=ie>
+2020-06-22 22:48:42 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://facebook.com/robots.txt> (referer: None)
+2020-06-22 22:48:42 [scrapy.downloadermiddlewares.robotstxt] DEBUG: Forbidden by robots.txt: <GET https://facebook.com/imdb>
+2020-06-22 22:48:42 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://itunes.apple.com/app/id342792525?referrer=mat_click_id%3Dfb66ea194de743fc89100b16a3f88fb9-20200622-194792%26link_click_id%3D803745649014258743&mat_click_id=fb66ea194de743fc89100b16a3f88fb9-20200622-194792> from <GET https://tqp-4.tlnk.io/serve?action=click&campaign_id_android=427112&campaign_id_ios=427111&destination_id_android=464200&destination_id_ios=464199&my_campaign=mdot%20sitewide%20footer%20&my_site=m.imdb.com&publisher_id=350552&site_id_android=133429&site_id_ios=133428>
+2020-06-22 22:48:42 [scrapy.extensions.logstats] INFO: Crawled 38 pages (at 38 pages/min), scraped 0 items (at 0 items/min)
+2020-06-22 22:48:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.amazon.com/b?ie=UTF8&node=5160028011> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:43 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:43 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/search/title/?country_of_origin=gb> from <GET https://www.imdb.com/search/title?country_of_origin=gb>
+2020-06-22 22:48:44 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://contribute.imdb.com/robots.txt> (referer: None)
+2020-06-22 22:48:44 [scrapy.downloadermiddlewares.robotstxt] DEBUG: Forbidden by robots.txt: <GET https://www.imdb.com/registration/signin?u=/title/tt4460792/>
+2020-06-22 22:48:45 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET http://www.altitudefilment.com/film/sales/53/calm-with-horses> from <GET https://www.imdb.com/offsite/?page-action=offsite-altitudefilment&token=BCYjGIciA7JU50NPNxbItatJG23NvccCNjUUNv1kl1BB_pXEOh5nh6xCrzEYR9XEMi1is0Hg5mGn%0D%0A7NDDQxycnpRB4gm0JnXmQJH6OhyEbkQoMJKZLf-wTGxKqcx8rmcpHhMQPUJCbhPtCiP_g-XeSfkC%0D%0Au1cqDdGs5xNQhSXyxvSdF2CgR6Ym_2y2fHQogDtgjBdZYQaP2lJsXLylzbPa7YWve7Hy9jpqoo4f%0D%0AP7w-SZqeQn0BPZAOafjyIO0Obf6IHoIC%0D%0A>
+2020-06-22 22:48:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://pro.imdb.com/title/tt4460792/companycredits?rf=cons_tt_cocred_tt> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:45 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://pro.imdb.com/title/tt4460792?rf=cons_tt_bo_tt> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:46 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.twitch.tv/robots.txt> (referer: None)
+2020-06-22 22:48:53 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/title/?companies=co0476818> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:53 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:55 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.youtube.com/imdb/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:48:55 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:48:58 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://www.imdb.com/user/ur33050701/reviews> from <GET https://www.imdb.com/user/ur33050701/comments>
+2020-06-22 22:48:59 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://www.altitudefilment.com/robots.txt> (referer: None)
+2020-06-22 22:48:59 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://contribute.imdb.com/czone> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:00 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/user/ur33050701/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://itunes.apple.com/robots.txt> (referer: None)
+2020-06-22 22:49:01 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/title/?country_of_origin=ie> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:01 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/title/?companies=co0214624> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:03 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/title/?title_type=feature&primary_language=en&sort=moviemeter,asc> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:05 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:05 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/search/keyword/?keywords=autistic-child> from <GET https://www.imdb.com/search/keyword?keywords=autistic-child>
+2020-06-22 22:49:05 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/search/keyword/?keywords=ireland> from <GET https://www.imdb.com/search/keyword?keywords=ireland>
+2020-06-22 22:49:05 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://secure.imdb.com/register-imdb/login?u=https%3A%2F%2Fcontribute.imdb.com%2Fupdates%3Fupdate%3Dtt4460792%253Asynopsis.add.1&ref_=login_contribute_site> from <GET https://contribute.imdb.com/updates?update=tt4460792%3Asynopsis.add.1>
+2020-06-22 22:49:05 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/search/keyword/?keywords=boxer> from <GET https://www.imdb.com/search/keyword?keywords=boxer>
+2020-06-22 22:49:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/title/?country_of_origin=gb> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:06 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/user/ur33050701/reviews> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:08 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/search/keyword/?keywords=enforcer> from <GET https://www.imdb.com/search/keyword?keywords=enforcer>
+2020-06-22 22:49:08 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:08 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/search/keyword/?keywords=drug-dealer> from <GET https://www.imdb.com/search/keyword?keywords=drug-dealer>
+2020-06-22 22:49:08 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://apps.apple.com/app/id342792525?mat_click_id=fb66ea194de743fc89100b16a3f88fb9-20200622-194792&referrer=mat_click_id%3Dfb66ea194de743fc89100b16a3f88fb9-20200622-194792%26link_click_id%3D803745649014258743> from <GET https://itunes.apple.com/app/id342792525?referrer=mat_click_id%3Dfb66ea194de743fc89100b16a3f88fb9-20200622-194792%26link_click_id%3D803745649014258743&mat_click_id=fb66ea194de743fc89100b16a3f88fb9-20200622-194792>
+2020-06-22 22:49:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/title/?companies=co0386553> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:08 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/search/title/?plot_author=Saban%20Films&view=simple&sort=alpha> from <GET https://www.imdb.com/search/title?plot_author=Saban%20Films&view=simple&sort=alpha>
+2020-06-22 22:49:08 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/status/404?v=X&k=> from <GET https://www.imdb.com/title/tt6012380/vote?v=X;k=>
+2020-06-22 22:49:08 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/status/404?v=X&k=> from <GET https://www.imdb.com/title/tt6803046/vote?v=X;k=>
+2020-06-22 22:49:08 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.twitch.tv/IMDb> from <GET https://twitch.tv/IMDb>
+2020-06-22 22:49:08 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://www.altitudefilment.com/film/sales/53/calm-with-horses> (referer: None)
+2020-06-22 22:49:09 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/status/404?v=X&k=> from <GET https://www.imdb.com/title/tt9148706/vote?v=X;k=>
+2020-06-22 22:49:09 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/status/404?v=X&k=> from <GET https://www.imdb.com/title/tt5918982/vote?v=X;k=>
+2020-06-22 22:49:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.twitch.tv/robots.txt> (referer: None)
+2020-06-22 22:49:09 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:09 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/status/404?v=X&k=> from <GET https://www.imdb.com/title/tt9652782/vote?v=X;k=>
+2020-06-22 22:49:09 [scrapy.core.engine] DEBUG: Crawled (404) <GET https://www.imdb.com/status/404?v=X&k=> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://apps.apple.com/robots.txt> (referer: None)
+2020-06-22 22:49:09 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/status/404?v=X&k=> from <GET https://www.imdb.com/title/tt2716382/vote?v=X;k=>
+2020-06-22 22:49:10 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/status/404?v=X&k=> from <GET https://www.imdb.com/title/tt9139586/vote?v=X;k=>
+2020-06-22 22:49:10 [scrapy.downloadermiddlewares.robotstxt] DEBUG: Forbidden by robots.txt: <GET https://www.imdb.com/register/login?why=vote>
+2020-06-22 22:49:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/title/?plot_author=Saban%20Films&view=simple&sort=alpha> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:13 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:18 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://secure.imdb.com/robots.txt> (referer: None)
+2020-06-22 22:49:18 [scrapy.downloadermiddlewares.robotstxt] DEBUG: Forbidden by robots.txt: <GET https://secure.imdb.com/register-imdb/login?u=https%3A%2F%2Fcontribute.imdb.com%2Fupdates%3Fupdate%3Dtt4460792%253Asynopsis.add.1&ref_=login_contribute_site>
+2020-06-22 22:49:26 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/status/404?v=X&k=> from <GET https://www.imdb.com/title/tt7772582/vote?v=X;k=>
+2020-06-22 22:49:28 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/status/404?v=X&k=> from <GET https://www.imdb.com/title/tt4844140/vote?v=X;k=>
+2020-06-22 22:49:30 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/keyword/?keywords=boxer> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:30 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:34 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/keyword/?keywords=autistic-child> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:35 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:35 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/status/404?v=X&k=> from <GET https://www.imdb.com/title/tt8972256/vote?v=X;k=>
+2020-06-22 22:49:35 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/status/404?v=X&k=> from <GET https://www.imdb.com/title/tt9000224/vote?v=X;k=>
+2020-06-22 22:49:37 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/keyword/?keywords=enforcer> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:37 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:38 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/keyword/?keywords=ireland> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:38 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:38 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/keyword/?keywords=drug-dealer> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:38 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:42 [scrapy.extensions.logstats] INFO: Crawled 66 pages (at 28 pages/min), scraped 0 items (at 0 items/min)
+2020-06-22 22:49:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://apps.apple.com/app/id342792525?mat_click_id=fb66ea194de743fc89100b16a3f88fb9-20200622-194792&referrer=mat_click_id%3Dfb66ea194de743fc89100b16a3f88fb9-20200622-194792%26link_click_id%3D803745649014258743> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:46 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt9148706/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:49 [scrapy.core.scraper] ERROR: Error processing {'title': '<h1 class="">Misbehaviour\xa0<span id="titleYear">(<a href="/year/2020/">2020</a>)</span>            </h1>', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt5918982/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:52 [scrapy.core.scraper] ERROR: Error processing {'title': '<h1 class="">Possessor\xa0<span id="titleYear">(<a href="/year/2020/">2020</a>)</span>            </h1>', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:53 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt6012380/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:53 [scrapy.core.scraper] ERROR: Error processing {'title': '<h1 class="">Ordinary Love\xa0<span id="titleYear">(<a href="/year/2019/">2019</a>)</span>            </h1>', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:53 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt6803046/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:53 [scrapy.core.scraper] ERROR: Error processing {'title': '<h1 class="">The Vast of Night\xa0<span id="titleYear">(<a href="/year/2019/">2019</a>)</span>            </h1>', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:55 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://help.imdb.com/article/imdb/discover-watch/what-is-the-more-like-this-section/GPE7SPGZREKKY7YN> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:56 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:49:56 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/status/404?v=X&k=> from <GET https://www.imdb.com/title/tt7343740/vote?v=X;k=>
+2020-06-22 22:49:57 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://pro.imdb.com/title/tt4460792?rf=cons_tt_btf_cc> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:49:57 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt9139586/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:01 [scrapy.core.scraper] ERROR: Error processing {'title': '<h1 class="">Arkansas\xa0<span id="titleYear">(<a href="/year/2020/">2020</a>)</span>            </h1>', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt7772582/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:09 [scrapy.core.scraper] ERROR: Error processing {'title': '<h1 class="">Never Rarely Sometimes Always\xa0<span id="titleYear">(<a href="/year/2020/">2020</a>)</span>            </h1>', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4844140/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:10 [scrapy.core.scraper] ERROR: Error processing {'title': '<h1 class="">True History of the Kelly Gang\xa0<span id="titleYear">(<a href="/year/2019/">2019</a>)</span>            </h1>', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt8972256/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:10 [scrapy.core.scraper] ERROR: Error processing {'title': '<h1 class="">Greed\xa0<span id="titleYear">(<a href="/year/2019/">2019</a>)</span>            </h1>', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/name/nm0990210/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:12 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.twitch.tv/IMDb> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:13 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:14 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/name/nm5190778/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:14 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:16 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/name/nm8383131/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:17 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:18 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4460792/characters/nm4679601> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:18 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:20 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/name/nm4679601/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:20 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:22 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/name/nm0138820/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:22 [scrapy.downloadermiddlewares.robotstxt] DEBUG: Forbidden by robots.txt: <GET https://www.imdb.com/register/login?why=edit>
+2020-06-22 22:50:22 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:24 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/name/nm4592090/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:25 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:26 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4460792/characters/nm2796274> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:26 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:34 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt7343740/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:34 [scrapy.core.scraper] ERROR: Error processing {'title': '<h1 class="">Days of the Bagnold Summer\xa0<span id="titleYear">(<a href="/year/2019/">2019</a>)</span>            </h1>', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:35 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/name/nm3130001/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:36 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:36 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/name/nm3455151/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:36 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:36 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4460792/characters/nm4008605> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:36 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:39 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/name/nm4008605/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:39 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4460792/characters/nm4862056> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:41 [scrapy.downloadermiddlewares.robotstxt] DEBUG: Forbidden by robots.txt: <GET https://www.imdb.com/register/login>
+2020-06-22 22:50:41 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:42 [scrapy.extensions.logstats] INFO: Crawled 92 pages (at 26 pages/min), scraped 0 items (at 0 items/min)
+2020-06-22 22:50:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/name/nm2034064/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:46 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/name/nm4862056/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:46 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:48 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4460792/characters/nm4422686> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:49 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4460792/mediaviewer/rm1699386881?context=default> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:49 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4460792/mediaviewer/rm4210736641?context=default> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:49 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4460792/mediaviewer/rm677360129?context=default> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:50 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:50 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt9652782/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:50 [scrapy.core.scraper] ERROR: Error processing {'title': '<h1 class="">Bait\xa0<span id="titleYear">(<a href="/year/2019/">2019</a>)</span>            </h1>', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:53 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4460792/mediaviewer/rm3195114241?context=default> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:53 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:53 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4460792/mediaviewer/rm861909505?context=default> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:53 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/name/nm2796274/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:53 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (307) to <GET https://www.imdb.com/video/vi2057420313> from <GET https://www.imdb.com/title/tt4460792/videoplayer/vi2057420313>
+2020-06-22 22:50:53 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:53 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:55 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/plugins?titleId=tt4460792> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:55 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:56 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4460792/mediaviewer/rm571960832?context=default> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:56 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:56 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://www.imdb.com/list/ls095887971/> from <GET https://www.imdb.com/list/ls095887971>
+2020-06-22 22:50:56 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://www.imdb.com/list/ls042481077/> from <GET https://www.imdb.com/list/ls042481077>
+2020-06-22 22:50:59 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4460792/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:50:59 [scrapy.core.scraper] ERROR: Error processing {'title': '<h1 class="">The Shadow of Violence\xa0<span id="titleYear">(<a href="/year/2019/">2019</a>)</span>            </h1>', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:50:59 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://www.imdb.com/list/ls093666416/> from <GET https://www.imdb.com/list/ls093666416>
+2020-06-22 22:50:59 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://www.imdb.com/list/ls093613576/> from <GET https://www.imdb.com/list/ls093613576>
+2020-06-22 22:50:59 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://www.imdb.com/list/ls091481903/> from <GET https://www.imdb.com/list/ls091481903>
+2020-06-22 22:51:00 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://www.imdb.com/registration/signin> from <GET https://www.imdb.com/list/create>
+2020-06-22 22:51:00 [scrapy.downloadermiddlewares.robotstxt] DEBUG: Forbidden by robots.txt: <GET https://www.imdb.com/registration/signin>
+2020-06-22 22:51:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt2716382/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:51:01 [scrapy.core.scraper] ERROR: Error processing {'title': '<h1 class="">Sea Fever\xa0<span id="titleYear">(<a href="/year/2019/">2019</a>)</span>            </h1>', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:51:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/lists/tt4460792> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:51:03 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:51:05 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://imdb.simplecast.com> from <GET https://www.imdb.com/offsite/?page-action=offsite-simplecast&token=BCYkW838MbhX1emUQ9CX_EdFTcWqV_AcATQJJTAFCd6h19n20cG5ctvayIiSqh1W3vYNYLv4-yFz%0D%0AjPB8kzuwA1BcXH65ImnrNifscC6G642mYgr6xo4_X7Gc93-B6M1NfSjg1XeFJxL2XEkpoxltvg2g%0D%0AkS83ULKafVwYqjfiX8nDOYy_9PBlyGAjN_xK2HRNDr0xK8CtBwYgYeejGZNKMuBl0l7boRaUCvW7%0D%0Aj1A4cdqzkMU%0D%0A>
+2020-06-22 22:51:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/news/ni62919853> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:51:08 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:51:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/news/ni62914815> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:51:09 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:51:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/news/ni62925690> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:51:10 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:51:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/video/vi2057420313> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:51:10 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:51:10 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://open.spotify.com/show/1fjF6x6tYQtTZbn4V7U2jH?si=tuwo1ZB8Riy8cv4qj1W6Xg> from <GET https://www.imdb.com/offsite/?page-action=offsite-spotify&token=BCYkFYyl6TKK8s87XUy0GEB4y2Makrsrm3PmiMfnJkndX_4WB6eFBUw8xA_p4vnSor9A7zOW3BhZ%0D%0AcprQcJH3xJ7_mC_y5CrjC8bjwfYD-nTi3Lz1pTgvZFPZmiahE0EkusUK5zLyn4c6UXZ3Y0M3MdMB%0D%0AOzHhL5-sHBdLqlKRLQHKfsMwnm__hWPXJ8TEoOLSfIW7lccHyJGibtL88dUPH6l5Ydv-XpxFeyuW%0D%0AYS7VOw9xG4FLXIJkyw-4rKDBuXRdnLykSvVf-jZA-JGQILFWqfLQPPvu5evR--XaDbCp-dEaVEE%0D%0A>
+2020-06-22 22:51:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://pro.imdb.com/title/tt4460792?rf=cons_tt_atf> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:51:11 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:51:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt9000224/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:51:12 [scrapy.core.scraper] ERROR: Error processing {'title': '<h1 class="">The Assistant\xa0<span id="titleYear">(<a href="/year/2019/">2019</a>)</span>            </h1>', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:51:16 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/list/ls095887971/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:51:16 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:51:27 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/list/ls042481077/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:51:27 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://podcasts.apple.com/us/podcast/movies-that-changed-my-life/id1510831562> from <GET https://www.imdb.com/offsite/?page-action=offsite-apple&token=BCYiKEzmAhC91H_Ut6VTw_7_j51qvdPdjuKNRLTjy23QzEgj-xJyu1tooeqnO-Bl_qy_rsp791cD%0D%0A1lKMH2fXgJdVHqQhTUFCHidX8zIYK9TosDZtBZoB5atBHQNLKnP3oQ7kB7bPUnzUq_DEmRlALE19%0D%0AfK94jaG38_9inRsk3rnjl84r51da3351fyrG_paQSa4GhK-qQM6eW5jKDggMPO2eRXsnSNmwiJi5%0D%0AjciWVra8w1prNVCtffDTDj5zoklTL6ws9MvQw-AIVyNGerYUn5yhJw%0D%0A>
+2020-06-22 22:51:27 [scrapy.downloadermiddlewares.retry] DEBUG: Retrying <GET https://open.spotify.com/robots.txt> (failed 1 times): DNS lookup failed: no results for hostname lookup: open.spotify.com.
+2020-06-22 22:51:27 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:51:27 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://imdb.simplecast.com> from <GET https://www.imdb.com/offsite/?page-action=offsite-simplecast&token=BCYkgtWyibaKGcWd_U73CNHQWIKacx4z15kYt0Ne7K-uZhPQyYLRKREYQHe477Ek8-HUrw0Eb-u4%0D%0APIPslDo8hoirIWQlEnzEcdwVLudSb9yCkfMvOh7-nNukqQicTK3ADfSNiSJN8a0RTH9P_54bBb5w%0D%0AhK6kYIgsVaowFgOhreGbC-5C7xQXYUVN9Ala716425Vqe9Uia4L7VO7hhOQJxhjQmBZOec94aaaR%0D%0A916azoEVRT4%0D%0A>
+2020-06-22 22:51:32 [scrapy.crawler] INFO: Received SIGINT, shutting down gracefully. Send again to force 
+2020-06-22 22:51:32 [scrapy.core.engine] INFO: Closing spider (shutdown)
+2020-06-22 22:51:42 [scrapy.extensions.logstats] INFO: Crawled 115 pages (at 23 pages/min), scraped 0 items (at 0 items/min)
+2020-06-22 22:51:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/name/nm4422686/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:51:45 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:51:48 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/name/nm0219329/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:51:48 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:51:50 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (301) to <GET https://www.imdb.com/podcasts/> from <GET https://www.imdb.com/podcasts>
+2020-06-22 22:51:55 [scrapy.downloadermiddlewares.retry] DEBUG: Retrying <GET https://open.spotify.com/robots.txt> (failed 2 times): [<twisted.python.failure.Failure twisted.internet.error.ConnectionLost: Connection to the other side was lost in a non-clean fashion: Connection lost.>]
+2020-06-22 22:51:57 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/name/nm6467361/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:51:57 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:51:58 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/list/ls093613576/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:51:58 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:51:58 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/list/ls093666416/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:51:59 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:51:59 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://imdb.simplecast.com/robots.txt> (referer: None)
+2020-06-22 22:51:59 [protego] DEBUG: Rule at line 1 without any user agent to enforce it on.
+2020-06-22 22:51:59 [protego] DEBUG: Rule at line 3 without any user agent to enforce it on.
+2020-06-22 22:51:59 [protego] DEBUG: Rule at line 8 without any user agent to enforce it on.
+2020-06-22 22:52:00 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://open.spotify.com/robots.txt> (referer: None)
+2020-06-22 22:52:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://imdb.simplecast.com> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:52:01 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:52:03 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://www.spotify.com> from <GET https://open.spotify.com/show/1fjF6x6tYQtTZbn4V7U2jH?si=tuwo1ZB8Riy8cv4qj1W6Xg>
+2020-06-22 22:52:30 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4460792/fullcredits/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:52:31 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:52:42 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/list/ls091481903/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:52:42 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:52:42 [scrapy.extensions.logstats] INFO: Crawled 125 pages (at 10 pages/min), scraped 0 items (at 0 items/min)
+2020-06-22 22:52:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/name/nm0932837/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:52:46 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:52:57 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/name/nm5116688/> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:52:57 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:53:09 [scrapy.downloadermiddlewares.retry] DEBUG: Retrying <GET https://podcasts.apple.com/robots.txt> (failed 1 times): [<twisted.python.failure.Failure twisted.internet.error.ConnectionLost: Connection to the other side was lost in a non-clean fashion: Connection lost.>]
+2020-06-22 22:53:23 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://podcasts.apple.com/robots.txt> (referer: None)
+2020-06-22 22:53:32 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://podcasts.apple.com/us/podcast/movies-that-changed-my-life/id1510831562> (referer: https://www.imdb.com/title/tt4460792/)
+2020-06-22 22:53:33 [scrapy.core.scraper] ERROR: Error processing {'title': '', 'imdb_id': '4460792'}
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+TypeError: process_item() missing 1 required positional argument: 'spider'
+2020-06-22 22:53:33 [scrapy.core.engine] ERROR: Scraper close failure
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/task.py", line 517, in _oneWorkUnit
+    result = next(self._iterator)
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/encouse/Documents/api-kinoinfo/j/lib64/python3.7/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+TypeError: close_spider() missing 1 required positional argument: 'spider'
+2020-06-22 22:53:33 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/exception_count': 11,
+ 'downloader/exception_type_count/scrapy.exceptions.IgnoreRequest': 8,
+ 'downloader/exception_type_count/twisted.internet.error.DNSLookupError': 1,
+ 'downloader/exception_type_count/twisted.web._newclient.ResponseNeverReceived': 2,
+ 'downloader/request_bytes': 94651,
+ 'downloader/request_count': 191,
+ 'downloader/request_method_count/GET': 191,
+ 'downloader/response_bytes': 21610482,
+ 'downloader/response_count': 188,
+ 'downloader/response_status_count/200': 125,
+ 'downloader/response_status_count/301': 31,
+ 'downloader/response_status_count/302': 27,
+ 'downloader/response_status_count/307': 1,
+ 'downloader/response_status_count/400': 1,
+ 'downloader/response_status_count/404': 3,
+ 'dupefilter/filtered': 15,
+ 'elapsed_time_seconds': 350.352787,
+ 'finish_reason': 'shutdown',
+ 'finish_time': datetime.datetime(2020, 6, 22, 22, 53, 33, 44203),
+ 'log_count/DEBUG': 211,
+ 'log_count/ERROR': 105,
+ 'log_count/INFO': 16,
+ 'memusage/max': 146120704,
+ 'memusage/startup': 80957440,
+ 'offsite/domains': 4,
+ 'offsite/filtered': 4,
+ 'request_depth_max': 1,
+ 'response_received_count': 129,
+ 'retry/count': 3,
+ 'retry/reason_count/twisted.internet.error.DNSLookupError': 1,
+ 'retry/reason_count/twisted.web._newclient.ResponseNeverReceived': 2,
+ 'robotstxt/forbidden': 8,
+ 'robotstxt/request_count': 22,
+ 'robotstxt/response_count': 22,
+ 'robotstxt/response_status_count/200': 20,
+ 'robotstxt/response_status_count/404': 2,
+ 'scheduler/dequeued': 173,
+ 'scheduler/dequeued/memory': 173,
+ 'scheduler/enqueued': 242,
+ 'scheduler/enqueued/memory': 242,
+ 'start_time': datetime.datetime(2020, 6, 22, 22, 47, 42, 691416)}
+2020-06-22 22:53:33 [scrapy.core.engine] INFO: Spider closed (shutdown)
