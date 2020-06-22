@@ -46,9 +46,10 @@ INSTALLED_APPS = [
     'soundprod.apps.SoundprodConfig',
     'textprod.apps.TextprodConfig',
     'kinoinfo.apps.KinoinfoConfig',
+    'parsing.apps.ParsingConfig',
     'rest_framework',
     'django_filters',
-    'corsheaders'
+    'corsheaders',
 
 ]
 
