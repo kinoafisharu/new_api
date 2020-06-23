@@ -1,2 +1,2 @@
-web: gunicorn _main.wsgi
-web: scrapyd
+web: gunicorn _main.wsgi scrapyd
+
