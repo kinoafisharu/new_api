@@ -29,6 +29,8 @@ BOT_NAME = 'scrapy_crawl'
 SPIDER_MODULES = ['scrapy_crawl.spiders']
 NEWSPIDER_MODULE = 'scrapy_crawl.spiders'
 
+bind_adress = 127.0.0.1
+http_port = 6400
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'scrapy_crawl (+http://www.yourdomain.com)'
