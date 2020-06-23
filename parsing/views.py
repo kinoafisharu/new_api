@@ -14,7 +14,7 @@ from scrapyd_api import ScrapydAPI
 from base.models import Films
 
 
-scrapyd = ScrapydAPI('http://127.0.0.1:6800')
+scrapyd = ScrapydAPI('http://127.0.0.1:6800/')
 
 class FilmParseView(APIView):
     def post(self, request):
