@@ -13,7 +13,7 @@ from scrapyd_api import ScrapydAPI
 from base.models import Films
 
 port = os.environ.get('PORT')
-scrapyd = ScrapydAPI('http://0.0.0.0:{0}'.format(str(port)))
+scrapyd = ScrapydAPI('http://0.0.0.0:6800')
 
 class FilmParseView(APIView):
     def post(self, request):
