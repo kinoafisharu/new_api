@@ -55,5 +55,5 @@ urllib3==1.25.9
 w3lib==1.22.0
 whitenoise==5.0.1
 zope.interface==5.1.0
-herokuify-scrapyd==1.0
+scrapyd-heroku==0.2.0
 
