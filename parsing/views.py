@@ -12,9 +12,9 @@ from django.views.decorators.http import require_POST, require_http_methods
 from django.shortcuts import render
 from scrapyd_api import ScrapydAPI
 from base.models import Films
-conf = Config()
-port = conf.get('http_port')
-scrapyd = ScrapydAPI('http://0.0.0.0:{0}'.format(port))
+
+
+scrapyd = ScrapydAPI('http://127.0.0.1:6800')
 
 class FilmParseView(APIView):
     def post(self, request):
