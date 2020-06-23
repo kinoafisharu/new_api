@@ -56,4 +56,5 @@ w3lib==1.22.0
 whitenoise==5.0.1
 zope.interface==5.1.0
 scrapyd-heroku==0.2.0
+rq==1.4.2
 
