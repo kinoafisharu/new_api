@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 import os
+from scrapyd.config import Config
 from urllib.parse import urlparse
 from base import models
 from uuid import uuid4
@@ -11,9 +12,9 @@ from django.views.decorators.http import require_POST, require_http_methods
 from django.shortcuts import render
 from scrapyd_api import ScrapydAPI
 from base.models import Films
-
-port = os.environ.get('PORT')
-scrapyd = ScrapydAPI('http://0.0.0.0:6800')
+conf = Config()
+port = conf.get('http_port')
+scrapyd = ScrapydAPI('http://0.0.0.0:{0}'.format(port))
 
 class FilmParseView(APIView):
     def post(self, request):
