@@ -29,7 +29,7 @@ class FilmParseView(APIView):
             return Response({'status': 'Wrong id'})
         if status == 'finished':
             try:
-                item = models.Films.objects.get(imdb_id = imdb_id)
+                item = models.Films.objects.get(imdb_id = str(imdb_id))
                 serializer = kserializers.FilmsSerializer(item)
                 return Response({'data': serializer.data})
             except Exception as e:

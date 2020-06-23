@@ -17,22 +17,16 @@ class ImdbSpider(Spider):
         print(url)
         self.allowed_domains = ['imdb.com']
 
-        ImdbSpider.rules = (
-        [
-          Rule(LinkExtractor(unique=True), callback='parse_item'),
-        ]
-    )
         super(ImdbSpider, self).__init__(*args, **kwargs)
 
     def __get_title(self, response):
         title = response.css('.title_wrapper > h1::text').get()
-        print(title)
-        return title.strip() if title else None
+        return title.strip() if title else ''
 
-
-    def parse_item(self, response):
+    def parse(self, response):
+        title = self.__get_title(response)
         i = {}
-        i['title'] = self.__get_title(response)
+        i['title'] = title
         i['imdb_id'] = self.imdb_id
         print(i)
         return i
