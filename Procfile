@@ -1,3 +1,3 @@
 web: gunicorn _main.wsgi
-worker: python scrapyd
+worker: python -m scrapyd_heroku.manage
 
