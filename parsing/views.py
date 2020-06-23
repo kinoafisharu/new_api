@@ -22,6 +22,7 @@ logger = logging.getLogger(__name__)
 
 class FilmParseView(APIView):
     def post(self, request):
+        # Парс заголовка фильма
         imdb_id = request.data.get('imdb_id', None)
         resp = req.get('https://www.imdb.com/title/tt{0}/'.format(imdb_id))
         soup = BeautifulSoup(resp.text, 'lxml')
@@ -29,6 +30,8 @@ class FilmParseView(APIView):
         title = title.find('h1')
         title.span.decompose()
         title = title.get_text().strip()
+        # Сохранение в базу
+        '''
         try:
             film = models.Films.objects.get(imdb_id = imdb_id)
             name = models.NameFilms.objects.create(name = title, status = 1)
@@ -44,8 +47,9 @@ class FilmParseView(APIView):
             logger.info(film.name.all())
         except exceptions.MultipleObjectsReturned as e:
             print(e)
+        '''
         return Response({'task_id': '1', 'name': str(title)})
-
+    # Получить фильм из базы
     def get(self, request):
         imdb_id = request.query_params.get('imdb_id', None)
         try:
