@@ -1,4 +1,3 @@
-
 from rest_framework import serializers
 from . import models
 from . import serializers_dic
@@ -59,6 +58,13 @@ class ImageSerializer(DynamicFieldsModelSerializer):
 
 ''' СЕРИАЛИЗАТОР ИМЕНИ ФИЛЬМА, ПРИВЯЗКА К Films '''
 class FilmNameSerializer(DynamicFieldsModelSerializer):
+    def create(self, validated_data):
+        return models.NameFilms.objects.create(**validated_data)
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.status = validated_data.get('status', instance.name)
+        instance.save()
+        return instance
     class Meta:
         model = models.NameFilms
         fields = '__all__'
