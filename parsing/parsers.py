@@ -4,9 +4,9 @@ from base.parsing import parsers
 from bs4 import BeautifulSoup
 import requests as req
 
-'''
-    В данном файле хранятся классы - парсеры
-'''
+
+#    В данном файле хранятся классы - парсеры
+
 
 # Парсит фильм по его ID на IMDB
 class ImdbParser(parsers.BaseParser):

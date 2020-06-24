@@ -28,8 +28,10 @@ class FilmParseView(APIView):
             filmbuilder = builders.FilmModelBuilder(
                 data = data,
                 getter_data = {'imdb_id': imdb_id},
-                fields = ('imdb_id', 'imdb_votes', 'imdb_rate')
+                fields = ('imdb_id', 'imdb_votes', 'imdb_rate',)
             )
+
+
             tobj = titlebuilder.build()
             fobj = filmbuilder.build()
             fobj.name.add(tobj)
