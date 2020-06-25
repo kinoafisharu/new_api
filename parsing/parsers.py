@@ -44,8 +44,12 @@ class ImdbParser(parsers.BaseParser):
 class KinoinfoParser(parsers.BaseParser):
 
     def parse_poster(self, site):
-        div_poster = site.find('div', {'id': 'poster'})
-        src = div_poster.img['src']
+        try:
+            div_poster = site.find('div', {'id': 'poster'})
+            src = div_poster.img['src']
+        except Exception as e:
+            src = None
+            print(str(e))
         return src
 
     def parse(self):
