@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import requests as req
 
 
-#    В данном файле хранятся классы - парсеры
+# В данном файле хранятся классы - парсеры
 
 
 # Парсит фильм по его ID на IMDB
@@ -31,12 +31,24 @@ class ImdbParser(parsers.BaseParser):
         h1_title = div_title.find('h1')
         h1_title.span.decompose()
         title_text = h1_title.get_text().strip()
-        return {'name': title_text, 'status': 1}
+        return [{'name': title_text, 'status': 1}]
 
     def parse(self):
         site = self.get_parser()
-        self.relations['title'] = self.parse_title(site)
+        self.item['name'] = self.parse_title(site)
         self.item['imdb_id'] = self.imdb_id
         self.item['imdb_votes'] = self.parse_votes(site)
         self.item['imdb_rate'] = self.parse_rating(site)
+        return self.item
+
+class KinoinfoParser(parsers.BaseParser):
+
+    def parse_poster(self, site):
+        div_poster = site.find('div', {'id': 'poster'})
+        src = div_poster.img['src']
+        return src
+
+    def parse(self):
+        site = self.get_parser()
+        self.item['poster'] = self.parse_poster(site)
         return self.item

@@ -14,28 +14,27 @@ logger = logging.getLogger(__name__)
 # принимает POST запрос с id фильма на imdb
 class FilmParseView(APIView):
     def post(self, request):
-        imdb_id = request.data.get('imdb_id', None)
-        url = 'https://www.imdb.com/title/tt{0}/'.format(imdb_id)
-        parser = parsers.ImdbParser(url = url, imdb_id = imdb_id, parser = 'lxml')
+        if request.data.get('id_type', None) == 'imdb':
+            imdb_id = request.data.get('imdb_id', None)
+            url = 'https://www.imdb.com/title/tt{0}/'.format(imdb_id)
+            parser = parsers.ImdbParser(url = url, imdb_id = imdb_id, parser = 'lxml')
+        elif request.data.get('id_type', None) == 'kinoinfo':
+            kid = request.data.get('kid', None)
+            url = 'http://kinoinfo.ru/film/{0}/'.format(kid)
+            parser = parsers.KinoinfoParser(url = 'http://kinoinfo.ru/film/41009/', parser = 'lxml')
         data = parser.parse()
-        rels = parser.relations
-        print(rels)
+
         if request.data.get('submit', None) == 'true':
-            titlebuilder = builders.NameFilmModelBuilder(
-                data = rels['title'],
-                getter_data = rels['title']
-            )
+
             filmbuilder = builders.FilmModelBuilder(
                 data = data,
                 getter_data = {'imdb_id': imdb_id},
-                fields = ('imdb_id', 'imdb_votes', 'imdb_rate',)
+                fields = ('imdb_id', 'imdb_votes', 'imdb_rate', 'name')
             )
 
-
-            tobj = titlebuilder.build()
             fobj = filmbuilder.build()
-            fobj.name.add(tobj)
-            return Response({'updated': True, 'fobj': f'{fobj}', 'tobj': f'{tobj.name}', 'imdb_id': imdb_id, 'results': data})
+
+            return Response([data, {'fobj': str(fobj)}])
         if not data:
             return Response({'error': 'Ошибка сервера'})
-        return Response([data, rels])
+        return Response(data)

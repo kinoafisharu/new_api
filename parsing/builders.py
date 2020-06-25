@@ -12,20 +12,6 @@ logger = logging.getLogger(__name__)
  # и записи json файлов в SQL базу данных с помощью
  # сериализаторов и ORM django
 
-
-# Строитель названий фильмов (под замену методом вложенного сохранения в сериализаторе)
-# Создает обьекты имени фильма
-class NameFilmModelBuilder(builders.ModelBuilder):
-    model = models.NameFilms
-    serializer_class = serializers_helper.FilmNameSerializer
-    fields = ('name', 'status',)
-    def build(self):
-        object = self.get_object()
-        serializer = self.get_serializer(fields = self.fields, data = self.data, object = object)
-        if serializer:
-            obj = serializer.save()
-        return obj
-
 # Создает обьекты фильмов
 class FilmModelBuilder(builders.ModelBuilder):
     model = models.Films
