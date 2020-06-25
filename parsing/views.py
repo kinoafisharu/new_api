@@ -21,7 +21,7 @@ class FilmParseView(APIView):
         elif request.data.get('id_type', None) == 'kinoinfo':
             kid = request.data.get('kid', None)
             url = 'http://kinoinfo.ru/film/{0}/'.format(kid)
-            parser = parsers.KinoinfoParser(url = 'http://kinoinfo.ru/film/41009/', parser = 'lxml')
+            parser = parsers.KinoinfoParser(url = url, parser = 'lxml')
         data = parser.parse()
 
         if request.data.get('submit', None) == 'true':
