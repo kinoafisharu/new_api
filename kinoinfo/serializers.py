@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from django.core import exceptions
 from base import models
-from base.func import save_film_namedata
 from base.serializers_dic import *
 from base.mixins import *
 from base import serializers as base_serializers
