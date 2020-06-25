@@ -27,6 +27,6 @@ class StoriesViewSet(baseviews.MethodModelViewSet):
     serializer_class = serializers.StoriesSerializer
     pagination_class = FivePagination
     filter_backends = [filters.OrderingFilter]
-    list_fields = ('id','title','text', 'dtime','author', 'views',)
+    default_list_fields = ('id','title','text', 'dtime','author', 'views',)
 
 # -/ Александр Караваев
