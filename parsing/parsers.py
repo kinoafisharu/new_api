@@ -52,6 +52,16 @@ class KinoinfoParser(parsers.BaseParser):
             print(str(e))
         return src
 
+    def parse_releases(self, site):
+        release = site.find('span', text = 'дата релиза')
+        try:
+            release = release['title']
+        except Exception as e:
+            #print(e)
+            return None
+        print(release)
+        return release
+
     def parse(self):
         site = self.get_parser()
         self.item['poster'] = self.parse_poster(site)

@@ -41,10 +41,10 @@ class FilmReleaseViewSet(baseviews.MethodModelViewSet):
         if serializer.is_valid():
             obj = serializer.save()
             if id:
-                film = models.Films.objects.filter(id = id)[0]
+                film = models.Films.objects.get(id = id)
                 film.release.add(obj)
             elif kid:
-                film = models.Films.objects.filter(kid = kid)[0]
+                film = models.Films.objects.get(kid = kid)
                 film.release.add(obj)
             res_dict = serializer.validated_data.copy()
             res_dict.update({'film': film.id})
