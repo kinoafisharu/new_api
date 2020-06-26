@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from collections import OrderedDict
+from django.core import exceptions
 
 # Non-field imports, but public API
 from rest_framework.fields import (
@@ -58,6 +59,7 @@ class DynamicFieldsModelSerializer(serializers.ModelSerializer):
         return retc
 
     def get_first_or_create(self, model = None, data = None, **kwargs):
+        model = self.Meta.model if not model else model
         try:
             getter_data = kwargs.pop('getter_data', None)
             if getter_data:
