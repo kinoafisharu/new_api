@@ -1,6 +1,6 @@
 from django.urls import path, include, re_path
 from rest_framework import routers
-from . import views
+from . import views, views_helper
 
 router = routers.DefaultRouter()
 
@@ -12,6 +12,8 @@ router = routers.DefaultRouter()
 
 # Отображение короткого описания фильмов в листе  (all fields) и длинного при детальном рассмотре фильма
 router.register(r'films', views.FilmsViewSet, basename = 'films')
+# Отображение релизов
+router.register(r'releases', views_helper.FilmReleaseViewSet, basename = 'freleases')
 # -/ Александр Караваев
 
 # router.register(r'persons', views.BasePersonViewSet)
