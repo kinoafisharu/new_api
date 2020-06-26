@@ -179,6 +179,8 @@ class FilmsReleaseDate(models.Model):
     note = models.CharField(max_length=256, null=True, blank=True)
     format = models.CharField(max_length=1, choices=FILM_RELEASE_FORMAT, verbose_name='Формат релиза', null = True)
     country = models.ForeignKey(Country, on_delete = models.PROTECT, null = True)
+    class Meta:
+        ordering = ['-release',]
 
 class ProductionsCo(models.Model):
     name = models.CharField(max_length=256, verbose_name='Компания призводитель')
@@ -196,7 +198,7 @@ class Films(models.Model):
     type = models.CharField(max_length=1, choices=FILM_TYPE_CHOICES, verbose_name='Тип фильма', null=True)
     runtime = models.IntegerField(verbose_name='Хронометраж', null=True)
     rated = models.IntegerField(verbose_name='Аудитория', null=True)
-    budget = models.ForeignKey(Budget,verbose_name='Бюджет', null=True, on_delete = models.PROTECT)
+    budget = models.ForeignKey(Budget, verbose_name='Бюджет', null=True, on_delete = models.PROTECT)
     production = models.ManyToManyField(ProductionsCo, verbose_name='Компания призводитель')
     imdb_id = models.CharField(verbose_name='IMDb идентификатор', null=True, db_index=True, max_length = 200)
     imdb_rate = models.FloatField(verbose_name='IMDb рейтинг', null=True)

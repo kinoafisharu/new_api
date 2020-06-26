@@ -143,10 +143,6 @@ class SourceFilmsSerializer(DynamicFieldsModelSerializer):
 
 '''СЕРИАЛИЗАТОР ОТНОШЕНИЯ РЕЛИЗОВ К ФИЛЬМАМ'''
 class FilmReleaseSerializer(DynamicFieldsModelSerializer):
-    def create(self, validated_data):
-        obj = self.get_first_or_create(data = validated_data)
-        assert obj
-        return obj
     def update(self, instance, validated_data):
         instance.release = validated_data.get('release', instance.release)
         instance.note = validated_data.get('note', instance.note)

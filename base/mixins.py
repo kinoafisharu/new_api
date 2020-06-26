@@ -19,6 +19,8 @@ class DynamicFieldsModelSerializer(serializers.ModelSerializer):
     controls which fields should be displayed.
     """
 
+    # Глубокое ограничение полей сериализатора (на уровне задания класса)
+    # Позволяет сохранять неполные данные, оставляя сериализатор валидным
     def __init__(self, *args, **kwargs):
         # Don't pass the 'fields' arg up to the superclass
         fields = kwargs.pop('fields', None)
@@ -34,11 +36,17 @@ class DynamicFieldsModelSerializer(serializers.ModelSerializer):
             for field_name in existing - allowed:
                 self.fields.pop(field_name)
 
+    def create(self, validated_data):
+        return self.get_first_or_create(model = self.Meta.model, data = validated_data)
+
+    # Переписанный мтеод реперезентации
+    # Возможность динамического отображения полей, без изменения их количества при
+    # создании обьекта через десериализацию
     def to_representation(self, instance):
         ret = OrderedDict()
         fields = self._readable_fields
+        # Набор полей для отображения в апи
         allowed = set(self.repfields) if self.repfields else None
-
 
         for field in fields:
             try:
@@ -51,13 +59,20 @@ class DynamicFieldsModelSerializer(serializers.ModelSerializer):
                 ret[field.field_name] = None
             else:
                 ret[field.field_name] = field.to_representation(attribute)
+        # Копировать исходный словарь с полями для отображения
         retc = ret.copy()
+        # Если указано ограничение полей
         if allowed:
+            # Для поля в оригинальном словаре
             for key in ret.keys():
+                # Если поле не входит в ограниченный набор полей, указанный ранее
                 if key not in allowed:
+                    # Вычесть поле из скопированного словаря (копируем словарь во избежание ошибки мутации во время итераций)
                     del retc[key]
+        # Возвращаем измененный словарь
         return retc
 
+    # Взять значение из бд, если нет создать, если возвращено больше одного - взять первое
     def get_first_or_create(self, model = None, data = None, **kwargs):
         model = self.Meta.model if not model else model
         try:
@@ -70,5 +85,7 @@ class DynamicFieldsModelSerializer(serializers.ModelSerializer):
             obj = model.objects.create(**data)
         except exceptions.MultipleObjectsReturned:
             obj = model.objects.filter(**data)[0]
+        assert obj
         return obj if obj else None
+
 #====================================================================================

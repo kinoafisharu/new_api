@@ -21,20 +21,24 @@ class MethodModelViewSet(viewsets.ModelViewSet):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-    #Принудительная фильтрация для всех методов
+    # Принудительная фильтрация для всех методов
+    # Необходима для работы фильтрации в родительских классах
     def filter_queryset(self, queryset):
         filter_backends = self.filter_backends
         for backend in list(filter_backends):
             queryset = backend().filter_queryset(self.request, queryset, view=self)
         return queryset
 
-
+    # Забирает нужные имена выводимых полей из запроса
+    # Выводимый набор полей равен списку переданному в заросе
     def get_list_field_values(self, request):
         flds = request.query_params.get('values', None)
         if flds:
             return flds.strip().strip(' ').split(',')
 
-    # Пагинированный список, поля указываются в классе
+    # Выводит список обьектов с пагинацией
+    # Набор полей берет из параметра в очернем классе, либо из запроса
+    # если такой есть
     def list(self, request):
         flds = self.get_list_field_values(request)
         self.list_fields = flds if flds else self.default_list_fields

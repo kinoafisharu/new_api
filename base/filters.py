@@ -4,10 +4,8 @@ from django.utils.timezone import timedelta
 import datetime
 from django_filters import rest_framework as django_filters
 
-
 # Фильтрует обьекты ителлектуальной собственности,
-# не реализующие набор обязательных полей
-# указанному в дочернем классе
+# не соответствующие набору обязательных полей
 # В классе нужно указать лист полей necessary_fields
 class NecessaryFieldsAssurance(filters.BaseFilterBackend):
     def get_fields(self, view, request):
@@ -16,7 +14,7 @@ class NecessaryFieldsAssurance(filters.BaseFilterBackend):
         fields = self.get_fields(view, request)
         return queryset.filter(owner=request.user)
 
-# Фильтрует события по их дате, пока применим только к фильмам
+# Фильтрует обьекты по времени, пока применим только к фильмам
 # Примеры запросов:
 # backfromnov,14   forwardfromnow,14
 # backfromnow - количество дней назад с сегодняшнего,
@@ -48,8 +46,6 @@ class DateTimeFilter(filters.BaseFilterBackend):
 
 
 # Класс сортировщика с возможностью фильтрования по query expression
-# (может сортировать обьекты по связям)
-# Перемещает все обьекты с нулевым значением поля по которому сортирует в конец списка сортировки
 # Сортирует значения по нескольким или одному параметрам в порядке убывания или возрастания
 # Принимает стандартные значения сортировки order_by
 class NotNullOrderingFilter(filters.OrderingFilter):
@@ -73,7 +69,7 @@ class NotNullOrderingFilter(filters.OrderingFilter):
                 return ordering
         return self.get_default_ordering(view)
 
-    #создает F запрос ля каждого поля
+    #создает F запрос для каждого поля
     def get_f_expression(self, ordering):
         for field in ordering:
             if field.startswith('-'):

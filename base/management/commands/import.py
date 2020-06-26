@@ -3,6 +3,7 @@ from base import models, models_dic
 from base import serializers
 from django.core import exceptions
 import io
+import datetime
 import json
 from rest_framework.parsers import JSONParser
 
@@ -14,6 +15,8 @@ class Command(BaseCommand):
             errors = 0
             processed = 0
             dne = 0
+            deleted = 0
+            created = 0
             for i in file:
                 serializer = serializers.AsteroidFilmSerializer(data = i)
                 serializer.is_valid()
@@ -21,39 +24,55 @@ class Command(BaseCommand):
                 try:
                     try:
 
-
+                        idalldvd = sdata.get('idalldvd', None)
+                        kid = sdata.get('id', None)
                         try:
-                            d = models.Films.objects.get(imdb_id = sdata['idalldvd'])
-                        except exceptions.ObjectDoesNotExist:
-                            if sdata['id']:
-                                d = models.Films.objects.get(kid = sdata['id'])
+                            if idalldvd:
+                                d = models.Films.objects.get(imdb_id = idalldvd)
                         except exceptions.MultipleObjectsReturned:
-                            if sdata['id']:
-                                d = models.Films.objects.get(kid = sdata['id'])
+                            filteredmult = models.Films.objects.filter(imdb_id = idalldvd)[0]
+                            filteredmult.delete()
+                            deleted += 1
+                            if idalldvd:
+                                d = models.Films.objects.get(imdb_id = idalldvd)
+                        except exceptions.ObjectDoesNotExist:
+                            try:
+                                if kid:
+                                    d = models.Films.objects.get(kid = kid)
+                            except exceptions.MultipleObjectsReturned:
+                                filteredmult = models.Films.objects.filter(kid = kid)[0]
+                                filteredmult.delete()
+                                deleted += 1
+                            except exceptions.ObjectDoesNotExist:
+                                self.stdout.write('DOESNOTEXISTERROR !!!!!!!!!!!!!!!! DOES NOT EXIST!!! CREATING!')
+                                if idalldvd:
+                                    d = models.Films.objects.create(kid = kid, imdb_id = idalldvd)
+                                    created += 1
+                                else:
+                                    d = models.Films.objects.create(kid = kid)
+                                    created += 1
 
 
-
-
-                        if not d.name.all():
+                        if d:
                             try:
                                 if sdata['name']:
                                     name1 = models.NameFilms.objects.create(name = sdata['name'], status = 1)
                                     d.name.add(name1)
-                            except:
+                            except Exception as e:
                                 errors += 1
-                                self.stdout.write('keyerrorname')
+                                self.stdout.write(f'keyerrorname {str(e)}')
 
                             try:
                                 if sdata['original_title']:
                                     name2 = models.NameFilms.objects.create(name = sdata['original_title'], status = 1)
                                     d.name.add(name2)
-                            except:
+                            except Exception as e:
                                 errors += 1
-                                self.stdout.write('keyerrorname')
+                                self.stdout.write(f'keyerrorname {str(e)}')
 
 
 
-                        if not d.persons.all():
+                        if d:
                             try:
                                 if sdata['actor1']:
                                     d.persons.add(models.RelationFP.objects.get(person = models.Person.objects.get(id = sdata['actor1'])))
@@ -61,8 +80,8 @@ class Command(BaseCommand):
                                     relobj = models.RelationFP.objects.get(film = d)
                                     if not relobj.action:
                                         relobj.action = models.Action.objects.get(name = 'актер/актриса')
-                            except:
-                                self.stdout.write('person field errored')
+                            except Exception as e:
+                                self.stdout.write(f'person field errored {str(e)}')
                                 errors += 1
 
                             try:
@@ -149,19 +168,19 @@ class Command(BaseCommand):
                                 self.stdout.write('director not added')
                                 errors += 1
 
-                        if not d.year:
+                        if d:
                             try:
                                 d.year = int(sdata['year'])
                             except:
                                 errors += 1
                                 self.stdout.write('yearerror')
-                        if not d.site:
+                        if d:
                             try:
                                 d.site = str(sdata['site'])
                             except:
                                 errors += 1
                                 self.stdout.write('siterror')
-                        if not d.imdb_rate:
+                        if d:
                             try:
                                 if sdata['imdb']:
                                     d.imdb_rate = float(sdata['imdb'].replace(',','.').replace(':','.'))
@@ -173,26 +192,26 @@ class Command(BaseCommand):
                                 errors += 1
                                 self.stdout.write(sdata['imdb'])
                                 self.stdout.write('imdberr')
-                        if not d.imdb_votes:
+                        if d:
                             try:
                                 d.imdb_votes = int(sdata['imdb_votes'])
                             except:
                                 errors += 1
                                 self.stdout.write('imdbvoteserr')
-                        if not d.runtime:
+                        if d:
                             try:
                                 if sdata['runtime']:
                                     d.runtime = int(sdata['runtime'])
                             except:
                                 errors += 1
                                 self.stdout.write('runtimerr')
-                        if not d.limits:
+                        if d:
                             try:
                                 d.limits = str(sdata['limits'])
                             except:
                                 errors += 1
                                 self.stdout.write('limiter')
-                        if not d.description:
+                        if d:
                             try:
                                 d.description = str(sdata['description'])
                             except:
@@ -204,7 +223,7 @@ class Command(BaseCommand):
                             except:
                                 errors += 1
                                 self.stdout.write('commenterror')
-                        if not d.imdb_id:
+                        if d:
                             try:
                                 d.imdb_id = sdata['idalldvd']
                             except KeyError:
@@ -212,7 +231,7 @@ class Command(BaseCommand):
                                 errors += 1
                                 self.stdout.write('imdberror')
 
-                        if not d.genre.all():
+                        if d:
                             try:
                                 if sdata['genre1']:
                                     d.genre.add(models_dic.Genre.objects.get(id = sdata['genre1']))
@@ -231,15 +250,26 @@ class Command(BaseCommand):
                             except:
                                 errors += 1
                                 self.stdout.write('genreerror')
-                        if not d.kid:
+                        if d:
                             try:
-                                d.kid = sdata['id']
+                                d.kid = str(sdata['id'])
                             except:
                                 errors += 1
                                 self.stdout.write('kiderror!@')
+                        if not d.release.all():
+                            try:
+                                daterel = sdata.get('date', None)
+                                if daterel:
+                                    dt = datetime.datetime.strptime(daterel, "%Y-%m-%dT%H:%M:%S%z")
+                                    releasedate = models.FilmsReleaseDate.objects.create(release = dt)
+                                    d.release.add(releasedate)
+                            except Exception as e:
+                                self.stdout.write('DATETIME ERROR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+                                self.stdout.write(str(e))
+                                errors += 1
                         d.save()
                         processed += 1
-                        self.stdout.write(f'Changed one object | iteration: {counter} | errors: {errors} | processed {processed} | n/e {dne}')
+                        self.stdout.write(f'Changed one object | iteration: {counter} | errors: {errors} | processed {processed} | n/e {dne} | deleted {deleted} | created {created}')
                     except exceptions.ObjectDoesNotExist:
                         dne += 1
                         self.stdout.write('dneerror')
@@ -248,8 +278,9 @@ class Command(BaseCommand):
                         self.stdout.write('multipleobjerror')
                 except KeyboardInterrupt:
                     break
-                except:
+                except Exception as error:
                     self.stdout.write(f'UNCAUGHT ERROR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! HELPPPPP!!!! || iteration{counter}')
+                    self.stdout.write(str(error))
                     continue
                 finally:
                     counter += 1
