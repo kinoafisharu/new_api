@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.core import exceptions
 from . import models
 from . import serializers_dic
 from . import serializer_fields
@@ -142,6 +143,16 @@ class SourceFilmsSerializer(DynamicFieldsModelSerializer):
 
 '''СЕРИАЛИЗАТОР ОТНОШЕНИЯ РЕЛИЗОВ К ФИЛЬМАМ'''
 class FilmReleaseSerializer(DynamicFieldsModelSerializer):
+    def create(self, validated_data):
+        obj = self.get_first_or_create(data = validated_data)
+        assert obj
+        return obj
+    def update(self, instance, validated_data):
+        instance.release = validated_data.get('release', instance.release)
+        instance.note = validated_data.get('note', instance.note)
+        instance.format = validated_data.get('format', instance.format)
+        instance.country = validated_data.get('country', instance.country)
+        return instance
     class Meta:
         model = models.FilmsReleaseDate
         fields = '__all__'
