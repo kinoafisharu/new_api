@@ -7,6 +7,7 @@ from datetime import datetime
 from base import serializers_helper
 from base import models
 
+# Парсит даты релизов с kinoinfo
 class Command(BaseCommand):
     def handle(self, *args, **options):
         urls = [{'url': f'http://kinoinfo.ru/film/{i}/', 'id': i} for i in range(35000, 42000)]
