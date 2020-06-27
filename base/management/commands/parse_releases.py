@@ -23,7 +23,10 @@ class Command(BaseCommand):
                 if serializer.is_valid():
                     relobj = serializer.save()
                     try:
-                        film = models.Films.objects.distinct('kid').filter(kid = url['id'])[0]
+                        film = models.Films.objects.filter(kid = url['id'])[0]
+                        if film.release.exists():
+                            for rel in film.release.all():
+                                rel.delete()
                         film.release.add(relobj)
                     except Exception as e:
                         continue
