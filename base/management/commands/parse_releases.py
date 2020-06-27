@@ -14,7 +14,7 @@ class Command(BaseCommand):
             resp = req.get(url['url'])
             soup = BeautifulSoup(resp.text, 'lxml')
             parser = parsers.KinoinfoParser()
-            releasedate = parser.parse_releases(soup)
+            releasedate = parser.parse_release(soup)
             if releasedate:
                 date = datetime.strptime(str(releasedate), '%d %B %Y')
                 date = datetime.strftime(date, '%Y %m %d').replace(' ', '-')
@@ -24,8 +24,7 @@ class Command(BaseCommand):
                     relobj = serializer.save()
                     try:
                         film = models.Films.objects.distinct('kid').filter(kid = url['id'])[0]
+                        film.release.add(relobj)
                     except Exception as e:
                         continue
-
-                    film.release.add(relobj)
-                    self.stdout.write(f'Added one release {relobj} to the film {film}')
+                    self.stdout.write(f'Added on release {relobj.relase} to the film {film.name}')
