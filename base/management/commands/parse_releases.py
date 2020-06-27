@@ -29,6 +29,6 @@ class Command(BaseCommand):
                             for rel in film.release.all():
                                 rel.delete()
                         film.release.add(relobj)
+                        self.stdout.write(f'Added on release {relobj.release} to the film {film}')
                     except Exception as e:
                         self.stdout.write(str(e))
-                    self.stdout.write(f'Added on release {relobj.release} to the film {film}')
