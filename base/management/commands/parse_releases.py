@@ -11,7 +11,7 @@ from base import models
 class Command(BaseCommand):
     def handle(self, *args, **options):
         with open('kids.txt', 'r') as f:
-            urls = [{'url': f'http://kinoinfo.ru/film/{i}/', 'id': i} for i in f.read.split(',')]
+            urls = [{'url': f'http://kinoinfo.ru/film/{i}/', 'id': i} for i in f.read().split(',')]
             for url in urls:
                 resp = req.get(url['url'])
                 soup = BeautifulSoup(resp.text, 'lxml')
