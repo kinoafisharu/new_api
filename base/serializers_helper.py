@@ -151,5 +151,4 @@ class FilmReleaseSerializer(DynamicFieldsModelSerializer):
         return instance
     class Meta:
         model = models.FilmsReleaseDate
-      ordering = ['-release',]
         fields = '__all__'
