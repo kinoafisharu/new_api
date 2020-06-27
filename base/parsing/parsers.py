@@ -2,6 +2,7 @@ from django.core import exceptions
 import logging
 from bs4 import BeautifulSoup
 import requests as req
+from urllib3.exceptions import HTTPError
 
 
 # Здесь описаны базовые классы для парсинга
@@ -14,6 +15,8 @@ class BaseParser():
         self.item = dict()
         self.relations = dict()
         self.url = kwargs.pop('url', None)
+        self.fields = kwargs.pop('fields', None)
+        self.extra = kwargs.pop('extra', None)
         self.parser = kwargs.pop('parser', None)
 
     # Хранение данных в парсере в виде параметра
@@ -31,6 +34,8 @@ class BaseParser():
     def fetch_data(self, url):
         if url:
             site = req.get(url)
+            if site.status_code != 200:
+                raise HTTPError(f'Request error with status code {site.status_code}')
             return site
         raise ValueError('URL must be present')
 
@@ -42,6 +47,20 @@ class BaseParser():
         soup = BeautifulSoup(parsable.text, self.parser)
         return soup
 
+    # Получить функции парсинга, выполнить их
+    def parse_fields(self, fields, site):
+        for field in fields:
+            method = getattr(self, 'parse_{0}'.format(field))
+            self.item[field] = method(site)
+
     # Начать парсинг, положить обьект в параметр item и вернуть обьект нужной структуры
     def parse(self):
-        raise NotImplementedError('This function (parse) must be implemented')
+        fields = self.fields
+        if not fields:
+            fields = self.default_fields
+        # Если есть доп данные для аннотации обьекта, добавить их в обьект
+        if self.extra:
+            self.item.update(self.extra)
+        site = self.get_parser()
+        self.parse_fields(fields, site)
+        return self.item
