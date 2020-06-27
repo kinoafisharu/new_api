@@ -28,7 +28,7 @@ import logging
 
 # Для отобраения краткой информации о фильме в листе и подробной в детальном (films/)=> short (films/{int:pk})=> long
 class FilmsViewSet(baseviews.MethodModelViewSet):
-    queryset = models.Films.objects.all().order_by('id').distinct('imdb_id', 'kid', 'id')
+    queryset = models.Films.objects.all().order_by('id')
     serializer_class = serializers.FilmsSerializer
     pagination_class = FivePagination
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, NotNullOrderingFilter, DateTimeFilter]
