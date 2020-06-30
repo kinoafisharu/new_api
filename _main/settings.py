@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'corsheaders',
+    'channels',
 
 ]
 
@@ -92,6 +93,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = '_main.wsgi.application'
+ASGI_APPLICATION = '_main.routing.application'
 
 
 # Database
