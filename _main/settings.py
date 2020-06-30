@@ -97,13 +97,13 @@ ASGI_APPLICATION = '_main.routing.application'
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "asgi_redis.RedisChannelLayer",
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
             "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
         },
-        "ROUTING": "_main.routing.application",
     },
 }
+
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
