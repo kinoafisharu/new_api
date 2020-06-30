@@ -6,6 +6,7 @@ import logging
 import random
 from . import parsers
 from base import models, serializers_helper
+from base.queue import queue
 import requests as req
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -45,39 +46,3 @@ class FilmDotParseView(APIView):
         if not data:
             return Response({'error': 'Ошибка сервера'})
         return Response(data)
-
-class FilmStreamParseView(APIView):
-
-    def post(self, request):
-        start = request.data.get('start', None)
-        if start == 'true':
-            with open('kids.txt', 'r') as f:
-                urls = [{'url': f'http://kinoinfo.ru/film/{i}/', 'id': i} for i in f.read().split(',')]
-                for url in urls:
-                    resp = req.get(url['url'])
-                    soup = BeautifulSoup(resp.text, 'lxml')
-                    parser = parsers.KinoinfoParser()
-                    releasedate = parser.parse_release(soup)
-                    if releasedate:
-                        date = datetime.strptime(str(releasedate), '%d %B %Y')
-                        date = datetime.strftime(date, '%Y %m %d').replace(' ', '-')
-                        print(date)
-                        serializer = serializers_helper.FilmReleaseSerializer(data = {'release': date})
-                        if serializer.is_valid():
-                            relobj = serializer.save()
-                            try:
-                                film = models.Films.objects.distinct('kid').filter(kid = url['id'])[0]
-                                film.release.add(relobj)
-                                string = (
-                                    f'Добавлена одна дата релиза {relobj.release} к фильму {film}\n'
-                                    f'с существующими датами релизов {[release.release for release in film.release.all()]}\n\n'
-                                )
-                                with open('result.txt', 'a') as result:
-                                    result.write(string)
-                            except Exception as e:
-                                continue
-            return Response({'processed': 'true'})
-        return Respones({'errors': 'No args provided'})
-    def get(self, request):
-        with open('result.txt', 'r') as f:
-            return Response({'data': f.read()[:10000]})

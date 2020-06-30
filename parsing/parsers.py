@@ -34,7 +34,7 @@ class ImdbParser(parsers.BaseParser):
 
 class KinoinfoParser(parsers.BaseParser):
 
-    default_fields = ['poster', 'release']
+    default_fields = ['poster', 'release', 'name']
 
     def parse_poster(self, site):
         try:
@@ -50,7 +50,13 @@ class KinoinfoParser(parsers.BaseParser):
         try:
             release = release['title']
         except Exception as e:
-            #print(e)
+            print(str(e))
             return None
         print(release)
         return release
+
+    def parse_name(self, site):
+        header = site.find('h2', {'id': 'film_name'})
+        header.span.decompose()
+        name = header.get_text().strip()
+        return name
