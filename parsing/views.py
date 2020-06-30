@@ -6,7 +6,6 @@ import logging
 import random
 from . import parsers
 from base import models, serializers_helper
-from base.queue import queue
 import requests as req
 from bs4 import BeautifulSoup
 from datetime import datetime
