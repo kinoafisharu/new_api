@@ -35,22 +35,8 @@ class FilmsViewSet(baseviews.MethodModelViewSet):
     filterset_fields = ['id', 'imdb_id', 'year']
     search_fields = ['id']
     top_identifier = '-imdb_rate'
-    default_list_fields = ('id','kid','imdb_id','year',)
+    default_list_fields = ('id','kid','imdb_id','year','poster')
 
-    def list(self, request):
-        flds = self.get_list_field_values(request)
-        self.list_fields = flds if flds else self.default_list_fields
-        queryset = self.filter_queryset(self.queryset)
-        page = self.paginate_queryset(queryset)
-        serializer = self.get_serializer(page, many = True, fields = self.list_fields)
-        for object in serializer.data:
-            kid = object.get('kid', None)
-            if kid:
-                url = 'http://kinoinfo.ru/film/{0}/'.format(kid)
-                parser = parsers.KinoinfoParser(url = url, parser = 'lxml')
-                data = parser.parse()
-                object.update(data)
-        return self.get_paginated_response(serializer.data)
 
 # Метод добавляет один лайк к фильму с ид взятым из <int:pk>  по запросу POST https:/|host|/films/<int:pk>/like
     @action(detail = True, methods = ['post'], url_path = 'like', url_name = 'like')
