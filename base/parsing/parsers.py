@@ -12,12 +12,13 @@ from urllib3.exceptions import HTTPError
 # Служит хранилищем необходимого функционала для любого дочернего парсера
 class BaseParser():
     def __init__(self, *args, **kwargs):
+        cparser = kwargs.pop('parser', None)
         self.item = dict()
         self.relations = dict()
         self.url = kwargs.pop('url', None)
         self.fields = kwargs.pop('fields', None)
         self.extra = kwargs.pop('extra', None)
-        self.parser = kwargs.pop('parser', None)
+        self.parser = cparser if cparser else self.default_parser
 
     # Хранение данных в парсере в виде параметра
     @property
@@ -42,7 +43,7 @@ class BaseParser():
     # Получить обьект beautifulsoup с заданным парсером и полученным документом
     def get_parser(self):
         if not self.parser:
-            raise ValueError('Parser must be present')
+            raise ValueError('Parser must be present set default parser or use custom as arg')
         parsable = self.fetch_data(self.url)
         soup = BeautifulSoup(parsable.text, self.parser)
         return soup
@@ -51,7 +52,9 @@ class BaseParser():
     def parse_fields(self, fields, site):
         for field in fields:
             method = getattr(self, 'parse_{0}'.format(field))
-            self.item[field] = method(site)
+            result = method(site)
+            if result:
+                self.item[field] = result
 
     # Начать парсинг, положить обьект в параметр item и вернуть обьект нужной структуры
     def parse(self):
